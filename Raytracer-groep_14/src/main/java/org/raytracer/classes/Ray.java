@@ -1,7 +1,7 @@
 package org.raytracer.classes;
 
 public class Ray {
-    Vector origin;
-    Vector direction;
+    Vector3 origin;
+    Vector3 direction;
     float t;
 }

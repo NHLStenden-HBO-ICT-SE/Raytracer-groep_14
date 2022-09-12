@@ -5,9 +5,9 @@ package org.raytracer.classes;
  */
 public class Camera {
 
-    Vector Position;
-    Vector Direction;
+    Vector3 Position;
+    Vector3 Direction;
     float FieldOfView;
-    Vector Center;
-    Vector TopLeft, TopRight, BottomLeft;
+    Vector3 Center;
+    Vector3 TopLeft, TopRight, BottomLeft;
 }

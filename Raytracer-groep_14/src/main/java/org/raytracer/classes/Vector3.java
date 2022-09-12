@@ -1,4 +1,4 @@
 package org.raytracer.classes;
 
-public class Vector {
+public class Vector3 {
 }
