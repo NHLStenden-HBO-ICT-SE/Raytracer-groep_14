@@ -1,8 +1,5 @@
 package org.raytracer.classes;
 
-import UCD.Light;
-import UCD.Camera;
-import UCD.SolidObject;
 
 public class SceneObject {
 
