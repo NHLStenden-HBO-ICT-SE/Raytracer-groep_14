@@ -1,7 +1,5 @@
 package org.raytracer.classes;
 
-/**
- *
- */
-public class Light {
+public class bitmap {
+
 }
