@@ -8,6 +8,9 @@ public class Vector3 {
 
 	private SceneObject sceneObject;
 
+	public Vector3(){
+		this(0,0,0);
+	}
 	public Vector3(float x, float y, float z){
 		this.x = x;
 		this.y = y;
