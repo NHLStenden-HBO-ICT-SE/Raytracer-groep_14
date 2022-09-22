@@ -33,17 +33,48 @@ public class Vector3 {
 		return new Vector3(x,y,z);
 	}
 
+	public float length() {
+		return (float) Math.sqrt(x*x+y*y+z*z);
+	}
+	public Vector3 subtract(Vector3 vector) {
+		return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
+	}
+	public Vector3 normalize() {
+		float length = length();
+		return new Vector3(this.x / length, this.y / length, this.z / length);
+	}
 	public void SetVector(float x, float y, float z) {
 	}
 
 	//temp rotation calculations
 
 	/**
+	 *
+	 * @param yaw
+	 * @param pitch
+	 * @return
+	 */
+
+	public Vector3 rotateYP(float yaw, float pitch) {
+		// Convert to radians
+		double yawRads = Math.toRadians(yaw);
+		double pitchRads = Math.toRadians(pitch);
+
+		// Step one: Rotate around X axis (pitch)
+		float _y = (float) (y*Math.cos(pitchRads) - z*Math.sin(pitchRads));
+		float _z = (float) (y*Math.sin(pitchRads) + z*Math.cos(pitchRads));
+
+		// Step two: Rotate around the Y axis (yaw)
+		float _x = (float) (x*Math.cos(yawRads) + _z*Math.sin(yawRads));
+		_z = (float) (-x*Math.sin(yawRads) + _z*Math.cos(yawRads));
+
+		return new Vector3(_x, _y, _z);
+	}
+	/**
 	 * Rotate the vector3 up by the given degrees
 	 * @param degrees
 	 * @return
 	 */
-
 	public Vector3 RotateUpByDegrees(int degrees){
 
 		//pitch roll yaw ref chart https://th.bing.com/th/id/R.7581eb166c78861e1717f4dcb58c600f?rik=p02JZWulLC%2f6NA&riu=http%3a%2f%2fi.stack.imgur.com%2f8IuOw.png&ehk=pGMPZxyK9kOd1EoPH5K3L%2fGfDjyVcXCzixV8IOZ7L%2fE%3d&risl=&pid=ImgRaw&r=0
