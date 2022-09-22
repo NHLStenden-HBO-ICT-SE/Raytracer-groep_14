@@ -29,7 +29,14 @@ public class PixelData {
     public float getEmmison() {
         return emmison;
     }
-    public void add(PixelData otherData){
 
+    /**
+     * add other pixeldata to own
+     * @param otherData
+     */
+    public void add(PixelData otherData){
+        this.color.addSelf(otherData.color);
+        this.depht = (this.depht + otherData.depht)/2f;
+        this.emmison = this.emmison + otherData.emmison;
     }
 }
