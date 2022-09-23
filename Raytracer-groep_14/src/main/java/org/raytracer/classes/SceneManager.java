@@ -29,6 +29,8 @@ public class SceneManager {
 		Camera camera = new Camera();
 		Light light = new Light(new Vector3(0,0,10));
 		Scene nScene = new Scene(camera, light);
+		BoxObject firstBox = new BoxObject(new Vector3(0,0,10), new Vector3(1,1,1), Color.RED, 1, 1);
+		nScene.addObects(firstBox);
 	}
 
 
