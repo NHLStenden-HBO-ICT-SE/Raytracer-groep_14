@@ -10,6 +10,12 @@ public class Scene {
 	private Light lPoint;
 	private Skybox skybox;
 
+	/**
+	 * scene constructor
+	 */
+	public Scene(){
+
+	}
 
 
 
