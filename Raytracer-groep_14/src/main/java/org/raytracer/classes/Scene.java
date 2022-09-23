@@ -1,12 +1,129 @@
 package org.raytracer.classes;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
 
 	private SceneObject[] objectList;
-	private List<SolidObject> solidObjectList;
+	private List<SolidObject> solidObjectList = new List<SolidObject>() {
+		@Override
+		public int size() {
+			return 0;
+		}
+
+		@Override
+		public boolean isEmpty() {
+			return false;
+		}
+
+		@Override
+		public boolean contains(Object o) {
+			return false;
+		}
+
+		@Override
+		public Iterator<SolidObject> iterator() {
+			return null;
+		}
+
+		@Override
+		public Object[] toArray() {
+			return new Object[0];
+		}
+
+		@Override
+		public <T> T[] toArray(T[] ts) {
+			return null;
+		}
+
+		@Override
+		public boolean add(SolidObject solidObject) {
+			return false;
+		}
+
+		@Override
+		public boolean remove(Object o) {
+			return false;
+		}
+
+		@Override
+		public boolean containsAll(Collection<?> collection) {
+			return false;
+		}
+
+		@Override
+		public boolean addAll(Collection<? extends SolidObject> collection) {
+			return false;
+		}
+
+		@Override
+		public boolean addAll(int i, Collection<? extends SolidObject> collection) {
+			return false;
+		}
+
+		@Override
+		public boolean removeAll(Collection<?> collection) {
+			return false;
+		}
+
+		@Override
+		public boolean retainAll(Collection<?> collection) {
+			return false;
+		}
+
+		@Override
+		public void clear() {
+
+		}
+
+		@Override
+		public SolidObject get(int i) {
+			return null;
+		}
+
+		@Override
+		public SolidObject set(int i, SolidObject solidObject) {
+			return null;
+		}
+
+		@Override
+		public void add(int i, SolidObject solidObject) {
+
+		}
+
+		@Override
+		public SolidObject remove(int i) {
+			return null;
+		}
+
+		@Override
+		public int indexOf(Object o) {
+			return 0;
+		}
+
+		@Override
+		public int lastIndexOf(Object o) {
+			return 0;
+		}
+
+		@Override
+		public ListIterator<SolidObject> listIterator() {
+			return null;
+		}
+
+		@Override
+		public ListIterator<SolidObject> listIterator(int i) {
+			return null;
+		}
+
+		@Override
+		public List<SolidObject> subList(int i, int i1) {
+			return null;
+		}
+	};
 	private CopyOnWriteArrayList<SolidObject> solidObjects;
 	private Camera mainViewPoint;
 	private Light lPoint;
