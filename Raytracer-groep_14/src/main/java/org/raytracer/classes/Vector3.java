@@ -139,6 +139,23 @@ public class Vector3 {
 		float _z = (float) (y*Math.sin(pitchDegrees) + z*Math.cos(pitchDegrees));
 		return  new Vector3(x, _y, _z);
 	}
+	@Override
+	public Vector3 clone() {
+		return new Vector3(x, y, z);
+	}
+
+	@Override
+	public String toString() {
+		return "Vector3{" +
+				"x=" + x +
+				", y=" + y +
+				", z=" + z +
+				'}';
+	}
+
+	public float[] toArray() {
+		return new float[]{x, y, z};
+	}
 
 
 }
