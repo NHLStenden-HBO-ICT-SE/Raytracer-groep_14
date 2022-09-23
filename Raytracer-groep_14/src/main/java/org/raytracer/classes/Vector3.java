@@ -36,6 +36,10 @@ public class Vector3 {
 	public float length() {
 		return (float) Math.sqrt(x*x+y*y+z*z);
 	}
+	public Vector3 add(Vector3 vec) {
+		return new Vector3(this.x + vec.x, this.y + vec.y, this.z + vec.z);
+	}
+
 	public Vector3 subtract(Vector3 vector) {
 		return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
 	}
@@ -43,7 +47,21 @@ public class Vector3 {
 		float length = length();
 		return new Vector3(this.x / length, this.y / length, this.z / length);
 	}
+	public static float dot(Vector3 a, Vector3 b) {
+		return a.x * b.x + a.y * b.y + a.z * b.z;
+	}
 	public void SetVector(float x, float y, float z) {
+	}
+
+	public Vector3 multiply(float scalar) {
+		return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
+	}
+
+	public Vector3 multiply(Vector3 vec) {
+		return new Vector3(this.x * vec.x, this.y * vec.y, this.z * vec.z);
+	}
+	public static float distance(Vector3 a, Vector3 b) {
+		return (float) Math.sqrt(Math.pow(a.x - b.x, 2)+Math.pow(a.y - b.y, 2)+Math.pow(a.z - b.z, 2));
 	}
 
 	//temp rotation calculations

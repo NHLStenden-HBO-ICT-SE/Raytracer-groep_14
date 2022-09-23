@@ -16,6 +16,10 @@ public class Camera {
         return fieldOfView;
     }
 
+    public Vector3 getPosition() {
+        return position;
+    }
+
     public void setPitch(float pitch) {
         this.pitch = pitch;
     }
