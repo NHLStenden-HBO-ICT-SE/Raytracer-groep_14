@@ -26,9 +26,9 @@ public class SceneManager {
 	 * create a scene with an enviremont that will be rendered
 	 */
 	public void SetupScene(){
-		Scene nScene = new Scene();
-
-
+		Camera camera = new Camera();
+		Light light = new Light(new Vector3(0,0,10));
+		Scene nScene = new Scene(camera, light);
 	}
 
 

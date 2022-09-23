@@ -1,10 +1,12 @@
 package org.raytracer.classes;
-
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
 
 	private SceneObject[] objectList;
+	private List<SolidObject> solidObjectList;
 	private CopyOnWriteArrayList<SolidObject> solidObjects;
 	private Camera mainViewPoint;
 	private Light lPoint;
@@ -13,13 +15,18 @@ public class Scene {
 	/**
 	 * scene constructor
 	 */
-	public Scene(){
-
+	public Scene(Camera camera, Light light){
+		this.mainViewPoint = camera;
+		this.lPoint = light;
 	}
 
+	public void addObects(SolidObject object){
 
-
-
+		solidObjectList.add(object);
+	}
+	public List<SolidObject> getSolidObjectList() {
+		return solidObjectList;
+	}
 
 	public Camera getMainViewPoint() {
 		return mainViewPoint;
