@@ -3,16 +3,22 @@ package org.raytracer.classes;
 public class Vector3 {
 
 	private SceneObject sceneObject;
-	public float x;
-	public float y;
-	public float z;
+	public float x = 0;
+	public float y = 0;
+	public float z = 0;
 
 	private SceneObject _sceneObject;
 
+	/*
 	public Vector3(){
 		this(0,0,0);
 	}
-	public Vector3(float x, float y, float z){
+	 */
+
+	public Vector3(float x, float y, float z) {
+		if (Float.isNaN(x) || Float.isNaN(y) || Float.isNaN(z))
+			throw new IllegalArgumentException("One or more parameters are NaN");
+
 		this.x = x;
 		this.y = y;
 		this.z = z;

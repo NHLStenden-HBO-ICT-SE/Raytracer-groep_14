@@ -8,7 +8,7 @@ public class Renderer {
 	private int maxBounces = 5;
 	private static final float GLOBAL_ILLUMINATION = 0.3F;
 	private static final float SKY_EMISSION = 0.5F;
-	private static final boolean SHOW_SKYBOX = true;
+	private static final boolean SHOW_SKYBOX = false;
 
 	public static float bloomIntensity = 0.5F;
 	public static int bloomRadius = 10;
@@ -35,6 +35,8 @@ public class Renderer {
 			for (int y = 0; y<screenHeight; y++){
 
 				float[] screenUV = getNormalizedScreenCoordinates(x,y,screenWidth,screenHeight);
+
+				pixelBuffer.setPixels(x, y, ComputePixelData(scene, screenUV[0], screenUV[1]));
 
 			}
 		}
