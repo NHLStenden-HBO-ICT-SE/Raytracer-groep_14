@@ -21,12 +21,12 @@ public class Skybox {
 			public void run() {
 				try {
 					System.out.println("Loading skybox "+resourceName+"...");
-					sphereImage = ImageIO.read(getClass().getResourceAsStream("/res/"+resourceName));
+					sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/" +resourceName));
 					System.out.println("Skybox ready.");
 					loaded = true;
 				} catch (IOException | IllegalArgumentException ex) {
 					try {
-						sphereImage = ImageIO.read(getClass().getResourceAsStream("/res/error_skybox.jpg"));
+						sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/error_skybox.jpg"));
 						loaded = true;
 					} catch (IOException | IllegalArgumentException ex2) {
 						ex2.printStackTrace();
@@ -66,12 +66,12 @@ public class Skybox {
 			public void run() {
 				try {
 					System.out.println("Loading skybox "+resourceName+"...");
-					sphereImage = ImageIO.read(getClass().getResourceAsStream("/res/"+resourceName));
+					sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/" +resourceName));
 					System.out.println("Skybox ready.");
 					loaded = true;
 				} catch (IOException | IllegalArgumentException ex) {
 					try {
-						sphereImage = ImageIO.read(getClass().getResourceAsStream("/res/error_skybox.jpg"));
+						sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/error_skybox.jpg"));
 						loaded = true;
 					} catch (IOException | IllegalArgumentException ex2) {
 						ex2.printStackTrace();
@@ -97,7 +97,7 @@ public class Skybox {
 					loaded = true;
 				} catch (IOException | IllegalArgumentException ex) {
 					try {
-						sphereImage = ImageIO.read(getClass().getResourceAsStream("/res/error_skybox.jpg"));
+						sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/error_skybox.jpg"));
 						loaded = true;
 					} catch (IOException | IllegalArgumentException ex2) {
 						ex2.printStackTrace();

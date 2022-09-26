@@ -65,6 +65,10 @@ public class Scene {
 		return skybox;
 	}
 
+	public void setSkybox(String boxName) {
+		this.skybox = new Skybox(boxName);
+	}
+
 	public Light getlPoint() {
 		return lPoint;
 	}

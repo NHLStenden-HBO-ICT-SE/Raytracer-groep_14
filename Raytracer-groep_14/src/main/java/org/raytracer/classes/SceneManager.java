@@ -40,6 +40,7 @@ public class SceneManager {
 		Camera camera = new Camera(new Vector3(0,1,0));
 		Light light = new Light(new Vector3(0,0,10));
 		Scene nScene = new Scene(camera, light);
+		nScene.setSkybox("Skybox.jpg");
 		BoxObject firstBox = new BoxObject(new Vector3(0,0,10), new Vector3(1,1,1), Color.RED, 1, 1);
 		nScene.addObects(firstBox);
 		Renderer.RenderScene(nScene, 900, 900);
