@@ -2,11 +2,12 @@ package org.raytracer.classes;
 
 public class Vector3 {
 
+	private SceneObject sceneObject;
 	public float x;
 	public float y;
 	public float z;
 
-	private SceneObject sceneObject;
+	private SceneObject _sceneObject;
 
 	public Vector3(){
 		this(0,0,0);
@@ -115,3 +116,4 @@ public class Vector3 {
 
 
 }
+
