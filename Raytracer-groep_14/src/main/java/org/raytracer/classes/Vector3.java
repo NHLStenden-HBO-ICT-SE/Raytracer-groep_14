@@ -52,6 +52,15 @@ public class Vector3 {
 	}
 
 
+	/**
+	 * Subtract the local vector by the given one
+	 * @param vector to subtract with
+	 * @return
+	 */
+	public Vector3 subtract(Vector3 vector) {
+		return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
+	}
+
 
 	//todo make a multiply method using a float and vector
 	/**
