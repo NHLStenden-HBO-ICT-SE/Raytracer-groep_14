@@ -1,9 +1,8 @@
 package org.raytracer.classes;
 
-public class Scene extends SceneObject {
+public class Scene {
 
 	private SceneObject[] objectList;
-	private Skybox image;
 
 	public void AddSceneObject() {
 

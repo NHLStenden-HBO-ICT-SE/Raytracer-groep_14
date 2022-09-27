@@ -1,7 +1,7 @@
 package org.raytracer.classes;
 
-public class Skybox{
+public class Skybox {
 
-	private Bitmap image;
+	private bitmap image;
 
 }

@@ -1,5 +1,5 @@
 package org.raytracer.classes;
 
-public class Bitmap {
+public class bitmap {
 
 }

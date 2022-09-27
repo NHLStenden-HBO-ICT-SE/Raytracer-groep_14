@@ -1,5 +1,5 @@
 package org.raytracer.classes;
 
-public class CanvasElement extends UICanvas{
+public class CanvasElement {
 
 }
