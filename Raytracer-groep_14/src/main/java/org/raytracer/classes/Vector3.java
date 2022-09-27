@@ -3,9 +3,9 @@ package org.raytracer.classes;
 public class Vector3 {
 
 	private SceneObject sceneObject;
-	public float x;
-	public float y;
-	public float z;
+	private float x;
+	private float y;
+	private float z;
 
 	private SceneObject _sceneObject;
 
