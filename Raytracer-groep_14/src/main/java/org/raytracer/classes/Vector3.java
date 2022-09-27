@@ -104,7 +104,7 @@ public class Vector3 {
 
 	/**
 	 * get the length of the current vector3
-	 * @return
+	 * @return the length of the current vector3
 	 */
 	public float length() {
 		return (float) Math.sqrt(x*x+y*y+z*z);
