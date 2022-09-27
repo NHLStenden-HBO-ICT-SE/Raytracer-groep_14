@@ -15,18 +15,20 @@ public class Skybox {
 	public Skybox(String resourceName) {
 		sphereImage = new BufferedImage(2,2, BufferedImage.TYPE_INT_RGB);
 		loaded = false;
+		File Tempfile = new File("temp.txt");
+		System.out.println(Tempfile.getAbsolutePath());
 
 		new Thread("Skybox loader") {
 			@Override
 			public void run() {
 				try {
 					System.out.println("Loading skybox "+resourceName+"...");
-					sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/" +resourceName));
+					sphereImage = ImageIO.read(getClass().getResourceAsStream("error_skybox.jpg"));
 					System.out.println("Skybox ready.");
 					loaded = true;
 				} catch (IOException | IllegalArgumentException ex) {
 					try {
-						sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/main/res/error_skybox.jpg"));
+						sphereImage = ImageIO.read(getClass().getResourceAsStream("/src/res/error_skybox.jpg"));
 						loaded = true;
 					} catch (IOException | IllegalArgumentException ex2) {
 						ex2.printStackTrace();

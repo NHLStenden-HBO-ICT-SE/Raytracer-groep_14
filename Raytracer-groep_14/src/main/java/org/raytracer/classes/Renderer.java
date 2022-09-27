@@ -8,7 +8,7 @@ public class Renderer {
 	private int maxBounces = 5;
 	private static final float GLOBAL_ILLUMINATION = 0.3F;
 	private static final float SKY_EMISSION = 0.5F;
-	private static final boolean SHOW_SKYBOX = false;
+	private static final boolean SHOW_SKYBOX = true;
 
 	public static float bloomIntensity = 0.5F;
 	public static int bloomRadius = 10;
@@ -52,7 +52,7 @@ public class Renderer {
 	 */
 	public static PixelData ComputePixelData(Scene scene, float u, float v){
 		Camera camera = scene.getMainViewPoint();
-		Vector3 Eyeposition = new Vector3(0,0, (float) (-1/Math.tan(Math.toRadians(camera.getFieldOfView()/2))));
+		Vector3 Eyeposition = new Vector3(0,0, (float) (-1/Math.tan(Math.toRadians(camera.getFieldOfView()/2)))); //todo make this method in camera
 
 		Vector3 raydir = new Vector3(u,v,0).subtract(Eyeposition).normalize().rotateYP(camera.getYaw(), camera.getPitch());
 		RayHit hit = scene.raycast(new Ray(Eyeposition.add(camera.getPosition()),new Vector3(u,v,0).subtract(Eyeposition).normalize().rotateYP(camera.getYaw(), camera.getPitch())));
