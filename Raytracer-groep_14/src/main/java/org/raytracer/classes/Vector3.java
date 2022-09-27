@@ -39,12 +39,15 @@ public class Vector3 {
 		this.z = z;
 	}
 
+
+
+	//todo make a multiply method using a float and vector
 	/**
 	 * add one vector 3 to the current one
 	 * @param vec1 vector 3 to add
 	 * @return
 	 */
-	public Vector3 Sum(Vector3 vec1){
+	public Vector3 add(Vector3 vec1){
 
 		return new Vector3((vec1.x + this.x), (vec1.y + this.y), (vec1.z + this.z));
 	}
@@ -54,11 +57,28 @@ public class Vector3 {
 	 * @param vec2 the second vector 3
 	 * @return
 	 */
-	public static Vector3 Sum(Vector3 vec1, Vector3 vec2){
+	public static Vector3 add(Vector3 vec1, Vector3 vec2){
 
 		return new Vector3((vec1.x + vec2.x), (vec1.y + vec2.y), (vec1.z + vec2.z));
 	}
 
+	/**
+	 * Multiply the local vector 3 with a given float called the scalar
+	 * @param scalar float to multiply with
+	 * @return scaled Vector 3
+	 */
+	public Vector3 multiply(float scalar) {
+		return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
+	}
+
+	/**
+	 * Multiply the local vector 3 with another vector 3
+	 * @param vec Vector 3 to scale with
+	 * @return scaled Vector 3
+	 */
+	public Vector3 multiply(Vector3 vec) {
+		return new Vector3(this.x * vec.x, this.y * vec.y, this.z * vec.z);
+	}
 	//temp rotation calculations
 
 	/**
