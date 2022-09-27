@@ -103,10 +103,28 @@ public class Vector3 {
 	//temp rotation calculations
 
 	/**
+	 * get the length of the current vector3
+	 * @return
+	 */
+	public float length() {
+		return (float) Math.sqrt(x*x+y*y+z*z);
+	}
+
+	/**
+	 * Normalize the current vector
+	 * @return a normilized vector 3
+	 */
+	public Vector3 normalize() {
+		float length = length();
+		return new Vector3(this.x / length, this.y / length, this.z / length);
+	}
+	/**
 	 * Rotate the vector3 up by the given degrees
 	 * @param degrees
 	 * @return
 	 */
+
+
 
 	public Vector3 RotateUpByDegrees(int degrees){
 
