@@ -1,7 +1,7 @@
 package org.raytracer.classes;
 
 
-public class SceneObject {
+public class SceneObject extends Camera{
 
 	private Vector3 position;
 
