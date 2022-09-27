@@ -3,9 +3,9 @@ package org.raytracer.classes;
 public class Vector3 {
 
 	private SceneObject sceneObject;
-	public float x;
-	public float y;
-	public float z;
+	private float x;
+	private float y;
+	private float z;
 
 	private SceneObject _sceneObject;
 
@@ -28,6 +28,18 @@ public class Vector3 {
 		return z;
 	}
 
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public void setZ(float z) {
+		this.z = z;
+	}
+
 	//*** Get the current xyz
 	public Vector3 GetVector3() {
 		return new Vector3(x,y,z);
@@ -39,6 +51,15 @@ public class Vector3 {
 		this.z = z;
 	}
 
+
+	/**
+	 * Subtract the local vector by the given one
+	 * @param vector to subtract with
+	 * @return
+	 */
+	public Vector3 subtract(Vector3 vector) {
+		return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
+	}
 
 
 	//todo make a multiply method using a float and vector
