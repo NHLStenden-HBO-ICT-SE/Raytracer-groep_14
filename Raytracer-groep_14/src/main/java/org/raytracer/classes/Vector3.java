@@ -28,6 +28,18 @@ public class Vector3 {
 		return z;
 	}
 
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+
+	public void setZ(float z) {
+		this.z = z;
+	}
+
 	//*** Get the current xyz
 	public Vector3 GetVector3() {
 		return new Vector3(x,y,z);
