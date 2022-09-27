@@ -11,6 +11,6 @@ public class Camera {
         this.position = new Vector3(0, 0, 0);
         this.direction = new Vector3(1, 0, 0);
         this.fieldOfView = 50;
-        this.center =
+        //this.center = position.add(direction.)
     }
 }
