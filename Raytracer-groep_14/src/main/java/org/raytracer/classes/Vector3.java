@@ -1,5 +1,12 @@
 package org.raytracer.classes;
 
+import sun.net.www.content.text.Generic;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Vector3 {
 
 	private SceneObject sceneObject;
@@ -11,6 +18,11 @@ public class Vector3 {
 
 	public Vector3(){
 		this(0,0,0);
+	}
+	public Vector3(Vector3 vec){
+		this.x = vec.x;
+		this.y = vec.y;
+		this.z = vec.z;
 	}
 	public Vector3(float x, float y, float z){
 		this.x = x;
