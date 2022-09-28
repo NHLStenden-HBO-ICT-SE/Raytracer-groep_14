@@ -7,7 +7,29 @@ public class Ray {
 	private float t; // Distance scalar
 
 
+	public Vector3 getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Vector3 direction) {
+		this.direction = direction;
+	}
+
+	public Vector3 getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(Vector3 origin) {
+		this.origin = origin;
+	}
+
 	//projection(tscalar) = origen + tScalar + direction, where t > 0
+
+	/**
+	 * contruct a rayclass,
+	 * @param origin
+	 * @param direction
+	 */
 	public Ray(Vector3 origin, Vector3 direction){
 		this.origin = origin;
 		if (direction.length() != 1){
