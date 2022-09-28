@@ -6,4 +6,5 @@ public class Ray {
 	private Vector3 direction;
 	private float t; // Distance scalar
 
+
 }

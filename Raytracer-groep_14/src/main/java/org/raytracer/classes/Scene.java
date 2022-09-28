@@ -5,6 +5,10 @@ public class Scene {
 	private SceneObject[] objectList;
 	private Skybox image;
 
+
+	public Scene(){
+	}
+
 	public void AddSceneObject() {
 
 	}

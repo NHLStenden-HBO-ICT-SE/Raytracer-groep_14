@@ -8,4 +8,9 @@ public class Sphere extends SolidObject{
         super(position, color, reflection, emmision);
         this.radius = radius;
     }
+
+ /*   public void IntersectRay (Ray ray)
+    {
+        Vector3 op = position - ;
+    }*/
 }
