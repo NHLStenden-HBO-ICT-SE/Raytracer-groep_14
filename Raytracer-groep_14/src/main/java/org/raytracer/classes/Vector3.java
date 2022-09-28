@@ -1,5 +1,12 @@
 package org.raytracer.classes;
 
+import sun.net.www.content.text.Generic;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class Vector3 {
 
 	private SceneObject sceneObject;
@@ -11,6 +18,11 @@ public class Vector3 {
 
 	public Vector3(){
 		this(0,0,0);
+	}
+	public Vector3(Vector3 vec){
+		this.x = vec.x;
+		this.y = vec.y;
+		this.z = vec.z;
 	}
 	public Vector3(float x, float y, float z){
 		this.x = x;
@@ -103,10 +115,28 @@ public class Vector3 {
 	//temp rotation calculations
 
 	/**
+	 * get the length of the current vector3
+	 * @return the length of the current vector3
+	 */
+	public float length() {
+		return (float) Math.sqrt(x*x+y*y+z*z);
+	}
+
+	/**
+	 * Normalize the current vector
+	 * @return a normilized vector 3
+	 */
+	public Vector3 normalize() {
+		float length = length();
+		return new Vector3(this.x / length, this.y / length, this.z / length);
+	}
+	/**
 	 * Rotate the vector3 up by the given degrees
 	 * @param degrees
 	 * @return
 	 */
+
+
 
 	public Vector3 RotateUpByDegrees(int degrees){
 
