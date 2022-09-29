@@ -8,7 +8,8 @@ public class Plane extends SolidObject{
         super(position, color, emmision, reflection);
     }
 
-    public Vector3 IntersictRay(Ray ray)
+    @Override
+    public Vector3 CalculaterIntersection(Ray ray)
     {
         float t = -(ray.getOrigin().getY() - position.getY()) / ray.getDirection().getY();
         if (t > 0)//infront of the ray

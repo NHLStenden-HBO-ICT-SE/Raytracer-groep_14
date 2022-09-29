@@ -11,7 +11,8 @@ public class Sphere extends SolidObject{
 
 
 
-    public Vector3 IntersectRay (Ray ray)
+    @Override
+    public Vector3 CalculaterIntersection (Ray ray)
     {
         float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
         Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t));
@@ -28,4 +29,5 @@ public class Sphere extends SolidObject{
         else
         {return null;}
     }
+
 }
