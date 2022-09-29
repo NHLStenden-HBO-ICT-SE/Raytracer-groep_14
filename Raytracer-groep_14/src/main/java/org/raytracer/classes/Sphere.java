@@ -13,7 +13,7 @@ public class Sphere extends SolidObject{
 
     public Vector3 IntersectRay (Ray ray)
     {
-        float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the the dot product between t  direction
+        float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
         Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t));
 
         float y = position.subtract(p).length();
@@ -29,4 +29,3 @@ public class Sphere extends SolidObject{
         {return null;}
     }
 }
-// todo make Intersect for object and then work on scene
