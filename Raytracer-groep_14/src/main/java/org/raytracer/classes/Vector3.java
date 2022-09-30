@@ -115,6 +115,10 @@ public class Vector3 {
 	}
 	//temp rotation calculations
 
+	public Vector3 divide(int value) {
+		return new Vector3(x / value, y/value, z/value);
+	}
+	
 	/**
 	 * get the length of the current vector3
 	 * @return the length of the current vector3
