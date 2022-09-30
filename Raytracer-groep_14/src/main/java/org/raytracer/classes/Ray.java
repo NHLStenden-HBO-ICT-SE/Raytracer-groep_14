@@ -30,7 +30,7 @@ public class Ray {
     }
 	
 	public Vector3 calculateDirection(Camera camera){
-		return null;// 𝐷=𝑃𝑢,𝑣 −𝐸
+		return null; //todo gebruik camera.getPointOnScreen en camera.position om direction van ray uit te rekenen.
 	}
     
     public Vector3 getOrigin() {
