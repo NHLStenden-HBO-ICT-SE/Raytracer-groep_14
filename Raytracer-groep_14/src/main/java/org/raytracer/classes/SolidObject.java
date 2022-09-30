@@ -17,7 +17,7 @@ public abstract class SolidObject extends SceneObject{
         this.emmesion=emmesion;
     }
 
-    public Vector3 CalculaterIntersection(Ray ray) { return null; }
+    public abstract Vector3 CalculaterIntersection(Ray ray);
 
-    public  Vector3 GetNormalAt(Vector3 point) {return null; }
+    public  abstract Vector3 GetNormalAt(Vector3 point);
 }

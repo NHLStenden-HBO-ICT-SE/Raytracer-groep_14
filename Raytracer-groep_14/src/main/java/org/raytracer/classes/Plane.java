@@ -18,4 +18,9 @@ public class Plane extends SolidObject{
         }
         return null;
     }
+
+    @Override
+    public Vector3 GetNormalAt(Vector3 point) {
+        return new Vector3(0, 1, 0);
+    }
 }

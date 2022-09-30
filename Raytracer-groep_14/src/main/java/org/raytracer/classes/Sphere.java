@@ -30,4 +30,9 @@ public class Sphere extends SolidObject{
         {return null;}
     }
 
+    @Override
+    public Vector3 GetNormalAt(Vector3 point) {
+        return point.subtract(position).normalize();
+    }
+
 }

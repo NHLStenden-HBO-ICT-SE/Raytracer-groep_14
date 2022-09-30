@@ -4,13 +4,18 @@ public class Scene {
 
 	private SceneObject[] objectList;
 	private Skybox image;
+	private Camera camera;
+	private Light light;
 
 
-	public Scene(){
 
+	public Scene(SceneObject [] objectList ){
+		this.objectList = objectList;
 	}
 
 	public void AddSceneObject() {
+
+
 
 	}
 
