@@ -63,6 +63,7 @@ public class Vector3 {
 	}
 
 
+
 	/**
 	 * Subtract the local vector by the given one
 	 * @param vector to subtract with
