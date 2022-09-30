@@ -92,7 +92,6 @@ public class Camera {
         else if (vertical < 0)
             vertical = 0;
         
-        
         Vector3 horizontalPoint = getHorizontalVector3().multiply(horizontal); // Calculates point on x-axis
         Vector3 verticalPoint = getVerticalVector3().multiply(vertical); // Calculates point on y-axis
         
