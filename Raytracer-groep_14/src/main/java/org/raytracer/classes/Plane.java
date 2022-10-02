@@ -3,16 +3,16 @@ package org.raytracer.classes;
 public class Plane extends SolidObject{
 
 
-    public Plane(Vector3 position, Color color, float reflection, float emmision)
+    public Plane(Vector3 position, Color color, float reflection, float emission)
     {
-        super(position, color, emmision, reflection);
+        super(position, color, emission, reflection);
     }
 
     @Override
     public Vector3 CalculaterIntersection(Ray ray)
     {
         float t = -(ray.getOrigin().getY() - position.getY()) / ray.getDirection().getY();
-        if (t > 0)//infront of the ray
+        if (t > 0)//in front of the ray
         {
             return  ray.getOrigin().add(ray.getDirection().multiply(t)); // get far from the object and multiply the view
         }
