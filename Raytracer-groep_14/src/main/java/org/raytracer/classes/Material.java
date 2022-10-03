@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-import UCD.SolidObject;
+//import UCD.SolidObject;
 
 public class Material {
 
