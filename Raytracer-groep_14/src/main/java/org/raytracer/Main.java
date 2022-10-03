@@ -7,7 +7,7 @@ public class Main {
 
         System.out.println("Hello world!");
 
-        UICanvas uiCanvas = new UICanvas();
+        UICanvas uiCanvas = new UICanvas(900, 900);
 
         uiCanvas.createNewFrame();
 
