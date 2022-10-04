@@ -26,12 +26,14 @@ public class Quaternion {
     /**
      * Experimentel multiplication method
      * insert two quaternions in a certain order "which i forgot"
+     * (Q1 * Q2) != (Q2 * Q1)
      * @param q1
      * @param q2
      * @return
      */
     public Quaternion testMuliplication(Quaternion q1, Quaternion q2){
 
+        //Need to get a local rotation from a vector
         Quaternion multiplied = new Quaternion();
 
         multiplied.w = ((q1.w + q2.w) - (q1.x + q2.z) - (q1.y + q2.y) - (q1.z + q2.z));
