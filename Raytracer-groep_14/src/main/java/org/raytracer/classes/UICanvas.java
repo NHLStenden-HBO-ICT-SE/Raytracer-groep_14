@@ -26,6 +26,8 @@ public class UICanvas{
         canvasFrame.setSize(height, width);
         canvasFrame.setVisible(true);
         cam = new Camera();
+        Raycast raycaster = new Raycast();
+        raycaster.castLine(10, cam, width,height);
 
     }
     public boolean createNewFrame(){

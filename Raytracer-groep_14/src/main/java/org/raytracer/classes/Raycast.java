@@ -15,6 +15,8 @@ public class Raycast {
 
             Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
 
+            movePoint(rayReach ,tempray);
+
 
             for (int j = 0; j < height; j++) {
 
@@ -23,5 +25,14 @@ public class Raycast {
 
 
 
+    }
+
+    public boolean movePoint(int distance, Ray ray){
+        Vector3 pointIn = new Vector3();
+        for (int i = 0; i < distance; i++) {
+            Vector3 tempPoint = ray.rayPoint(i);
+            System.out.println(tempPoint);
+        }
+        return true;
     }
 }

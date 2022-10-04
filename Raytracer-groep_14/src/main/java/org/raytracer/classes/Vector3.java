@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-import sun.net.www.content.text.Generic;
+//import sun.net.www.content.text.Generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
