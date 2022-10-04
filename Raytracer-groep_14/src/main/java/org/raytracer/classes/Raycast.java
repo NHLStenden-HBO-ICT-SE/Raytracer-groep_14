@@ -13,9 +13,11 @@ public class Raycast {
         PixelData[][] pixelData = new PixelData[width][height];
         for (int i = 0; i < width; i++) {
 
+            String name = new String("cast" + i).toString();
             Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
 
-            movePoint(rayReach ,tempray);
+            Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
+            movePoint(rayReach ,new Ray(screenPoint, camera.getDirection()), name);
 
 
             for (int j = 0; j < height; j++) {
@@ -27,11 +29,11 @@ public class Raycast {
 
     }
 
-    public boolean movePoint(int distance, Ray ray){
+    public boolean movePoint(int distance, Ray ray, String name){
         Vector3 pointIn = new Vector3();
         for (int i = 0; i < distance; i++) {
             Vector3 tempPoint = ray.rayPoint(i);
-            System.out.println(tempPoint);
+            System.out.println(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
         }
         return true;
     }
