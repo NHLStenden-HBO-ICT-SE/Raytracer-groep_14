@@ -19,8 +19,9 @@ public class Raycast {
             Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
             movePoint(rayReach ,new Ray(screenPoint, camera.getDirection()), name);
 
-
             for (int j = 0; j < height; j++) {
+                Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
+                movePoint(rayReach ,new Ray(screenPoint2, camera.getDirection()), name);
 
             }
         }
@@ -33,8 +34,10 @@ public class Raycast {
         Vector3 pointIn = new Vector3();
         for (int i = 0; i < distance; i++) {
             Vector3 tempPoint = ray.rayPoint(i);
-            System.out.println(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
+            System.out.print(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
         }
+        System.out.println("end of cast" + name);
+
         return true;
     }
 }
