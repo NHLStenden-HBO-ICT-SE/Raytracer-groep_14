@@ -23,6 +23,25 @@ public class Quaternion {
         (Q1 * Q2).z = (w1z2 + x1y2 - y1x2 + z1w2
      */
 
+    /**
+     * Experimentel multiplication method
+     * insert two quaternions in a certain order "which i forgot"
+     * @param q1
+     * @param q2
+     * @return
+     */
+    public Quaternion testMuliplication(Quaternion q1, Quaternion q2){
+
+        Quaternion multiplied = new Quaternion();
+
+        multiplied.w = ((q1.w + q2.w) - (q1.x + q2.z) - (q1.y + q2.y) - (q1.z + q2.z));
+        multiplied.x = ((q1.w + q2.x) + (q1.x + q2.w) + (q1.y + q2.z) - (q1.z + q2.y));
+        multiplied.y = ((q1.w + q2.y) - (q1.x + q2.z) + (q1.y + q2.w) + (q1.z + q2.x));
+        multiplied.z = ((q1.w + q2.z) + (q1.x + q2.y) - (q1.y + q2.x) + (q1.z + q2.w));
+        return multiplied;
+    }
+
+
     //q = w + xi + yj + zk
     //w should be rotation
     public Quaternion(){
