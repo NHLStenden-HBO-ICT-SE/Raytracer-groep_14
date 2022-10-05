@@ -15,6 +15,16 @@ public class Quaternion {
     public float w; // the amount to rotate over the axis, shouldn't be able to turn more then 180
 
 
+    public Quaternion rotateUp(float angle){
+        Vector3 v1 = new Vector3(1,0,0);
+        return new Quaternion(
+                w = (float)Math.cos(angle/2),
+                x = (float)v1.getX() * (float)Math.sin( angle/2 ),
+                y = v1.getY() * (float) Math.sin( angle/2 ),
+                z = v1.getZ() * (float) Math.sin( angle/2 )
+        );
+    }
+
     /*
         Let Q1 and Q2 be two quaternions, which are defined, respectively, as (w1, x1, y1, z1) and (w2, x2, y2, z2).
         (Q1 * Q2).w = (w1w2 - x1x2 - y1y2 - z1z2)
@@ -22,6 +32,25 @@ public class Quaternion {
         (Q1 * Q2).y = (w1y2 - x1z2 + y1w2 + z1x2)
         (Q1 * Q2).z = (w1z2 + x1y2 - y1x2 + z1w2
      */
+
+    public Quaternion getLocalRotation(Vector3 v1, float angle)
+    {
+        /*
+        axis is a unit vector
+        local_rotation.w = cosf( fAngle/2)
+        local_rotation.x = axis.x * sinf( fAngle/2 )
+        local_rotation.y = axis.y * sinf( fAngle/2 )
+        local_rotation.z = axis.z * sinf( fAngle/2 )
+         */
+
+
+        return new Quaternion(
+                w = (float)Math.cos(angle/2),
+                x = (float)v1.getX() * (float)Math.sin( angle/2 ),
+                y = v1.getY() * (float) Math.sin( angle/2 ),
+                z = v1.getZ() * (float) Math.sin( angle/2 )
+        );
+    }
 
     /**
      * Experimentel multiplication method

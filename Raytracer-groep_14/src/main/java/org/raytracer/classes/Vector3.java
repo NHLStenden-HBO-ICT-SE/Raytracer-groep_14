@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-import sun.net.www.content.text.Generic;
+//import sun.net.www.content.text.Generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +38,9 @@ public class Vector3 {
 	}
 	public float getZ() {
 		return z;
+	}
+	public float[] returnASArry(){
+		return new float[]{this.x,this.y,this.z};
 	}
 
 	public void setX(float x) {
@@ -128,20 +131,68 @@ public class Vector3 {
 	}
 
 	/**
-	 * Normalize the current vector
+	 * Normalize the current vector, this is also an unit vector
 	 * @return a normilized vector 3
 	 */
 	public Vector3 normalize() {
 		float length = length();
 		return new Vector3(this.x / length, this.y / length, this.z / length);
 	}
+
+	/**
+	 *
+	 * @param target
+	 * @return
+	 */
+	public Vector3 getDirection(Vector3 target){
+		return (new Vector3(target.getX() - this.x,target.getY() - this.y, target.getZ() - this.z));
+
+	}
+
+	/**
+	 *
+	 * @param target
+	 * @param position
+	 * @return
+	 */
+	public Vector3 getDirection(Vector3 target, Vector3 position){
+		return (new Vector3(target.getX() - position.getX(), target.getY() - position.getY(), target.getZ() - position.getZ()));
+	}
+
+	public float dotProduct(float dot1[], float dot2[]){
+		float dotSum = 0;
+
+		for (int i = 0; i < dot1.length; i++) {
+			dotSum += dot1[i] * dot2[i];
+		}
+		return dotSum;
+	}
+
+
+	/**
+	 * code based on https://stackoverflow.com/questions/48265646/rotation-of-a-vector-python
+	 * @param v1
+	 * @param v2
+	 * @return
+	 */
+	public float getAngle(Vector3 v1, Vector3 v2){
+
+		v1 = v1.normalize(); 		//convert vector 3 to unit vector
+		v2 =  v2.normalize();			//convert vector 3 to unit vector
+
+		//use the inverse cosines called arccos
+		//float zeAngle = Math.acos(Math.min())
+		//float roundOff = (float) Math.acos(Math.min(1, Math.max(v1.dotProduct(v1.returnASArry(), v2.returnASArry()), -1)));
+		return new Float(Math.acos(Math.min(1, Math.max(v1.dotProduct(v1.returnASArry(), v2.returnASArry()), -1))));
+		//return np.arccos(np.clip(np.dot(v1_u, v2_u), -1.0, 1.0))
+
+	}
+
 	/**
 	 * Rotate the vector3 up by the given degrees
 	 * @param degrees
 	 * @return
 	 */
-
-
 
 	public Vector3 RotateUpByDegrees(int degrees){
 
