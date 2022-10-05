@@ -7,6 +7,9 @@ public class Camera {
     private Vector3 center;
     private Vector3 topLeft, topRight, bottomLeft;
     
+    private int screenWidth;
+    private int screenHeight;
+    
     /**
      * Initialises camera with direction in positive z-axis. When you place object, initialise them in this direction too.
      */
@@ -18,6 +21,8 @@ public class Camera {
         this.topLeft = center.add(new Vector3(-1, 1, 0));
         this.bottomLeft = center.add(new Vector3(-1, -1, 0));
         this.topRight = center.add(new Vector3(1, 1, 0));
+        this.screenHeight = 200;
+        this.screenWidth = 400;
     }
     
     public float getFieldOfView() {
@@ -72,30 +77,21 @@ public class Camera {
     }
     
     /**
-     * Gets point on virtual screen of camera. With this point you can calculate the direction of a ray.
+     * executes this formula 𝑃(𝑢,𝑣) = 𝑝0 + 𝑢(𝑝1−𝑝0) + 𝑣(𝑝2−𝑝0) to calculate a point on the screen.
      *
-     * @param horizontal a float that should be between 1 and 0
-     * @param vertical   a float that should be between 1 and 0
-     * @return Vector3 location on screen.
+     * @return Vector3 of point on screen.
      */
-    public Vector3 getPointOnScreen(float horizontal, float vertical) {
-        /*
-        Checks horizontal and vertical and keeps them between expected values.
-        Otherwise, the point will be outside the screen.
-         */
-        if (horizontal > 1)
-            horizontal = 1;
-        else if (horizontal < 0)
-            horizontal = 0;
-        if (vertical > 1)
-            vertical = 1;
-        else if (vertical < 0)
-            vertical = 0;
+    public Vector3 getPointOnScreen(int x, int y) {
+        float deltaHorizontal = topRight.getX() - topLeft.getX(); // Width of screen
+        float deltaVertical = bottomLeft.getY() - topLeft.getY(); // Height of screen
+        float pixelWidth = deltaHorizontal / screenWidth; // Width of pixel
+        float pixelHeight = deltaVertical / screenHeight; // Height of pixel
         
-        Vector3 horizontalPoint = getHorizontalVector3().multiply(horizontal); // Calculates point on x-axis
-        Vector3 verticalPoint = getVerticalVector3().multiply(vertical); // Calculates point on y-axis
+        float xPosition = pixelWidth * x; // x position of pixel in 3d world
+        float yPosition = pixelHeight * y; // y position of pixel in 3d world
         
-        return topLeft.add(horizontalPoint).add(verticalPoint); // Calculates point on screen and returns it as a Vector3
+        // Set coordinates to new vector
+        return new Vector3(topLeft.getX() + xPosition, topLeft.getY() + yPosition, topLeft.getZ());
     }
 }
 
