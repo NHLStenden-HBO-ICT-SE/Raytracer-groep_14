@@ -11,9 +11,6 @@ public class Main {
 
         uiCanvas.createNewFrame();
 
-
-
-
     }
 
 }
