@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Scene {
 
+	//comment
 	private ArrayList<SolidObject> objectList;
 	private Skybox image; // todo add skybox
 	private Camera camera;
