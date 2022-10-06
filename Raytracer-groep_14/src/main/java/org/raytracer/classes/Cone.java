@@ -4,10 +4,20 @@ public class Cone extends SolidObject {
     private float height;
     private float radius;
 
-    public Cone(Vector3 position, Color color, float radius, float height, float reflection, float emmision)
+    public Cone(Vector3 position, Color color, float radius, float height, float reflection, float emission)
     {
-        super(position, color, reflection, emmision);
+        super(position, color, reflection, emission);
         this.radius= radius;
         this.height=height;
+    }
+
+    @Override
+    public Vector3 CalculaterIntersection(Ray ray) {
+        return null;
+    }
+
+    @Override
+    public Vector3 GetNormalAt(Vector3 point) {
+        return null;
     }
 }

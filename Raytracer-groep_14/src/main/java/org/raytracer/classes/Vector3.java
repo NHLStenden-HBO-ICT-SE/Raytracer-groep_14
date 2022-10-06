@@ -1,6 +1,5 @@
 package org.raytracer.classes;
 
-//import sun.net.www.content.text.Generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,7 +120,7 @@ public class Vector3 {
 	public Vector3 divide(int value) {
 		return new Vector3(x / value, y/value, z/value);
 	}
-	
+
 	/**
 	 * get the length of the current vector3
 	 * @return the length of the current vector3
@@ -194,6 +193,8 @@ public class Vector3 {
 	 * @return
 	 */
 
+
+
 	public Vector3 RotateUpByDegrees(int degrees){
 
 		//pitch roll yaw ref chart https://th.bing.com/th/id/R.7581eb166c78861e1717f4dcb58c600f?rik=p02JZWulLC%2f6NA&riu=http%3a%2f%2fi.stack.imgur.com%2f8IuOw.png&ehk=pGMPZxyK9kOd1EoPH5K3L%2fGfDjyVcXCzixV8IOZ7L%2fE%3d&risl=&pid=ImgRaw&r=0
@@ -239,6 +240,18 @@ public class Vector3 {
 		float _y = (float) (y*Math.cos(pitchDegrees) - z * Math.sin(pitchDegrees));
 		float _z = (float) (y*Math.sin(pitchDegrees) + z*Math.cos(pitchDegrees));
 		return  new Vector3(x, _y, _z);
+	}
+
+	/**
+	 * Dot point between two vectores
+	 * @param a
+	 * @param b
+	 * @return
+	 * https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/dot-products-mvc
+	 */
+	public static float dot(Vector3 a, Vector3 b)
+	{
+		return  a.x * b.x + a.y * b.y + a.z * b.z;
 	}
 
 

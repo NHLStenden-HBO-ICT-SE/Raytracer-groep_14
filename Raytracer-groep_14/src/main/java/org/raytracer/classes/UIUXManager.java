@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-public class UIUXManager extends Scene{
+public class UIUXManager{
     private Scene scenes [];
 
     public float GetResolution()
