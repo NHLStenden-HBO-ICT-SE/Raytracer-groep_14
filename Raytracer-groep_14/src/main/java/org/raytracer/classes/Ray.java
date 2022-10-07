@@ -5,7 +5,8 @@ public class Ray {
     private Vector3 origin;
     private Vector3 direction;
     private float t; // Distance scalar
-    
+    private Color color;
+
     /**
      * contruct a rayclass,
      *
@@ -19,8 +20,16 @@ public class Ray {
         }
         this.direction = direction;
     }
-    
-    
+
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
     public Vector3 getDirection() {
         return direction;
     }

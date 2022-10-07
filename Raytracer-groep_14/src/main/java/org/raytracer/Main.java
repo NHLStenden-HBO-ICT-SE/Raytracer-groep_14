@@ -11,7 +11,7 @@ public class Main {
 
         UICanvas uiCanvas = new UICanvas(900, 900);
 
-        uiCanvas.setupScenes(new Vector3(1,0,10), new Color());
+        uiCanvas.setupScenes(new Vector3(1,0,10), Color.Blue);
         uiCanvas.createNewFrame();
         uiCanvas.castRays();
 

@@ -37,11 +37,13 @@ public class Raycast {
             Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
             Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
             Ray intersectionRay = new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint));
-            movePoint(rayReach ,new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint)), name);
+            //movePoint(rayReach ,intersectionRay, name);
             object.CalculaterIntersection(intersectionRay);
             for (int j = 0; j < height; j++) {
                 Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
-                movePoint(rayReach ,new Ray(camera.getDirection(), dummy.getDirection(camera.getPosition(), screenPoint2)), name);
+                intersectionRay = new Ray(camera.getDirection(), dummy.getDirection(camera.getPosition(), screenPoint2));
+                //movePoint(rayReach ,intersectionRay, name);
+                object.CalculaterIntersection(intersectionRay);
             }
         }
     }
@@ -50,7 +52,7 @@ public class Raycast {
         Vector3 pointIn = new Vector3();
         for (int i = 0; i < distance; i++) {
             Vector3 tempPoint = ray.rayPoint(i);
-            System.out.print(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
+            //System.out.print(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
         }
         System.out.println("end of cast" + name);
 
