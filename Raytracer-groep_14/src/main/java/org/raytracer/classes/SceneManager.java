@@ -6,6 +6,7 @@ public class SceneManager {
 
 	public void AddScene() {
 
+
 	}
 
 }

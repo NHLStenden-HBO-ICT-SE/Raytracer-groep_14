@@ -19,6 +19,10 @@ public class Scene {
 		this.camera=new Camera();
 		this.light= new Light();
 	}
+	public void setupScene(SolidObject object){
+
+		this.objectList.add(object);
+	}
 
 
 	/**
@@ -36,6 +40,11 @@ public class Scene {
 	public void RemoveSceneObject() {
 		this.objectList.clear();
 
+	}
+
+	public SolidObject GetSolidSceneObject(){
+
+		return objectList.get(0);
 	}
 
 	/**

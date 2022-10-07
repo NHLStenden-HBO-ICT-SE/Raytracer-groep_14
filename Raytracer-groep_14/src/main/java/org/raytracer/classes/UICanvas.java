@@ -6,7 +6,10 @@ public class UICanvas{
 
     JFrame canvasFrame = new JFrame("best frame ever");
 
+    private int Height, Width;
     PixelData [][] pixelData;
+
+    public Scene activeScene= new Scene();
 
     Camera cam;
 
@@ -19,6 +22,9 @@ public class UICanvas{
     public UICanvas(int height, int width){
 
         pixelData = new PixelData[height][width];
+
+        this.Height = height;
+        this.Width = width;
 
         if(canvasFrame != null){
             createNewFrame();
@@ -34,6 +40,15 @@ public class UICanvas{
 
         this.canvasFrame = new JFrame("best frame ever");
         return true;
+    }
+    public void setupScenes(Vector3 position, Color color){
+
+        activeScene.setupScene(new Sphere(position, 10,color, 0, 1 ));
+    }
+    public void castRays(){
+
+        Raycast raycaster = new Raycast();
+        raycaster.castLine(10, cam, Width,Height, activeScene);
     }
 
 

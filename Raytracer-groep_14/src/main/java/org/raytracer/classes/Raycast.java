@@ -16,19 +16,34 @@ public class Raycast {
             Vector3 dummy = new Vector3();
             String name = new String("cast" + i).toString();
             Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
-
             Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
             movePoint(rayReach ,new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint)), name);
-
             for (int j = 0; j < height; j++) {
                 Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
                 movePoint(rayReach ,new Ray(camera.getDirection(), dummy.getDirection(camera.getPosition(), screenPoint2)), name);
-
             }
         }
+    }
+    public void castLine(int rayReach, Camera camera, int width, int height, Scene scene){
 
+        Color pixDotCol = new Color();
 
+        SolidObject object = scene.GetSolidSceneObject();
+        PixelData[][] pixelData = new PixelData[width][height];
+        for (int i = 0; i < width; i++) {
 
+            Vector3 dummy = new Vector3();
+            String name = new String("cast" + i).toString();
+            Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
+            Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
+            Ray intersectionRay = new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint));
+            movePoint(rayReach ,new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint)), name);
+            object.CalculaterIntersection(intersectionRay);
+            for (int j = 0; j < height; j++) {
+                Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
+                movePoint(rayReach ,new Ray(camera.getDirection(), dummy.getDirection(camera.getPosition(), screenPoint2)), name);
+            }
+        }
     }
 
     public boolean movePoint(int distance, Ray ray, String name){
