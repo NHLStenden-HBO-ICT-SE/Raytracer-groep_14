@@ -24,12 +24,13 @@ public class Raycast {
             }
         }
     }
-    public void castLine(int rayReach, Camera camera, int width, int height, Scene scene){
+    public PixelData[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene){
 
         Color pixDotCol = new Color();
 
         SolidObject object = scene.GetSolidSceneObject();
         PixelData[][] pixelData = new PixelData[width][height];
+        pixelData[0][0] = new PixelData();
         for (int i = 0; i < width; i++) {
 
             Vector3 dummy = new Vector3();
@@ -37,15 +38,22 @@ public class Raycast {
             Ray tempray = new Ray(camera.getPosition(), camera.getDirection());
             Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
             Ray intersectionRay = new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint));
+            intersectionRay.setColor(Color.White);
             //movePoint(rayReach ,intersectionRay, name);
             object.CalculaterIntersection(intersectionRay);
+            //pixelData[i][0].setColor(intersectionRay.getColor());
             for (int j = 0; j < height; j++) {
                 Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
                 intersectionRay = new Ray(camera.getDirection(), dummy.getDirection(camera.getPosition(), screenPoint2));
                 //movePoint(rayReach ,intersectionRay, name);
                 object.CalculaterIntersection(intersectionRay);
+                pixelData[i][j] = new PixelData(Color.Black, 0,0);
+                if (object.CalculaterIntersection(intersectionRay) != new Vector3()){
+                    pixelData[i][j].setColor(intersectionRay.getColor());
+                }
             }
         }
+        return pixelData;
     }
 
     public boolean movePoint(int distance, Ray ray, String name){

@@ -24,7 +24,7 @@ public class Sphere extends SolidObject{
             float t1 = t - x;
             System.out.println("The ray hit");
             ray.setColor(getColor());
-            System.out.println("the colour is" + ray.getColor().toString());
+            System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0)
                 return ray.getOrigin().add(ray.getDirection().multiply(t1));
             else return null;

@@ -9,10 +9,13 @@ public class Main {
 
         System.out.println("Hello world!");
 
+        //create a new uitcanvast wich will act as a viewport
         UICanvas uiCanvas = new UICanvas(900, 900);
-
+        //create a new scene withing the uicanvas and add one blue object in it
         uiCanvas.setupScenes(new Vector3(1,0,10), Color.Blue);
+        //make a frame
         uiCanvas.createNewFrame();
+        //start casting rays
         uiCanvas.castRays();
 
     }

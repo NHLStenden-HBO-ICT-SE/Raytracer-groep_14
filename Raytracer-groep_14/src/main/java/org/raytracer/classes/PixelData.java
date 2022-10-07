@@ -9,6 +9,11 @@ public class PixelData {
     private float depht;
     private float emmison;
 
+    public PixelData(){
+        this.color = Color.Black;
+        this.depht = 0;
+        this.emmison =0;
+    }
     public PixelData(Color color, float depht, float emmison){
         this.color = color;
         this.depht = depht;
@@ -17,6 +22,10 @@ public class PixelData {
 
     public Color getColor(){
         return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public float getDepht() {
