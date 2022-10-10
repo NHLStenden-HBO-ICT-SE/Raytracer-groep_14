@@ -1,23 +1,42 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject extends SceneObject{
+public abstract class SolidObject extends SceneObject {
     protected float reflection;
 
-    protected float emmesion;
+    protected float emission;
 
     protected Color color;
     protected Vector3 position;
 
 
-    public SolidObject(Vector3 position, Color color, float reflection, float emmesion)
-    {
-        this.position= position;
-        this.color=color;
-        this.reflection=reflection;
-        this.emmesion=emmesion;
+    public SolidObject(Vector3 position, Color color, float reflection, float emission) {
+        this.position = position;
+        this.color = color;
+        this.reflection = reflection;
+        this.emission = emission;
     }
 
-    public Vector3 CalculaterIntersection(Ray ray) { return null; }
+    public abstract Vector3 CalculaterIntersection(Ray ray);
 
-    public Vector3 GetNormalAt(Vector3 point) {return null; }
+    public abstract Vector3 GetNormalAt(Vector3 point);
+
+    public Vector3 getPosition() {
+        return position;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public Color getTextureColor(Vector3 point) {
+        return getColor();
+    }
+
+    public float getReflectivity() {
+        return reflection;
+    }
+
+    public float getEmission() {
+        return emission;
+    }
 }

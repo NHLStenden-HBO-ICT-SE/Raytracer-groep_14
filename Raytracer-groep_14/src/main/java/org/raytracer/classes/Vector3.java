@@ -1,6 +1,5 @@
 package org.raytracer.classes;
 
-import sun.net.www.content.text.Generic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -188,6 +187,18 @@ public class Vector3 {
 		float _y = (float) (y*Math.cos(pitchDegrees) - z * Math.sin(pitchDegrees));
 		float _z = (float) (y*Math.sin(pitchDegrees) + z*Math.cos(pitchDegrees));
 		return  new Vector3(x, _y, _z);
+	}
+
+	/**
+	 * Dot point between two vectores
+	 * @param a
+	 * @param b
+	 * @return
+	 * https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/dot-products-mvc
+	 */
+	public static float dot(Vector3 a, Vector3 b)
+	{
+		return  a.x * b.x + a.y * b.y + a.z * b.z;
 	}
 
 
