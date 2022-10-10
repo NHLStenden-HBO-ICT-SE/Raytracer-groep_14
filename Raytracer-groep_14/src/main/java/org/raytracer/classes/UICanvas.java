@@ -47,7 +47,28 @@ public class UICanvas{
     public boolean createNewFrame(){
 
         this.canvasFrame = new JFrame("best frame ever");
+        JLabel label = new JLabel(); //JLabel Creation
+        //castRays();
+        //todo use a bufferedimage to display, instead of a saved image
+        label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
+        Dimension size = label.getPreferredSize(); //Gets the size of the image
+        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+
+        Container c = canvasFrame.getContentPane();
+        c.add(label); //Adds objects to the container
+        canvasFrame.setVisible(true); // Exhibit the frame
         return true;
+    }
+    public void updateFrame(){;
+        JLabel label = new JLabel(); //JLabel Creation
+        //castRays();
+        label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
+        Dimension size = label.getPreferredSize(); //Gets the size of the image
+        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+
+        Container c = canvasFrame.getContentPane();
+        c.add(label); //Adds objects to the container
+        canvasFrame.setVisible(true); // Exhibit the frame
     }
     public void setupScenes(Vector3 position, Color color){
 
@@ -55,6 +76,8 @@ public class UICanvas{
     }
     public void castRays(){
 
+        //activeScene.GetSolidSceneObject().getPosition().add(new Vector3(0,0,1));
+        activeScene.GetSolidSceneObject().SetPosition(new Vector3(activeScene.GetSolidSceneObject().GetPosition().add(new Vector3(0,0,2))));
         Raycast raycaster = new Raycast();
         pixelData = raycaster.castLine(10, cam, Width,Height, activeScene);
         //raycaster.castLine(10, cam, Width,Height, activeScene);
@@ -64,11 +87,11 @@ public class UICanvas{
 
         Graphics2D gdraw = image.createGraphics();
         gdraw.setColor(java.awt.Color.BLACK);
-        gdraw.fillRect(0,0,this.Width,this.Height);
+        //gdraw.fillRect(0,0,this.Width,this.Height);
 
-        BufferedImage theImage = new BufferedImage(this.Width, this.Height,
-                BufferedImage.TYPE_INT_RGB);
-        float pixelSize = 1;
+        //BufferedImage theImage = new BufferedImage(this.Width, this.Height,
+        //BufferedImage.TYPE_INT_RGB);
+        float pixelSize = 1/0.5f;
         for (int i = 0; i < this.Width; i++) {
             for (int j = 0; j < this.Height; j++) {
                 PixelData data = pixelData[i][j];
@@ -84,6 +107,7 @@ public class UICanvas{
             }
         }
         //src\main\resources\rame.png
+
         File f = new File("rame");
         try
         {
