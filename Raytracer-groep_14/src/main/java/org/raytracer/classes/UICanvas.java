@@ -40,6 +40,7 @@ public class UICanvas{
         cam = new Camera();
         Raycast raycaster = new Raycast();
         raycaster.castLine(10, cam, width,height);
+        //this.Width = cam.
 
     }
     public boolean createNewFrame(){

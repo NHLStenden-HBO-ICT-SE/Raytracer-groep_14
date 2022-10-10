@@ -52,7 +52,15 @@ public class Camera {
     public Vector3 getTopRight() {
         return topRight;
     }
-    
+
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
     public void setFieldOfView(float fieldOfView) {
         this.fieldOfView = fieldOfView;
         this.center = position.add(direction.multiply(fieldOfView));
