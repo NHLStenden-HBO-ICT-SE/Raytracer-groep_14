@@ -1,5 +1,9 @@
 package org.raytracer.classes;
 
+//<<<<<<< HEAD
+//=======
+////import sun.net.www.content.text.Generic;
+//>>>>>>> 19d756d81073be1f5baf99a227437090257b03a3
 
 import java.util.ArrayList;
 import java.util.Arrays;
