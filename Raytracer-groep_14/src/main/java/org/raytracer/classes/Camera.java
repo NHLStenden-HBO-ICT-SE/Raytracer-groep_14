@@ -41,6 +41,10 @@ public class Camera {
         return direction;
     }
     
+    /**
+     * location of camera viewpoint
+     * @return
+     */
     public Vector3 getPosition() {
         return position;
     }

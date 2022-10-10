@@ -7,17 +7,20 @@ public class Ray {
     private float t; // Distance scalar
     
     /**
-     * contruct a rayclass,
-     *
-     * @param origin
-     * @param direction
+     * Creates ray with direction calculated from camera
+     * @param camera for origin and calculating direction
+     * @param x Horizontal pixel of screen
+     * @param y Vertical pixel of screen
      */
-    public Ray(Vector3 origin, Vector3 direction) {
-        this.origin = origin;
+    public Ray(Camera camera, int x, int y) {
+        this.origin = camera.getPosition();
+        this.direction = calculateDirection(camera, x, y);
+        
+        // todo Is deze nog nodig?
         if (direction.length() != 1) {
             direction = direction.normalize();
         }
-        this.direction = direction;
+        
     }
     
     
@@ -28,9 +31,18 @@ public class Ray {
     public void setDirection(Vector3 direction) {
         this.direction = direction;
     }
-	
-	public Vector3 calculateDirection(Camera camera){
-		return null; //todo gebruik camera.getPointOnScreen en camera.position om direction van ray uit te rekenen.
+    
+    /**
+     * calculates direction of ray
+     *
+     * Formula used: 𝐷=𝑃(𝑢,𝑣) − 𝐸
+     * @param camera for position (E)
+     * @param x Horizontal pixel of screen
+     * @param y Vertical pixel of screen
+     * @return
+     */
+	public Vector3 calculateDirection(Camera camera, int x, int y){
+		return camera.getPointOnScreen(x,y).subtract(camera.getPosition());
 	}
     
     public Vector3 getOrigin() {
