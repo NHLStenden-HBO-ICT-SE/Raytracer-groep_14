@@ -77,15 +77,15 @@ public class UICanvas{
                 catch (Exception e){
                     gdraw.setColor(new java.awt.Color(1,1,1));
                     image.setRGB(i,j, Color.Black.getRGB());
-                    System.out.println(e);
                 }
                 gdraw.fillRect((int)(i*pixelSize), (int)(j*pixelSize), (int)pixelSize+1, (int)pixelSize+1);
             }
         }
-        File f = null;
+        //src\main\resources\rame.png
+        File f = new File("rame");
         try
         {
-            f = new File("\\src\\main\\resources\\frame.png");
+            f = new File("rame.png");
             System.out.println("createdFile:"+f.getAbsolutePath());
             f.createNewFile();
             ImageIO.write(image, "png", f);

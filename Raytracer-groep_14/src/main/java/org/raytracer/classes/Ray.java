@@ -3,7 +3,7 @@ package org.raytracer.classes;
 public class Ray {
     
     private Vector3 origin;
-    private Vector3 direction;
+    private Vector3 direction = new Vector3();
     private float t; // Distance scalar
     private Color color;
 
