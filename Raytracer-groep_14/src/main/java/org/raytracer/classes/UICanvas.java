@@ -40,7 +40,8 @@ public class UICanvas{
         cam = new Camera();
         Raycast raycaster = new Raycast();
         raycaster.castLine(10, cam, width,height);
-        //this.Width = cam.
+        this.Width = cam.getScreenWidth();
+        this.Height = cam.getScreenHeight();
 
     }
     public boolean createNewFrame(){
@@ -59,17 +60,17 @@ public class UICanvas{
         //raycaster.castLine(10, cam, Width,Height, activeScene);
         System.out.println("alldone");
         BufferedImage image = null;
-        image = new BufferedImage(900,900, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(this.Width,this.Height, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D gdraw = image.createGraphics();
         gdraw.setColor(java.awt.Color.BLACK);
-        gdraw.fillRect(0,0,900,900);
+        gdraw.fillRect(0,0,this.Width,this.Height);
 
-        BufferedImage theImage = new BufferedImage(900, 900,
+        BufferedImage theImage = new BufferedImage(this.Width, this.Height,
                 BufferedImage.TYPE_INT_RGB);
         float pixelSize = 1;
-        for (int i = 0; i < 900; i++) {
-            for (int j = 0; j < 900; j++) {
+        for (int i = 0; i < this.Width; i++) {
+            for (int j = 0; j < this.Height; j++) {
                 PixelData data = pixelData[i][j];
                 try {
                     gdraw.setColor(pixelData[i][j].getColor().toAWTColor());
