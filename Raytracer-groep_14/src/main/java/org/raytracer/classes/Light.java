@@ -2,7 +2,7 @@ package org.raytracer.classes;
 
 public class Light extends SceneObject {
     private Color color;
-    private Vector3 position;
+
     private float intencity;
 
 
@@ -10,18 +10,23 @@ public class Light extends SceneObject {
 
     }
 
+    //Standaard licht kleur is wit
     public Light(Vector3 position, float intencity) {
         this.intencity = intencity;
         this.position = position;
         this.color = new Color(1, 1, 1);//todo hier moet een waarde aangegeven
     }
 
+
+    //kleur van het licht moet worden meegegeven
     public Light(Vector3 position, float intencity, float red, float green, float blue) {
         this.intencity = intencity;
         this.position = position;
         this.color = new Color(red, green, blue);
     }
 
+
+    //Berekenen licht intensiteit
     public float CalcLightIntencity(float objectDistance) {
 
         double distance = Math.pow(objectDistance, 2);
@@ -53,15 +58,15 @@ public class Light extends SceneObject {
         return new Color(reflectred, reflectblue, reflectgreen);
     }
 
+    //interciteit licht invals hoek is cos a oftewel
+    //dot product van de normaal en licht vector
+    public float AngleOfView(Vector3 light, Vector3 normalVector) {
 
-    /*public float AngleOfView(Vector3 light, Vector3) {
+       normalVector = normalVector.normalize();
+       float total = Vector3.dot(light,normalVector);
 
-        //interciteit licht invals hoek is cos a oftewel
-        //dot product van de normaal en licht vector
-
-
-        return 1;
-    }*/
+        return total;
+    }
 
 
 }

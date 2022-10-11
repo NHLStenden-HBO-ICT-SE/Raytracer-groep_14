@@ -16,7 +16,7 @@ public class Scene {
 	public Scene(){
 		this.objectList = new ArrayList<>();
 		this.camera=new Camera();
-		this.light= new Light();
+		this.light= new Light(new Vector3(0,10,1),50);
 	}
 
 
