@@ -50,6 +50,8 @@ public class Scene {
 	public int GetObjectListLength(){
 		return objectList.size();
 	}
+
+
 	/**
 	 * returns the object of given index
 	 * @param index

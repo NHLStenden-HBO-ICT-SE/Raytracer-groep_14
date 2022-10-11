@@ -15,6 +15,8 @@ public class UICanvas{
     private int Height, Width;
     PixelData [][] pixelData;
 
+    public BufferedImage bufferedImage;
+
 
     public Scene activeScene= new Scene();
 
@@ -41,7 +43,7 @@ public class UICanvas{
         cam = new Camera(width,height);
         this.Width = cam.getScreenWidth();
         this.Height = cam.getScreenHeight();
-
+        bufferedImage = new BufferedImage(this.Width,this.Height, BufferedImage.TYPE_INT_RGB);
     }
     public boolean createNewFrame(){
 
@@ -59,26 +61,23 @@ public class UICanvas{
     public void updateFrame(){
         JLabel label = new JLabel(); //JLabel Creation
         //castRays();
-        label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
-        Dimension size = label.getPreferredSize(); //Gets the size of the image
-        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-
-        Container c = canvasFrame.getContentPane();
-        c.add(label); //Adds objects to the container
-        canvasFrame.setVisible(true); // Exhibit the frame
-    }
-    public void updateFrame(BufferedImage bufferedImage){
-        JLabel label = new JLabel("frame"); //JLabel Creation
-        //castRays();
-        label.setIcon(new ImageIcon(bufferedImage));
-        //label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
+        label.setIcon(new ImageIcon(bufferedImage)); //Sets the image to be displayed as an icon
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
 
         Container c = canvasFrame.getContentPane();
         c.remove(0);
         c.add(label); //Adds objects to the container
-        //canvasFrame.repaint();
+        canvasFrame.setVisible(true); // Exhibit the frame
+    }
+    public void updateFrame(BufferedImage bufferedImage){
+        JLabel label = new JLabel("frame"); //JLabel Creation
+        label.setIcon(new ImageIcon(bufferedImage));
+        Dimension size = label.getPreferredSize(); //Gets the size of the image
+        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+        Container c = canvasFrame.getContentPane();
+        c.remove(0);
+        c.add(label); //Adds objects to the container
         canvasFrame.setVisible(true); // Exhibit the frame
     }
     public void setupScenes(Vector3 position, Color color){
@@ -103,26 +102,7 @@ public class UICanvas{
                 }
             }
         }
-        //src\main\resources\rame.png
-
         updateFrame(image);
-        /*
-        File f = new File("rame");
-        try
-        {
-            f = new File("rame.png");
-            System.out.println("createdFile:"+f.getAbsolutePath());
-            f.createNewFile();
-            ImageIO.write(image, "png", f);
-        }
-        catch(IOException e)
-        {
-            System.out.println("Error: " + e);
-        }
-
-
-         */
-
     }
 
 
