@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject extends SceneObject {
+public abstract class SolidObject{
     protected float reflection;
 
     protected float emission;
@@ -20,12 +20,13 @@ public abstract class SolidObject extends SceneObject {
 
     public abstract Vector3 GetNormalAt(Vector3 point);
 
-    /*
     public Vector3 getPosition() {
         return position;
     }
 
-     */
+    public void setPosition(Vector3 position) {
+        this.position = position;
+    }
 
     public Color getColor() {
         return color;

@@ -59,7 +59,7 @@ public class UICanvas{
         canvasFrame.setVisible(true); // Exhibit the frame
         return true;
     }
-    public void updateFrame(){;
+    public void updateFrame(){
         JLabel label = new JLabel(); //JLabel Creation
         //castRays();
         label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
@@ -70,6 +70,21 @@ public class UICanvas{
         c.add(label); //Adds objects to the container
         canvasFrame.setVisible(true); // Exhibit the frame
     }
+    public void updateFrame(BufferedImage bufferedImage){
+        //canvasFrame.removeAll();
+
+        JLabel label = new JLabel(); //JLabel Creation
+        //castRays();
+        label.setIcon(new ImageIcon(bufferedImage));
+        //label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
+        Dimension size = label.getPreferredSize(); //Gets the size of the image
+        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+
+        Container c = canvasFrame.getContentPane();
+        c.add(label); //Adds objects to the container
+        canvasFrame.repaint();
+        canvasFrame.setVisible(true); // Exhibit the frame
+    }
     public void setupScenes(Vector3 position, Color color){
 
         activeScene.setupScene(new Sphere(position, 10,color, 0, 1 ));
@@ -77,7 +92,7 @@ public class UICanvas{
     public void castRays(){
 
         //activeScene.GetSolidSceneObject().getPosition().add(new Vector3(0,0,1));
-        activeScene.GetSolidSceneObject().SetPosition(new Vector3(activeScene.GetSolidSceneObject().GetPosition().add(new Vector3(0,0,2))));
+        activeScene.GetSolidSceneObject().setPosition(new Vector3(activeScene.GetSolidSceneObject().getPosition().add(new Vector3(0,0,2))));
         Raycast raycaster = new Raycast();
         pixelData = raycaster.castLine(10, cam, Width,Height, activeScene);
         //raycaster.castLine(10, cam, Width,Height, activeScene);
@@ -108,6 +123,8 @@ public class UICanvas{
         }
         //src\main\resources\rame.png
 
+        updateFrame(image);
+        /*
         File f = new File("rame");
         try
         {
@@ -121,6 +138,8 @@ public class UICanvas{
             System.out.println("Error: " + e);
         }
 
+
+         */
 
     }
 

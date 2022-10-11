@@ -52,7 +52,7 @@ public class Scene {
 	 * @param index
 	 * @return
 	 */
-	public SceneObject GetSceneObjectList(int index) {
+	public SolidObject GetSceneObjectList(int index) {
 		try {
 			return this.objectList.get(index);
 		}

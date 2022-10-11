@@ -16,19 +16,19 @@ public class Main {
         //make a frame
         uiCanvas.createNewFrame();
         //start casting rays
-        uiCanvas.castRays();
+        //uiCanvas.castRays();
         //uiCanvas.createNewFrame();
         //uiCanvas.castRays();
-        uiCanvas.updateFrame();
-        uiCanvas.castRays();
-        uiCanvas.updateFrame();
-        uiCanvas.castRays();
-        uiCanvas.updateFrame();
-        uiCanvas.castRays();
-        uiCanvas.updateFrame();
+        //uiCanvas.updateFrame();
+        //uiCanvas.castRays();
+        //uiCanvas.updateFrame();
+        //uiCanvas.castRays();
+        //uiCanvas.updateFrame();
+        //uiCanvas.castRays();
+        //uiCanvas.updateFrame();
         for (int i = 0; i < 100; i++) {
             uiCanvas.castRays();
-            uiCanvas.updateFrame();
+            //uiCanvas.updateFrame();
         }
         //uiCanvas.createNewFrame();
         //uiCanvas.createNewFrame();
