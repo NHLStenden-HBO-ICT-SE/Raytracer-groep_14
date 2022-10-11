@@ -87,7 +87,7 @@ public class UICanvas{
     }
     public void setupScenes(Vector3 position, Color color){
 
-        activeScene.setupScene(new Sphere(position, 10,color, 0, 1 ));
+        activeScene.setupScene(new Sphere(position, 3,color, 0, 1 ));
     }
     public void castRays(){
 

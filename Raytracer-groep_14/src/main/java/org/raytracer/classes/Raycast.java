@@ -41,7 +41,7 @@ public class Raycast {
             //Ray intersectionRay = new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint));
             tempray.setColor(Color.White);
             //movePoint(rayReach ,intersectionRay, name);
-            object.CalculaterIntersection(tempray);
+            //object.CalculaterIntersection(tempray);
             //pixelData[i][0].setColor(intersectionRay.getColor());
             for (int j = 0; j < height; j++) {
                 Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
@@ -51,6 +51,9 @@ public class Raycast {
                 pixelData[i][j] = new PixelData(Color.Black, 0, 0);
                 if (object.CalculaterIntersection(tempray) != new Vector3()) {
                     pixelData[i][j].setColor(tempray.getColor());
+                }
+                else {
+                    pixelData[i][j] = new PixelData(Color.Black, 0, 0);
                 }
             }
         }
