@@ -20,9 +20,12 @@ public abstract class SolidObject extends SceneObject {
 
     public abstract Vector3 GetNormalAt(Vector3 point);
 
+    /*
     public Vector3 getPosition() {
         return position;
     }
+
+     */
 
     public Color getColor() {
         return color;
