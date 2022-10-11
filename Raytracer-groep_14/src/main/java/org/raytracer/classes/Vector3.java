@@ -12,12 +12,9 @@ import java.util.stream.Stream;
 
 public class Vector3 {
 
-	private SceneObject sceneObject;
 	private float x;
 	private float y;
 	private float z;
-
-	private SceneObject _sceneObject;
 
 	public Vector3(){
 		this(0,0,0);
