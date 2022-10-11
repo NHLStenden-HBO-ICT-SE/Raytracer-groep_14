@@ -73,7 +73,8 @@ public class UICanvas{
     public void updateFrame(BufferedImage bufferedImage){
         //canvasFrame.removeAll();
 
-        JLabel label = new JLabel(); //JLabel Creation
+
+        JLabel label = new JLabel("frame"); //JLabel Creation
         //castRays();
         label.setIcon(new ImageIcon(bufferedImage));
         //label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
@@ -81,6 +82,7 @@ public class UICanvas{
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
 
         Container c = canvasFrame.getContentPane();
+        c.remove(0);
         c.add(label); //Adds objects to the container
         canvasFrame.repaint();
         canvasFrame.setVisible(true); // Exhibit the frame
