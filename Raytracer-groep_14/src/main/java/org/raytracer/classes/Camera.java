@@ -24,6 +24,23 @@ public class Camera {
         this.screenHeight = 200;
         this.screenWidth = 400;
     }
+
+    /**
+     *
+     * @param screenWidth
+     * @param screenHeight
+     */
+    public Camera(int screenWidth, int screenHeight) {
+        this.position = new Vector3(0, 0, 0);
+        this.direction = new Vector3(0, 0, 1);
+        this.fieldOfView = 50;
+        this.center = position.add(direction.multiply(fieldOfView));
+        this.topLeft = center.add(new Vector3(-1, 1, 0));
+        this.bottomLeft = center.add(new Vector3(-1, -1, 0));
+        this.topRight = center.add(new Vector3(1, 1, 0));
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
+    }
     
     public float getFieldOfView() {
         return fieldOfView;

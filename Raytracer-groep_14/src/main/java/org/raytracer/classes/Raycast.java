@@ -1,5 +1,7 @@
 package org.raytracer.classes;
 
+import java.util.Objects;
+
 public class Raycast {
 
 
@@ -27,29 +29,15 @@ public class Raycast {
 
     public PixelData[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene) {
 
-        Color pixDotCol = new Color();
-
         SolidObject object = scene.GetSolidSceneObject();
         PixelData[][] pixelData = new PixelData[width][height];
         pixelData[0][0] = new PixelData();
         for (int i = 0; i < width; i++) {
 
-            Vector3 dummy = new Vector3();
-            String name = new String("cast" + i).toString();
-            Ray tempray = new Ray(camera, i, 0);
-            Vector3 screenPoint = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY(), tempray.getOrigin().getZ());
-            //Ray intersectionRay = new Ray(camera.getPosition(), dummy.getDirection(camera.getPosition(), screenPoint));
-            tempray.setColor(Color.White);
-            //movePoint(rayReach ,intersectionRay, name);
-            //object.CalculaterIntersection(tempray);
-            //pixelData[i][0].setColor(intersectionRay.getColor());
             for (int j = 0; j < height; j++) {
-                Vector3 screenPoint2 = new Vector3(tempray.getOrigin().getX() + i, tempray.getOrigin().getY() + j, tempray.getOrigin().getZ());
-                tempray = new Ray(camera, i,j);
-                //movePoint(rayReach ,intersectionRay, name);
-                object.CalculaterIntersection(tempray);
+                Ray tempray = new Ray(camera, i,j);
                 pixelData[i][j] = new PixelData(Color.Black, 0, 0);
-                if (object.CalculaterIntersection(tempray) != new Vector3()) {
+                if (!Objects.equals(object.CalculaterIntersection(tempray), new Vector3())) {
                     pixelData[i][j].setColor(tempray.getColor());
                 }
                 else {

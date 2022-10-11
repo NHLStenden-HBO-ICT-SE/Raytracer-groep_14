@@ -47,6 +47,9 @@ public class Scene {
 		return objectList.get(0);
 	}
 
+	public int GetObjectListLength(){
+		return objectList.size();
+	}
 	/**
 	 * returns the object of given index
 	 * @param index
