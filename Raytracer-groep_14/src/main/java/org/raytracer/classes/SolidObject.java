@@ -6,7 +6,7 @@ public abstract class SolidObject extends SceneObject implements Material {
     protected float emission;
 
     protected Color color;
-    protected Vector3 position;
+    //protected Vector3 position;
 
 
     public SolidObject(Vector3 position, Color color, float reflection, float emission) {

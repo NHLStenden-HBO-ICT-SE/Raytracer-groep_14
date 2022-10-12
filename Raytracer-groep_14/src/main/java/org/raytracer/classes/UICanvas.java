@@ -95,6 +95,9 @@ public class UICanvas extends UIUXManager{
         for (int i = 0; i < this.Width; i++) {
             for (int j = 0; j < this.Height; j++) {
                 try {
+                    //Color.fromInt(pixelData[i][j].getColor().getRGB());
+                    //Color kleur = Color.fromInt(pixelData[i][j].getColor().getRGB());
+                    //image.setRGB(i,j,(kleur.getRGB()));
                     image.setRGB(i,j,pixelData[i][j].getColor().getRGB());
                 }
                 catch (Exception e){

@@ -125,16 +125,23 @@ public class Vector3 {
 		return new Vector3(x / value, y/value, z/value);
 	}
 
+
 	/**
 	 * get the distance between the two given vectors
 	 * @param vector1
 	 * @param vector2
 	 * @return
 	 */
+	/*
 	public float distanceBetweenPoints(Vector3 vector1, Vector3 vector2){
 		vector1 = vector1.subtract(vector1, vector2);
-		float distance = (float) Math.sqrt(vector1.x * vector1.x + vector1.y * vector1.y + vector1.z + vector1.z);
+		float distance = (float) Math.sqrt((vector1.x * vector1.x) + (vector1.y * vector1.y) + (vector1.z + vector1.z));
 		return distance;
+	}
+
+	 */
+	public float distanceBetweenPoints(Vector3 a, Vector3 b) {
+		return (float) Math.sqrt(Math.pow(a.x - b.x, 2)+Math.pow(a.y - b.y, 2)+Math.pow(a.z - b.z, 2));
 	}
 	/**
 	 * get the length of the current vector3

@@ -74,7 +74,15 @@ public class Color {
 		greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
 		bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
 
-		return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+		return 0xFF000000 | redPart| greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+	}
+
+	public static Color fromInt(int argb) {
+		int b = (argb)&0xFF;
+		int g = (argb>>8)&0xFF;
+		int r = (argb>>16)&0xFF;
+
+		return new Color(r/255F, g/255F, b/255F);
 	}
 	public java.awt.Color toAWTColor() {
 		return new java.awt.Color(red, green, blue);
