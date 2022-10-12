@@ -82,6 +82,7 @@ public class Color {
 	public static final Color White = new Color(1f,1f,1f);
 	public static final Color Black = new Color(0,0,0);
 	public static final Color Blue = new Color(0,0,1f);
+
 	//public static final Color
 
 	public Color multiply(float value){

@@ -11,6 +11,7 @@ public class Scene {
 	private Skybox image; // todo add skybox
 	private Camera camera;
 	private Light light;
+	static Light MainLight;
 
 
 
@@ -18,6 +19,7 @@ public class Scene {
 		this.objectList = new ArrayList<>();
 		this.camera=new Camera();
 		this.light= new Light(new Vector3(0,10,1),50);
+		MainLight = new Light(new Vector3(0,10,1),50);
 	}
 	public void setupScene(SolidObject object){
 
