@@ -4,25 +4,22 @@ import java.util.Objects;
 
 public class Raycast {
 
-    public PixelData[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene) {
+    public Color[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene) {
 
         SolidObject object = scene.GetSolidSceneObject();
-        PixelData[][] pixelData = new PixelData[width][height];
-        pixelData[0][0] = new PixelData();
+        Color[][] pixelColor = new Color[width][height];
+        pixelColor[0][0] = new Color(); //todo change to use color()
         for (int i = 0; i < width; i++) {
 
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i,j);
-                pixelData[i][j] = new PixelData(Color.White, 0, 0);
+                pixelColor[i][j] = Color.White; //Default background color
                 if (!Objects.equals(object.CalculaterIntersection(tempray), new Vector3())) {
-                    pixelData[i][j].setColor(tempray.getColor());
-                }
-                else {
-                    pixelData[i][j] = new PixelData(Color.White, 0, 0);
+                    pixelColor[i][j].setColor(tempray.getColor());
                 }
             }
         }
-        return pixelData;
+        return pixelColor;
     }
 
     public boolean movePoint(int distance, Ray ray, String name) {
