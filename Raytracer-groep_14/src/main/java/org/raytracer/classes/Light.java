@@ -14,7 +14,7 @@ public class Light extends SceneObject {
     public Light(Vector3 position, float intencity) {
         this.intencity = intencity;
         this.position = position;
-        this.color = new Color(1, 1, 1);//todo hier moet een waarde aangegeven
+        this.color = new Color(1, 1, 1);
     }
 
 

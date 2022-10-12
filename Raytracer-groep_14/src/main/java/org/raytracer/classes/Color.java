@@ -11,7 +11,7 @@ public class Color {
 
 	private float blue = 1;
 
-	public Color(float red, float green, float blue){//todo waarde 1 toegevoegd aan variable, kan dit?
+	public Color(float red, float green, float blue){
 
 		if(red > 1)
 		{this.red = 1;}
