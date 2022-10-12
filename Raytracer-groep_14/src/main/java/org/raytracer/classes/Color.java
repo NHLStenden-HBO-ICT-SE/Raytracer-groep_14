@@ -47,26 +47,11 @@ public class Color {
 		return green;
 	}
 
-	public float getRed() {
-		return red;
-	}
 
-	public float getGreen() {
-		return green;
-	}
-
-	public float getBlue() {
-		return blue;
-	}
 
 	public Color(){
 
 		setColor(Color.White);
-	}
-	public Color(float red, float green, float blue){
-		this.red = red;
-		this.green = green;
-		this.blue = blue;
 	}
 
 	public void setColor(float red, float green, float blue){
