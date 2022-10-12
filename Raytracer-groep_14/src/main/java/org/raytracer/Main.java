@@ -1,6 +1,7 @@
 package org.raytracer;
 
 import org.raytracer.classes.Color;
+import org.raytracer.classes.Quaternion;
 import org.raytracer.classes.UICanvas;
 import org.raytracer.classes.Vector3;
 
@@ -18,7 +19,7 @@ public class Main {
         for (int i = 0; i < 900; i++) {
             uiCanvas.castRays();
         }
-
+        
     }
 
 }
