@@ -30,6 +30,7 @@ public class Sphere extends SolidObject{
             if (t1 > 0)
             {
                 ray.setColor(getColor());
+
                 return ray.getOrigin().add(ray.getDirection().multiply(t1));}
             return null;
         }

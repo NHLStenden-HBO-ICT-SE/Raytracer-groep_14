@@ -98,7 +98,7 @@ public class UICanvas extends UIUXManager{
                     image.setRGB(i,j,pixelData[i][j].getColor().getRGB());
                 }
                 catch (Exception e){
-                    image.setRGB(i,j, Color.Black.getRGB());
+                    image.setRGB(i,j, Color.White.getRGB());
                 }
             }
         }

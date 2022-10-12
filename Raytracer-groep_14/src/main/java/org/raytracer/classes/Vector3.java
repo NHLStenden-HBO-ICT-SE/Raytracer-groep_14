@@ -76,6 +76,9 @@ public class Vector3 {
 	public Vector3 subtract(Vector3 vector) {
 		return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
 	}
+	public Vector3 subtract(Vector3 vector, Vector3 vector1) {
+		return new Vector3(vector1.x - vector.x, vector1.y - vector.y, vector1.z - vector.z);
+	}
 
 
 	//todo make a multiply method using a float and vector
@@ -122,6 +125,17 @@ public class Vector3 {
 		return new Vector3(x / value, y/value, z/value);
 	}
 
+	/**
+	 * get the distance between the two given vectors
+	 * @param vector1
+	 * @param vector2
+	 * @return
+	 */
+	public float distanceBetweenPoints(Vector3 vector1, Vector3 vector2){
+		vector1 = vector1.subtract(vector1, vector2);
+		float distance = (float) Math.sqrt(vector1.x * vector1.x + vector1.y * vector1.y + vector1.z + vector1.z);
+		return distance;
+	}
 	/**
 	 * get the length of the current vector3
 	 * @return the length of the current vector3

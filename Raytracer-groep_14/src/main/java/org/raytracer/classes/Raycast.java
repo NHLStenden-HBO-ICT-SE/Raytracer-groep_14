@@ -13,12 +13,12 @@ public class Raycast {
 
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i,j);
-                pixelData[i][j] = new PixelData(Color.Black, 0, 0);
+                pixelData[i][j] = new PixelData(Color.White, 0, 0);
                 if (!Objects.equals(object.CalculaterIntersection(tempray), new Vector3())) {
                     pixelData[i][j].setColor(tempray.getColor());
                 }
                 else {
-                    pixelData[i][j] = new PixelData(Color.Black, 0, 0);
+                    pixelData[i][j] = new PixelData(Color.White, 0, 0);
                 }
             }
         }
