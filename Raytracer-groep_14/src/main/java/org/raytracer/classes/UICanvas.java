@@ -17,9 +17,7 @@ public class UICanvas extends UIUXManager {
     
     private BufferedImage bufferedImage;
     
-    private Scene activeScene;
-    
-    Camera cam;
+    public Scene activeScene = new Scene();
     
     //todo create a camera object
     //todo set the pixels from the screen
@@ -27,21 +25,20 @@ public class UICanvas extends UIUXManager {
     //todo try to create a few empty raycasts
     //todo make a mockup pixelloop that will try to call raycasts through the camera, looping with x and y or u and v
     
-    public UICanvas(int height, int width) { //todo get height and width from camera
+    public UICanvas(int widthAndHeight) { //todo get height and width from camera
         
-        pixelColor = new Color[height][width];
+        pixelColor = new Color[widthAndHeight][widthAndHeight];
         
-        this.Height = height;
-        this.Width = width;
+        this.Height = widthAndHeight;
+        this.Width = widthAndHeight;
         
         if (canvasFrame != null) {
             createNewFrame();
         }
-        canvasFrame.setSize(height, width);
+        canvasFrame.setSize(widthAndHeight, widthAndHeight);
         canvasFrame.setVisible(true);
-        cam = new Camera(width, height);
-        this.Width = cam.getScreenWidth();
-        this.Height = cam.getScreenHeight();
+        this.Width = activeScene.GetCamera().getScreenWidth();
+        this.Height = activeScene.GetCamera().getScreenHeight();
         bufferedImage = new BufferedImage(this.Width, this.Height, BufferedImage.TYPE_INT_RGB);
     }
     
@@ -79,7 +76,7 @@ public class UICanvas extends UIUXManager {
         moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
         
         Raycast raycaster = new Raycast();
-        pixelColor = raycaster.castLine(10, cam, Width, Height, activeScene);
+        pixelColor = raycaster.castLine(10, activeScene.GetCamera(), Width, Height, activeScene);
         BufferedImage image;
         image = new BufferedImage(this.Width, this.Height, BufferedImage.TYPE_INT_RGB);
         

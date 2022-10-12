@@ -1,8 +1,7 @@
 package org.raytracer.classes;
 
-public class Camera {
+public class Camera extends SceneObject {
     private float fieldOfView;
-    private Vector3 position;
     private Vector3 direction;
     private Vector3 center;
     private Vector3 topLeft, topRight, bottomLeft;
@@ -14,6 +13,7 @@ public class Camera {
      * Initialises camera with direction in positive z-axis. When you place object, initialise them in this direction too.
      */
     public Camera() {
+        
         this.position = new Vector3(0, 0, 0);
         this.direction = new Vector3(0, 0, 1);
         this.fieldOfView = 50;
@@ -24,13 +24,12 @@ public class Camera {
         this.screenHeight = 200;
         this.screenWidth = 400;
     }
-
+    
     /**
-     *
-     * @param screenWidth
-     * @param screenHeight
+     * @param widthAndHeight
      */
-    public Camera(int screenWidth, int screenHeight) {
+    public Camera(int widthAndHeight) {
+        super();
         this.position = new Vector3(0, 0, 0);
         this.direction = new Vector3(0, 0, 1);
         this.fieldOfView = 50;
@@ -38,53 +37,29 @@ public class Camera {
         this.topLeft = center.add(new Vector3(-1, 1, 0));
         this.bottomLeft = center.add(new Vector3(-1, -1, 0));
         this.topRight = center.add(new Vector3(1, 1, 0));
-        this.screenHeight = screenHeight;
-        this.screenWidth = screenWidth;
+        this.screenHeight = widthAndHeight;
+        this.screenWidth = widthAndHeight;
     }
     
     public float getFieldOfView() {
         return fieldOfView;
     }
     
-    public Vector3 getBottomLeft() {
-        return bottomLeft;
-    }
-    
-    public Vector3 getCenter() {
-        return center;
+    public void setFieldOfView(float fieldOfView) {
+        this.fieldOfView = fieldOfView;
+        this.center = position.add(direction.multiply(fieldOfView));
     }
     
     public Vector3 getDirection() {
         return direction;
     }
     
-    /**
-     * location of camera viewpoint
-     * @return
-     */
-    public Vector3 getPosition() {
-        return position;
-    }
-    
-    public Vector3 getTopLeft() {
-        return topLeft;
-    }
-    
-    public Vector3 getTopRight() {
-        return topRight;
-    }
-
     public int getScreenHeight() {
         return screenHeight;
     }
-
+    
     public int getScreenWidth() {
         return screenWidth;
-    }
-
-    public void setFieldOfView(float fieldOfView) {
-        this.fieldOfView = fieldOfView;
-        this.center = position.add(direction.multiply(fieldOfView));
     }
     
     /**

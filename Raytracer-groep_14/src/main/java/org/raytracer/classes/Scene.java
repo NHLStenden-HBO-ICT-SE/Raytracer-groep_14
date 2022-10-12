@@ -15,11 +15,11 @@ public class Scene {
     
     
     /**
-     *adds
+     * adds
      */
     public Scene() {
         this.objectList = new ArrayList<>();
-        this.camera = new Camera();
+        this.camera = new Camera(400);
         // this.light= new Light(new Vector3(0,10,1),50);
         MainLight = new Light(new Vector3(0, 10, 1), 50);
     }
@@ -28,7 +28,6 @@ public class Scene {
         
         this.objectList.add(object);
     }
-    
     
     /**
      * add the object in to the scene
@@ -40,10 +39,7 @@ public class Scene {
         this.objectList.add(solidObject);
     }
     
-    /**
-     * remove objects
-     */
-    public void RemoveSceneObject() {
+    public void RemoveSceneObjects() {
         this.objectList.clear();
         
     }
@@ -64,13 +60,17 @@ public class Scene {
      * @param index
      * @return
      */
-    public SolidObject GetSceneObjectList(int index) {
+    public SolidObject GetSceneObject(int index) {
         try {
             return this.objectList.get(index);
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
+    }
+    
+    public Camera GetCamera(){
+        return camera;
     }
     
 }
