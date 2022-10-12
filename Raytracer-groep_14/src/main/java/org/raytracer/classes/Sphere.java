@@ -9,8 +9,11 @@ public class Sphere extends SolidObject{
         this.radius = radius;
     }
 
-
-
+    /**
+     *
+     * @param ray
+     * @return
+     */
     @Override
     public Vector3 CalculaterIntersection (Ray ray)
     {
@@ -20,8 +23,8 @@ public class Sphere extends SolidObject{
         float y = position.subtract(p).length();
         if (y < radius)// only if the ray hits
         {
-            float x = (float) Math.sqrt(radius*radius - y*y);
-            float t1 = t - x;
+            float sphereSize = (float) Math.sqrt(radius*radius - y*y);
+            float t1 = t - sphereSize;
             //System.out.println("The ray hit");
             //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0)

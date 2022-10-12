@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject{
+public abstract class SolidObject extends SceneObject implements Material {
     protected float reflection;
 
     protected float emission;
