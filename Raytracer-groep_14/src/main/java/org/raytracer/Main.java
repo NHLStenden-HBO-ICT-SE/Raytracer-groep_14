@@ -1,7 +1,6 @@
 package org.raytracer;
 
 import org.raytracer.classes.Color;
-import org.raytracer.classes.Quaternion;
 import org.raytracer.classes.UICanvas;
 import org.raytracer.classes.Vector3;
 
