@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Scene {
 
+	//comment
 	private ArrayList<SolidObject> objectList;
 	private Skybox image; // todo add skybox
 	private Camera camera;
@@ -17,6 +18,10 @@ public class Scene {
 		this.objectList = new ArrayList<>();
 		this.camera=new Camera();
 		this.light= new Light(new Vector3(0,10,1),50);
+	}
+	public void setupScene(SolidObject object){
+
+		this.objectList.add(object);
 	}
 
 
@@ -37,12 +42,22 @@ public class Scene {
 
 	}
 
+	public SolidObject GetSolidSceneObject(){
+
+		return objectList.get(0);
+	}
+
+	public int GetObjectListLength(){
+		return objectList.size();
+	}
+
+
 	/**
 	 * returns the object of given index
 	 * @param index
 	 * @return
 	 */
-	public SceneObject GetSceneObjectList(int index) {
+	public SolidObject GetSceneObjectList(int index) {
 		try {
 			return this.objectList.get(index);
 		}

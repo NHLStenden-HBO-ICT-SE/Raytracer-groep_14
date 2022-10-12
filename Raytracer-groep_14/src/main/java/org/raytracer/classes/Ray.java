@@ -3,9 +3,10 @@ package org.raytracer.classes;
 public class Ray {
     
     private Vector3 origin;
-    private Vector3 direction;
+    private Vector3 direction = new Vector3();
     private float t; // Distance scalar
-    
+    private Color color;
+
     /**
      * Creates ray with direction calculated from camera
      * @param camera for origin and calculating direction
@@ -22,8 +23,16 @@ public class Ray {
         }
         
     }
-    
-    
+
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
     public Vector3 getDirection() {
         return direction;
     }

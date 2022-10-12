@@ -22,9 +22,13 @@ public class Sphere extends SolidObject{
         {
             float x = (float) Math.sqrt(radius*radius - y*y);
             float t1 = t - x;
+            //System.out.println("The ray hit");
+            //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0)
-                return ray.getOrigin().add(ray.getDirection().multiply(t1));
-            else return null;
+            {
+                ray.setColor(getColor());
+                return ray.getOrigin().add(ray.getDirection().multiply(t1));}
+            return null;
         }
         else
         {return null;}

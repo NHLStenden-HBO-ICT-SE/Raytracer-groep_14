@@ -11,6 +11,7 @@ public class SceneObject {
 
 	public void SetPosition(Vector3 position) {
 
+		this.position = position;
 	}
 
 	public void SetPosition(float x, float y, float z) {
@@ -18,7 +19,7 @@ public class SceneObject {
 	}
 
 	public Vector3 GetPosition() {
-		return null;
+		return position;
 	}
 
 	public void Rotate(Vector3 direction) {

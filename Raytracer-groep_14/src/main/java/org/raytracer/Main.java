@@ -1,16 +1,25 @@
 package org.raytracer;
 
+import org.raytracer.classes.Color;
 import org.raytracer.classes.Quaternion;
+import org.raytracer.classes.UICanvas;
 import org.raytracer.classes.Vector3;
 
 public class Main {
     public static void main(String[] args) {
 
-        Vector3 vec = new Vector3(1,5,5);
-        System.out.println(vec.getAngle(vec, new Vector3(2,2,2)));
-        Quaternion angle = new Quaternion();
-        System.out.println(angle.getLocalRotation(vec, 0));
-        System.out.println(angle.rotateUp(10));
         System.out.println("Hello world!");
+
+        //create a new uitcanvast wich will act as a viewport
+        UICanvas uiCanvas = new UICanvas(400, 400);
+        //create a new scene withing the uicanvas and add one blue object in it
+        uiCanvas.setupScenes(new Vector3(0,0,100), Color.Blue);
+        //make a frame
+        uiCanvas.createNewFrame();
+        for (int i = 0; i < 900; i++) {
+            uiCanvas.castRays();
+        }
+        
     }
+
 }

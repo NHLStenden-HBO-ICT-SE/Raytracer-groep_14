@@ -12,12 +12,9 @@ import java.util.stream.Stream;
 
 public class Vector3 {
 
-	private SceneObject sceneObject;
 	private float x;
 	private float y;
 	private float z;
-
-	private SceneObject _sceneObject;
 
 	public Vector3(){
 		this(0,0,0);
@@ -124,7 +121,7 @@ public class Vector3 {
 	public Vector3 divide(int value) {
 		return new Vector3(x / value, y/value, z/value);
 	}
-	
+
 	/**
 	 * get the length of the current vector3
 	 * @return the length of the current vector3
@@ -196,6 +193,8 @@ public class Vector3 {
 	 * @param degrees
 	 * @return
 	 */
+
+
 
 	public Vector3 RotateUpByDegrees(int degrees){
 

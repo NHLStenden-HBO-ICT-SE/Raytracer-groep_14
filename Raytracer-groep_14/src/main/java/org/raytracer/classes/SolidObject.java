@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject extends SceneObject {
+public abstract class SolidObject{
     protected float reflection;
 
     protected float emission;
@@ -16,12 +16,18 @@ public abstract class SolidObject extends SceneObject {
         this.emission = emission;
     }
 
-    public abstract Vector3 CalculaterIntersection(Ray ray); //todo why abstract? Now it doesn't do anything
+    //todo Calculate distance between object that intersects and the camera
+    public abstract Vector3 CalculaterIntersection(Ray ray);
+
 
     public abstract Vector3 GetNormalAt(Vector3 point);//todo why abstract? Now it doesn't do anything
 
     public Vector3 getPosition() {
         return position;
+    }
+
+    public void setPosition(Vector3 position) {
+        this.position = position;
     }
 
     public Color getColor() {
