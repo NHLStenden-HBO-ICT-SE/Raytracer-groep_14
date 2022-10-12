@@ -4,7 +4,7 @@ public class Ray {
     
     protected Vector3 origin;
     protected Vector3 direction;
-    protected float t; // Distance scalar
+    protected float distanceScalar;
     protected Color color;
     
     /**
@@ -22,7 +22,10 @@ public class Ray {
         if (direction.length() != 1) {
             direction = direction.normalize();
         }
-        
+    }
+    
+    public Ray (Vector3 startingPosition){
+        this.origin = startingPosition;
     }
     
     public void setColor(Color color) {

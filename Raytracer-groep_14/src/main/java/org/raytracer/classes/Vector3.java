@@ -15,15 +15,30 @@ public class Vector3 {
 	private float x;
 	private float y;
 	private float z;
-
+	
+	/**
+	 * Creates vector3 whree x, y and z are set to 0
+	 */
 	public Vector3(){
 		this(0,0,0);
 	}
+	
+	/**
+	 *
+	 * @param vec
+	 */
 	public Vector3(Vector3 vec){
 		this.x = vec.x;
 		this.y = vec.y;
 		this.z = vec.z;
 	}
+	
+	/**
+	 *
+	 * @param x
+	 * @param y
+	 * @param z
+	 */
 	public Vector3(float x, float y, float z){
 		this.x = x;
 		this.y = y;
