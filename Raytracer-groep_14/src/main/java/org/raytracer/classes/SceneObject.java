@@ -1,7 +1,7 @@
 package org.raytracer.classes;
 
 
-public class SceneObject {
+public abstract class SceneObject {
 
 	protected Vector3 position;
 

@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class UICanvas{
+public class UICanvas extends UIUXManager{
 
 
     JFrame canvasFrame = new JFrame("best frame ever");
