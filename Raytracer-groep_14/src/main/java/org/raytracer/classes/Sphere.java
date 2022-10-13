@@ -36,7 +36,13 @@ public class Sphere extends SolidObject {
             return null;
         }
     }
-    public Intersection CalculaterIntersection(Ray ray) {
+
+    /**
+     * Calculate the intersection and return a intersection class
+     * @param ray
+     * @return
+     */
+    public Intersection CalculaterIntersectionTemp(Ray ray) {
         float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
         Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
 
@@ -48,11 +54,8 @@ public class Sphere extends SolidObject {
             //System.out.println("The ray hit");
             //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0) {
-                //ray.setColor(getColor());
-                //float intence = Scene.MainLight.CalcLightIntencity(p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()) / 1000);
-                //ray.setColor(Scene.MainLight.Lightreflection(getColor().multiply(intence)));
                 return new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
-                //return ray.getOrigin().add(ray.getDirection().multiply(t1));
+
             }
             return null;
         } else {
