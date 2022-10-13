@@ -32,15 +32,4 @@ public class Raycast {
         }
         return renderPixelColors.finishFrame();
     }
-    
-    public boolean movePoint(int distance, Ray ray, String name) {
-        Vector3 pointIn = new Vector3();
-        for (int i = 0; i < distance; i++) {
-            Vector3 tempPoint = ray.rayPoint(i);
-            //System.out.print(name + "  x =" +tempPoint.getX() + " y=" +tempPoint.getY() +  " z="+ tempPoint.getZ());
-        }
-        System.out.println("end of cast" + name);
-        
-        return true;
-    }
 }
