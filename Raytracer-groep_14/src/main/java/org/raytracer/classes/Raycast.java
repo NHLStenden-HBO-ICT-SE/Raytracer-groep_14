@@ -20,9 +20,18 @@ public class Raycast {
                 }
 
                  */
+                try {
+                    pixelColor[i][j].setColor(object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor());
+                }
+                catch (Exception e){
+
+                }
+                /*
                 if (object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor() != null){
                     pixelColor[i][j].setColor(object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor());
                 }
+
+                 */
             }
         }
         return pixelColor;
