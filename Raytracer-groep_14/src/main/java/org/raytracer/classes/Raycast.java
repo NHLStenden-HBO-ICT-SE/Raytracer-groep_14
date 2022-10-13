@@ -14,24 +14,14 @@ public class Raycast {
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i, j);
                 pixelColor[i][j] = Color.White; //Default background color
-                /*
-                if (!Objects.equals(object.CalculaterIntersection(tempray), new Vector3())) {
-                    pixelColor[i][j].setColor(tempray.getColor());
+                Intersection intersection = object.CalculaterIntersectionTemp(tempray);
+                if(intersection != null){
+                    pixelColor[i][j] = intersection.getSolidObject().getColor();
                 }
-
-                 */
-                try {
-                    pixelColor[i][j].setColor(object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor());
+                else
+                {
+                    pixelColor[i][j] = (Color.White);
                 }
-                catch (Exception e){
-
-                }
-                /*
-                if (object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor() != null){
-                    pixelColor[i][j].setColor(object.CalculaterIntersectionTemp(tempray).getSolidObject().getColor());
-                }
-
-                 */
             }
         }
         return pixelColor;
