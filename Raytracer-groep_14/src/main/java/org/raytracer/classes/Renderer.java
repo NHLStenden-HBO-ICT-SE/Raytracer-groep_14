@@ -1,7 +1,7 @@
 package org.raytracer.classes;
 
-public class Renderer extends SceneManager {
-
-	private boolean showSkyBox;
-
+public class Renderer{
+    
+    private boolean showSkyBox;
+    
 }
