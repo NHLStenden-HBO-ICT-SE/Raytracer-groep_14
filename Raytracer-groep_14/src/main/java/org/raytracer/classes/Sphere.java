@@ -26,10 +26,39 @@ public class Sphere extends SolidObject {
             //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0) {
                 //ray.setColor(getColor());
-                float intence = Scene.MainLight.CalcLightIntencity(p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()) / 1000);
-                ray.setColor(Scene.MainLight.Lightreflection(getColor().multiply(intence)));
+                //float intence = Scene.MainLight.CalcLightIntencity(p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()) / 1000);
+                //ray.setColor(Scene.MainLight.Lightreflection(getColor().multiply(intence)));
                 //ray.setColor(getColor());
                 return ray.getOrigin().add(ray.getDirection().multiply(t1));
+            }
+            return null;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Calculate the intersection and return a intersection class
+     * @param ray
+     * @return
+     */
+    @Override
+    public Intersection CalculaterIntersectionTemp(Ray ray) {
+        float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
+        Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
+
+        float y = position.subtract(p).length();
+        if (y < radius)// only if the ray hits
+        {
+            float sphereSize = (float) Math.sqrt(radius * radius - y * y);
+            float t1 = t - sphereSize;
+            //System.out.println("The ray hit");
+            //System.out.println("the colour is" + ray.getColor().getBlue());
+            if (t1 > 0) {
+                Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
+                intersect.setSolidObject(getObject());
+                return intersect;
+
             }
             return null;
         } else {
