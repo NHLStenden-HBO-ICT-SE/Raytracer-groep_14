@@ -4,8 +4,8 @@ public class Cone extends SolidObject {
     private float height;
     private float radius;
     
-    public Cone(Vector3 position, Color color, float radius, float height, float reflection, float emission) {
-        super(position, color, reflection, emission);
+    public Cone(Vector3 position, Color color, float radius, float height, float reflection, float emission, Material material) {
+        super(position, color, reflection, emission, material);
         this.radius = radius;
         this.height = height;
     }

@@ -3,8 +3,8 @@ package org.raytracer.classes;
 public class Sphere extends SolidObject {
     private float radius;
     
-    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission) {
-        super(position, color, reflection, emission);
+    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission, Material material) {
+        super(position, color, reflection, emission, material);
         this.radius = radius;
     }
     

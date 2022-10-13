@@ -3,8 +3,8 @@ package org.raytracer.classes;
 public class Plane extends SolidObject {
     
     
-    public Plane(Vector3 position, Color color, float reflection, float emission) {
-        super(position, color, emission, reflection);
+    public Plane(Vector3 position, Color color, float reflection, float emission, Material material) {
+        super(position, color, emission, reflection, material);
     }
     
     @Override

@@ -69,7 +69,7 @@ public class UICanvas extends UIUXManager {
     
     public void setupScenes(Vector3 position, Color color) {
         
-        activeScene.setupScene(new Sphere(position, 2, color, 0, 1));
+        activeScene.setupScene(new Sphere(position, 2, color, 0, 1, Material.superGlossy));
     }
     
     public void castRays() {
