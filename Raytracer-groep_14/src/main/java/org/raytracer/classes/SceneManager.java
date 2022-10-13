@@ -1,6 +1,6 @@
 package org.raytracer.classes;
 
-public class SceneManager extends Scene {
+public class SceneManager {
     
     private Scene[] scenes;
     

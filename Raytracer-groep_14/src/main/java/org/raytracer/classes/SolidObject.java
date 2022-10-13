@@ -1,23 +1,24 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject extends SceneObject implements Material {
+public abstract class SolidObject extends SceneObject {
     protected float reflection;
-    
+    private Material material;
     protected float emission;
     
     protected Color color;
     //protected Vector3 position;
     
     
-    public SolidObject(Vector3 position, Color color, float reflection, float emission) {
+    public SolidObject(Vector3 position, Color color, float reflection, float emission, Material material) {
         this.position = position;
         this.color = color;
         this.reflection = reflection;
         this.emission = emission;
+        this.material = material;
     }
     
     //todo Calculate distance between object that intersects and the camera
-    public abstract Vector3 CalculaterIntersection(Ray ray);
+    public abstract Vector3 calculateIntersection(Ray ray);
     
     
     public abstract Vector3 GetNormalAt(Vector3 point);//todo why abstract? Now it doesn't do anything

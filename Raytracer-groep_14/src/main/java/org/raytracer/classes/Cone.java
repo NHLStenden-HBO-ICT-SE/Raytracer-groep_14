@@ -11,7 +11,7 @@ public class Cone extends SolidObject {
     }
     
     @Override
-    public Vector3 CalculaterIntersection(Ray ray) {
+    public Vector3 calculateIntersection(Ray ray) {
         return null;
     }
     

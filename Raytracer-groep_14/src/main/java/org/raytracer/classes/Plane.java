@@ -8,7 +8,7 @@ public class Plane extends SolidObject {
     }
     
     @Override
-    public Vector3 CalculaterIntersection(Ray ray) {
+    public Vector3 calculateIntersection(Ray ray) {
         float t = -(ray.getOrigin().getY() - position.getY()) / ray.getDirection().getY();
         if (t > 0)//in front of the ray
         {
