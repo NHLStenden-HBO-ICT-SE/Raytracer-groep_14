@@ -56,7 +56,7 @@ public class Sphere extends SolidObject {
             if (t1 > 0) {
                 Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
                 intersect.setSolidObject(getObject());
-                return new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
+                return intersect;
 
             }
             return null;
