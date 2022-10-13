@@ -4,11 +4,11 @@ package org.raytracer.classes;
 
 public class Material {
     private int glossiness;
-    
+
     private Material(int glossiness){
         this.glossiness = glossiness;
         }
 
+
     public static final Material superGlossy = new Material(200);
-    public static final Material
 }

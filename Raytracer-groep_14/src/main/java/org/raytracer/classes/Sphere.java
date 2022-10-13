@@ -3,8 +3,8 @@ package org.raytracer.classes;
 public class Sphere extends SolidObject {
     private float radius;
     
-    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission) {
-        super(position, color, reflection, emission);
+    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission, Material material) {
+        super(position, color, reflection, emission, material);
         this.radius = radius;
     }
     
@@ -16,6 +16,7 @@ public class Sphere extends SolidObject {
      */
     @Override
     public Intersection calculateIntersection(Ray ray) {
+
         float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
         Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
 
@@ -30,7 +31,6 @@ public class Sphere extends SolidObject {
                 Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
                 intersect.setSolidObject(getObject());
                 return intersect;
-
             }
             return null;
         } else {

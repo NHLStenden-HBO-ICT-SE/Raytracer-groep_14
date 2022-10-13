@@ -1,19 +1,20 @@
 package org.raytracer.classes;
 
-public abstract class SolidObject extends SceneObject implements Material {
+public abstract class SolidObject extends SceneObject {
     protected float reflection;
     
     protected float emission;
     
     protected Color color;
-    //protected Vector3 position;
+    protected Material material;
+
     
-    
-    public SolidObject(Vector3 position, Color color, float reflection, float emission) {
+    public SolidObject(Vector3 position, Color color, float reflection, float emission, Material material) {
         this.position = position;
         this.color = color;
         this.reflection = reflection;
         this.emission = emission;
+        this.material = material;
     }
     
     public abstract Intersection calculateIntersection(Ray ray);

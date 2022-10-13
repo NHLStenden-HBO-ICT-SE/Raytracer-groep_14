@@ -9,7 +9,7 @@ public class Main {
 
         System.out.println("Hello world!");
 
-        //create a new uitcanvast wich will act as a viewport
+        //create a new uitcanvast which will act as a viewport
         UICanvas uiCanvas = new UICanvas(400);
         //create a new scene withing the uicanvas and add one blue object in it
         uiCanvas.setupScenes(new Vector3(0,0,100), Color.Blue);
