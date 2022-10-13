@@ -16,12 +16,9 @@ public abstract class SolidObject extends SceneObject implements Material {
         this.emission = emission;
     }
     
-    //todo Calculate distance between object that intersects and the camera
-    public abstract Vector3 CalculaterIntersection(Ray ray);
-
-    public abstract Intersection CalculaterIntersectionTemp(Ray ray);
+    public abstract Intersection calculateIntersection(Ray ray);
     
-    public abstract Vector3 GetNormalAt(Vector3 point);//todo why abstract? Now it doesn't do anything
+    public abstract Vector3 GetNormalAt(Vector3 point); //todo why abstract? Now it doesn't do anything
     
     public Vector3 getPosition() {
         return position;
@@ -46,7 +43,8 @@ public abstract class SolidObject extends SceneObject implements Material {
     public float getEmission() {
         return emission;
     }
-    public SolidObject getObject(){
+    
+    public SolidObject getObject() {
         return this;
     }
 }

@@ -1,7 +1,5 @@
 package org.raytracer.classes;
 
-import java.util.Objects;
-
 public class Raycast {
     
     public Color[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene) {
@@ -14,7 +12,7 @@ public class Raycast {
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i, j);
                 pixelColor[i][j] = Color.White; //Default background color
-                Intersection intersection = object.CalculaterIntersectionTemp(tempray);
+                Intersection intersection = object.calculateIntersection(tempray);
                 if(intersection != null){
                     pixelColor[i][j] = intersection.getSolidObject().getColor();
                 }
