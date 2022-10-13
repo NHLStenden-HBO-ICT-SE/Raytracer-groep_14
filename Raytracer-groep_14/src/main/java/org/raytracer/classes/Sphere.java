@@ -26,9 +26,9 @@ public class Sphere extends SolidObject {
             //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0) {
                 //ray.setColor(getColor());
-                float intence = Scene.MainLight.CalcLightIntencity(p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()) / 1000);
-                ray.setColor(Scene.MainLight.Lightreflection(getColor().multiply(intence)));
-                //ray.setColor(getColor());
+                //float intence = Scene.MainLight.CalcLightIntencity(p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()) / 1000);
+                //ray.setColor(Scene.MainLight.Lightreflection(getColor().multiply(intence)));
+                ray.setColor(getColor());
                 return ray.getOrigin().add(ray.getDirection().multiply(t1));
             }
             return null;
