@@ -284,7 +284,8 @@ public class Vector3 {
         float _z = (float) (y * Math.sin(pitchDegrees) + z * Math.cos(pitchDegrees));
         return new Vector3(x, _y, _z);
     }
-    
+
+    //todo make a vec3 function that returns a random x,y,z for diffuse objects
     
 }
 
