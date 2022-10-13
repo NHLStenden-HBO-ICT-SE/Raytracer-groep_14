@@ -14,13 +14,13 @@ public class Raycast {
      * @param scene
      * @return
      */
-    public BufferedImage castRays(int rayReach, Camera camera, int width, int height, Scene scene) {
-        RenderPixelColors renderPixelColors = new RenderPixelColors(height);
+    public BufferedImage castRays(float rayReach,Scene scene) {
+        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         SolidObject object = scene.GetSolidSceneObject();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                Ray tempray = new Ray(camera, i, j);
-                Intersection intersection = object.CalculaterIntersectionTemp(tempray);
+        for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+            for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                Ray tempRay = new Ray(scene.GetCamera(), i, j);
+                Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
                 if(intersection != null){
                     renderPixelColors.writeFramePixel(i,j,intersection.getSolidObject().getColor());
                 }

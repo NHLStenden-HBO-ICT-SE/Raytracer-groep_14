@@ -75,9 +75,7 @@ public class UICanvas{
     public void startRaytracer(){
         moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
         Raycast raycaster = new Raycast();
-        updateFrame(raycaster.castRays(10, activeScene.GetCamera()
-                ,activeScene.GetCamera().getScreenWidth(),
-                activeScene.GetCamera().getScreenHeight(), activeScene));
+        updateFrame(raycaster.castRays(10, activeScene));
     }
 
     public void moveObject() { //todo maak movement class voor opbjects
