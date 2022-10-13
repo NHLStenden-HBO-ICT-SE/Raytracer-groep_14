@@ -5,7 +5,6 @@ public class Ray {
     private Vector3 origin;
     private Vector3 direction = new Vector3();
     private float t; // Distance scalar
-    private Color color;
     
     /**
      * Creates ray with direction calculated from camera
@@ -26,15 +25,6 @@ public class Ray {
         }
         
     }
-    
-    public Color getColor() {
-        return color;
-    }
-    
-    public void setColor(Color color) {
-        this.color = color;
-    }
-    
     public Vector3 getDirection() {
         return direction;
     }
