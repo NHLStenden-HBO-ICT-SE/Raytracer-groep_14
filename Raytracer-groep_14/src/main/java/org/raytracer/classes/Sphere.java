@@ -10,32 +10,55 @@ public class Sphere extends SolidObject {
     
 
     /**
-     * Calculate the intersection and return a intersection class
+     *
      * @param ray
      * @return
      */
     @Override
     public Intersection calculateIntersection(Ray ray) {
-        float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
-        Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
-
-        float y = position.subtract(p).length();
+        float scalar = calculateScalar(ray); // position - origin and the dot product between t direction
+        Vector3 objectCenter = ray.getOrigin().add(ray.getDirection().multiply(scalar)); //gets the center of the
+        // object where ray is intersected with
+        float y = position.subtract(position).length();
+        
         if (y < radius)// only if the ray hits
         {
             float sphereSize = (float) Math.sqrt(radius * radius - y * y);
-            float t1 = t - sphereSize;
-            //System.out.println("The ray hit");
-            //System.out.println("the colour is" + ray.getColor().getBlue());
+            float t1 = scalar - sphereSize;
             if (t1 > 0) {
-                Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
-                intersect.setSolidObject(getObject());
-                return intersect;
+                //todo Intersection intersect = new Intersection();
+               // return intersect;
 
             }
             return null;
         } else {
             return null;
         }
+    }
+    
+    public Intersection intersectionWithRay(Ray ray) {
+     return null; //todo
+    }
+    
+    private Vector3 pointClosestToCenterOfRay(Ray ray){
+        return null;
+    }
+    
+    private Vector3 pointOnRay (Ray ray, float distance) {
+        return ray.getOrigin().add(ray.getDirection().multiply(distance));
+    }
+    
+    /**
+     *
+     * @param ray
+     * @return
+     */
+    private float calculateScalar(Ray ray){
+        return Vector3.dot(distanceBetweenCenterAndRayOrigin(ray), ray.getDirection());
+    }
+    
+    private Vector3 distanceBetweenCenterAndRayOrigin(Ray ray){
+        return position.subtract(ray.getOrigin());
     }
     
     @Override

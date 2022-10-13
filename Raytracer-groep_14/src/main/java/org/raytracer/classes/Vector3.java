@@ -155,8 +155,8 @@ public class Vector3 {
 		float distance = (float) Math.sqrt((vector1.x * vector1.x) + (vector1.y * vector1.y) + (vector1.z + vector1.z));
 		return distance;
 	}
-
 	 */
+    
     public float distanceBetweenPoints(Vector3 a, Vector3 b) {
         return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) + Math.pow(a.z - b.z, 2));
     }
@@ -171,9 +171,9 @@ public class Vector3 {
     }
     
     /**
-     * Normalize the current vector, this is also an unit vector
+     * Normalize the current vector, this is also a unit vector
      *
-     * @return a normilized vector 3
+     * @return a normalized vector 3
      */
     public Vector3 normalize() {
         float length = length();
@@ -186,7 +186,6 @@ public class Vector3 {
      */
     public Vector3 getDirection(Vector3 target) {
         return (new Vector3(target.getX() - this.x, target.getY() - this.y, target.getZ() - this.z));
-        
     }
     
     /**
