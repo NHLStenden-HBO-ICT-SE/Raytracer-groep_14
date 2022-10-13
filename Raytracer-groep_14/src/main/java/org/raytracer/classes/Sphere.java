@@ -54,6 +54,8 @@ public class Sphere extends SolidObject {
             //System.out.println("The ray hit");
             //System.out.println("the colour is" + ray.getColor().getBlue());
             if (t1 > 0) {
+                Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
+                intersect.setSolidObject(getObject());
                 return new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
 
             }

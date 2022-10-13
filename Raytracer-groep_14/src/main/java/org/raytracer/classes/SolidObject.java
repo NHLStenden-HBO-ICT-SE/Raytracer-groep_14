@@ -45,4 +45,7 @@ public abstract class SolidObject extends SceneObject implements Material {
     public float getEmission() {
         return emission;
     }
+    public SolidObject getObject(){
+        return this;
+    }
 }
