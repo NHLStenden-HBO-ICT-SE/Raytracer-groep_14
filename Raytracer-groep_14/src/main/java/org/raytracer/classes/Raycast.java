@@ -12,7 +12,7 @@ public class Raycast {
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i, j);
                 pixelColor[i][j] = Color.White; //Default background color
-                Intersection intersection = object.calculateIntersectionTemp(tempray);
+                Intersection intersection = object.calculateIntersection(tempray);
                 if(intersection != null){
                     pixelColor[i][j] = intersection.getSolidObject().getColor();
                 }
