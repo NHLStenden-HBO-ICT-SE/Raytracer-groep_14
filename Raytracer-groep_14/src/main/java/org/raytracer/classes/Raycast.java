@@ -4,45 +4,24 @@ import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 public class Raycast {
-    
-    public Color[][] castLine(int rayReach, Camera camera, int width, int height, Scene scene) {
-        RenderPixelColors renderPixelColors = new RenderPixelColors(height);
-        SolidObject object = scene.GetSolidSceneObject();
-        Color[][] pixelColor = new Color[width][height];
-        pixelColor[0][0] = new Color(); //todo change to use color()
-        for (int i = 0; i < width; i++) {
-            
-            for (int j = 0; j < height; j++) {
-                Ray tempray = new Ray(camera, i, j);
-                pixelColor[i][j] = Color.White; //Default background color
-                Intersection intersection = object.CalculaterIntersectionTemp(tempray);
-                if(intersection != null){
-                    pixelColor[i][j] = intersection.getSolidObject().getColor();
-                    renderPixelColors.writeFramePixel(i,j,intersection.getSolidObject().getColor());
-                }
-                else
-                {
-                    renderPixelColors.writeFramePixel(i,j, Color.White);
-                }
 
-            }
-        }
-        return pixelColor;
-    }
-
+    /**
+     * Create a new image out of the data collected by the raytracer
+     * @param rayReach
+     * @param camera
+     * @param width
+     * @param height
+     * @param scene
+     * @return
+     */
     public BufferedImage castRays(int rayReach, Camera camera, int width, int height, Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(height);
         SolidObject object = scene.GetSolidSceneObject();
-        Color[][] pixelColor = new Color[width][height];
-        pixelColor[0][0] = new Color(); //todo change to use color()
         for (int i = 0; i < width; i++) {
-
             for (int j = 0; j < height; j++) {
                 Ray tempray = new Ray(camera, i, j);
-                pixelColor[i][j] = Color.White; //Default background color
                 Intersection intersection = object.CalculaterIntersectionTemp(tempray);
                 if(intersection != null){
-                    pixelColor[i][j] = intersection.getSolidObject().getColor();
                     renderPixelColors.writeFramePixel(i,j,intersection.getSolidObject().getColor());
                 }
                 else
