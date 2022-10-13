@@ -43,7 +43,7 @@ public class Sphere extends SolidObject {
      * @return
      */
     @Override
-    public Intersection CalculaterIntersectionTemp(Ray ray) {
+    public Intersection calculateIntersectionTemp(Ray ray) {
         float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
         Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
 

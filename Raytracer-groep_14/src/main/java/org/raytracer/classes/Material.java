@@ -10,4 +10,5 @@ public class Material {
         }
 
     public static final Material superGlossy = new Material(200);
+    public static final Material
 }

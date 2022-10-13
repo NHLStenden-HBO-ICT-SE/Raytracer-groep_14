@@ -18,7 +18,7 @@ public class Plane extends SolidObject {
     }
 
     @Override
-    public Intersection CalculaterIntersectionTemp(Ray ray) {
+    public Intersection calculateIntersectionTemp(Ray ray) {
         return null;
     }
 
