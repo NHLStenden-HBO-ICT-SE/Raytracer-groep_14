@@ -22,6 +22,7 @@ public class Raycast {
                 {
                     pixelColor[i][j] = (Color.White);
                 }
+
             }
         }
         return pixelColor;
