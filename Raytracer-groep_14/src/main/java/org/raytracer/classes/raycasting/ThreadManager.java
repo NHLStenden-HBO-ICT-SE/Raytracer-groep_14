@@ -1,4 +1,4 @@
-package org.raytracer.classes;
+package org.raytracer.classes.raycasting;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,8 +5,8 @@ import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.gui.UICanvas;
 import org.raytracer.classes.rendering.RenderPixelColors;
-
 import java.awt.image.BufferedImage;
+import java.util.concurrent.*;
 
 public class Raycast {
     
@@ -35,6 +35,38 @@ public class Raycast {
             }
         }
         return renderPixelColors.finishFrame();
+    }
+    public BufferedImage castThreadedRays(float rayReach,Scene scene){
+        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
+        SolidObject object = scene.getFirstSolidObject();
+        Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(new Callable<BufferedImage>() {
+            @Override
+            public BufferedImage call() throws Exception {
+                for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                    for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                        Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                        if(intersection != null){
+                            renderPixelColors.writeFramePixel(i,j,object.getColor());
+                        }
+                        else
+                        {
+                            renderPixelColors.writeFramePixel(i,j, Color.White);
+                        }
+                    }
+                }
+                return renderPixelColors.finishFrame();
+            }
+        });
+        while (!threadedImage.isDone()){
+            System.out.println("processing stay patient");
+        }
+        try {
+            return threadedImage.get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     /**
