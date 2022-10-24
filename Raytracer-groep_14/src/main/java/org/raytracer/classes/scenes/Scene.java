@@ -47,7 +47,11 @@ public class Scene {
     public SolidObject getFirstSolidObject() {
         return objectList.get(0);
     }
-    
+
+    public ArrayList<SolidObject> getObjectList() {
+        return objectList;
+    }
+
     public int GetObjectListLength() {
         return objectList.size();
     }

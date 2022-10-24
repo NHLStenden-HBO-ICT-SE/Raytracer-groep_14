@@ -6,6 +6,8 @@ import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.gui.UICanvas;
 import org.raytracer.classes.rendering.RenderPixelColors;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.Vector;
 import java.util.concurrent.*;
 
 public class Raycast {
@@ -56,6 +58,47 @@ public class Raycast {
                     else
                     {
                         renderPixelColors.writeFramePixel(i,j, Color.White);
+                    }
+                }
+            }
+            return renderPixelColors.finishFrame();
+        });
+        while (!threadedImage.isDone()){
+            System.out.println("processing stay patient");
+        }
+        try {
+            return threadedImage.get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public BufferedImage castThreadedRaysMultipleObjects(float rayReach,Scene scene){
+        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
+        SolidObject object = scene.getFirstSolidObject();
+        List<SolidObject> objectList = scene.getObjectList();
+        Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(() -> {
+            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                    //Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                    float lastPos = 100;
+                    SolidObject ClosestObject = null;
+                    for (SolidObject item: objectList) {
+                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                        if(intersection != null){
+                            if (intersection.getDistanceToCameraOrigin() < lastPos){
+                                lastPos = intersection.getDistanceToCameraOrigin();
+                                ClosestObject = item;
+                            }
+                        }
+                        if (ClosestObject != null){
+                            renderPixelColors.writeFramePixel(i,j,object.getColor());   //replacement code, needs a colour to return else all goes to hell
+                        }
+                        else {
+                            renderPixelColors.writeFramePixel(i,j, Color.White);
+                        }
                     }
                 }
             }
