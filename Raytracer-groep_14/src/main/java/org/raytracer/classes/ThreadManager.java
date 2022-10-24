@@ -2,6 +2,10 @@ package org.raytracer.classes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /*
 //this class will be used to create and manage threads
@@ -9,6 +13,7 @@ import java.util.List;
 public class ThreadManager extends Thread{
 
 
+    ExecutorService executorService = Executors.newCachedThreadPool();
     public int ThreadCount;
 
     public List<ThreadWorker> threadWorkerList;
@@ -20,6 +25,17 @@ public class ThreadManager extends Thread{
         threadWorkerList = new ArrayList<>();
         for (int i = 0; i < threadCount; i++){
             threadWorkerList.add(createNewThread());
+        }
+    }
+
+    //the first setup for a thread
+    public void sendParametersAndRun(SolidObject object, Ray ray, int x, int y){
+        Future<Color> result = executorService.submit(new CallableThread(object, ray));
+        try {
+            pixelRenderer.writeFramePixel(x, y, (Color) result);
+        }
+        finally {
+            executorService.shutdown();
         }
     }
 

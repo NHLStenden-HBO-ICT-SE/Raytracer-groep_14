@@ -2,12 +2,9 @@ package org.raytracer.classes;
 
 import java.util.concurrent.Callable;
 
-public class CallableThread implements Callable {
+public class CallableThread implements Callable<Color> {
 
-    Color color=new Color();
-
-
-
+    //todo return integer that represents the color
     private SolidObject object;
     private  Ray tempRay;
 
@@ -17,21 +14,6 @@ public class CallableThread implements Callable {
         this.object = object;
         this.tempRay = tempray;
     }
-    Intersection intersection = object.calculateIntersection(tempRay);
-
-    Color threadColor = Color.White;
-            if(intersection != null){
-        threadColor = intersection.getSolidObject().getColor();
-    }
-
-    Intersection intersection = object.calculateIntersection(tempRay);
-
-    Color threadColor = Color.White;
-            if(intersection != null){
-        threadColor = intersection.getSolidObject().getColor();
-    }
-            return threadColor;
-
     @Override
     public Color call() throws Exception {
 
