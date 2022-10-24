@@ -21,8 +21,21 @@ public class ThreadManager extends Thread{
     public boolean reserveThread(){
         return false;
     }
-    public void runThread(int x, int y){
-        onThreadEnd(x, y,grabAvailableThread().runCast() );
+
+    /**
+     * Run the prebuild castray method on this thread
+     * @param x
+     * @param y
+     * @param object
+     * @param ray
+     * @return the status of the threads, will return false if they are all busy
+     */
+    public boolean runThread(int x, int y, SolidObject object, Ray ray){
+        if (checkThreads()){
+            onThreadEnd(x, y,grabAvailableThread().runCast(object, ray));
+            return true;
+        }
+        return false;
     }
 
     private boolean checkThreads(){
@@ -49,6 +62,17 @@ public class ThreadManager extends Thread{
     //Thread returns a colour with coordinate, write it to an image once it gets in
     public void onThreadEnd(int x, int y, Color color){
         pixelRenderer.writeFramePixel(x, y, color);
+    }
+
+    /**
+     * Return the image that has been coloured by the threads
+     * will loop until all threads are done
+     * @return
+     */
+    public RenderPixelColors getThreadedImage(){
+        while (checkThreads()){
+        }
+        return pixelRenderer;
     }
 
 

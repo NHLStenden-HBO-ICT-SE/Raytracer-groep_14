@@ -14,6 +14,7 @@ public class Raycast {
     public BufferedImage castRays(float rayReach,Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         SolidObject object = scene.GetSolidSceneObject();
+        ThreadManager threadManager = new ThreadManager(5,renderPixelColors);
 
         //todo Use threadmanager to reserve a given amount of threads
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
@@ -22,6 +23,10 @@ public class Raycast {
                 //todo Check if there is a thread available
                 //todo if there is no thread available wait for one to be done
                 //todo if there is assign the task below to the the thread
+                //threadManager.runThread(i,j, object, tempRay);
+                while (!threadManager.runThread(i,j, object, tempRay)){
+
+                }
                 Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
 
                 if(intersection != null){
