@@ -1,4 +1,10 @@
-package org.raytracer.classes;
+package org.raytracer.classes.raycasting;
+
+import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.SolidObject;
+import org.raytracer.classes.scenes.Scene;
+import org.raytracer.classes.gui.UICanvas;
+import org.raytracer.classes.rendering.RenderPixelColors;
 
 import java.awt.image.BufferedImage;
 

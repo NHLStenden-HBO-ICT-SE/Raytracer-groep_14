@@ -1,4 +1,8 @@
-package org.raytracer.classes;
+package org.raytracer.classes.objects;
+
+import org.raytracer.classes.raycasting.Intersection;
+import org.raytracer.classes.raycasting.Ray;
+import org.raytracer.classes.vectors.Vector3;
 
 public class Cone extends SolidObject {
     private float height;

@@ -1,5 +1,7 @@
-package org.raytracer.classes;
+package org.raytracer.classes.objects;
 
+
+import org.raytracer.classes.vectors.Vector3;
 
 public abstract class SceneObject {
     

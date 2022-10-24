@@ -1,4 +1,6 @@
-package org.raytracer.classes;
+package org.raytracer.classes.raycasting;
+
+import org.raytracer.classes.vectors.Vector3;
 
 public class Intersection {
     private float distanceToCameraOrigin;

@@ -1,4 +1,7 @@
-package org.raytracer.classes;
+package org.raytracer.classes.raycasting;
+
+import org.raytracer.classes.objects.Camera;
+import org.raytracer.classes.vectors.Vector3;
 
 public class Ray {
     
