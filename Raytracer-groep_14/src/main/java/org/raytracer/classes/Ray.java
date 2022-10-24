@@ -29,6 +29,8 @@ public class Ray {
         return direction;
     }
     
+    public Vector3 getNormalizedDirection() {return direction.normalize();}
+    
     public void setDirection(Vector3 direction) {
         this.direction = direction;
     }
@@ -64,7 +66,7 @@ public class Ray {
      * @param t distance along the line between the start and end point
      * @return
      */
-    public Vector3 rayPoint(float t) {
+    public Vector3 getPointOnRay(float t) {
         return new Vector3(origin.add(direction.multiply(t)));
     }
     

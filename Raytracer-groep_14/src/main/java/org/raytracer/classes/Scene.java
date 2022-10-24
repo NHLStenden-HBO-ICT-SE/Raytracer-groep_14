@@ -1,8 +1,6 @@
 package org.raytracer.classes;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Scene {
     
@@ -44,8 +42,8 @@ public class Scene {
         
     }
     
+    //todo niet gebruiken
     public SolidObject GetSolidSceneObject() {
-        
         return objectList.get(0);
     }
     
