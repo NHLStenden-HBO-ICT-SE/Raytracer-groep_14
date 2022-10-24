@@ -22,11 +22,24 @@ public class ThreadManager extends Thread{
         return false;
     }
     public void runThread(int x, int y){
-        onThreadEnd(x, y, threadWorkerList);
+        onThreadEnd(x, y,grabAvailableThread().runCast() );
     }
 
     private boolean checkThreads(){
-
+        for (ThreadWorker thread : threadWorkerList) {
+            if (!thread.isWorking){
+                return true;
+            }
+        }
+        return false;
+    }
+    private ThreadWorker grabAvailableThread(){
+        for (ThreadWorker thread : threadWorkerList) {
+            if (!thread.isWorking){
+                return thread;
+            }
+        }
+        return null;
     }
 
     private ThreadWorker createNewThread(){
