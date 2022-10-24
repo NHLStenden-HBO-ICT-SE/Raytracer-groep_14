@@ -1,12 +1,15 @@
-package org.raytracer.classes;
+package org.raytracer.classes.scenes;
+
+import org.raytracer.classes.objects.Camera;
+import org.raytracer.classes.objects.Light;
+import org.raytracer.classes.objects.SolidObject;
+import org.raytracer.classes.vectors.Vector3;
 
 import java.util.ArrayList;
 
 public class Scene {
     
-    //comment
     private ArrayList<SolidObject> objectList;
-    private Skybox image; // todo add skybox
     private Camera camera;
     private Light light;
     static Light MainLight;

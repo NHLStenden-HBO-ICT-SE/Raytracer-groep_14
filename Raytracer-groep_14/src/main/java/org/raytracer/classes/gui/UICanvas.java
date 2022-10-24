@@ -1,4 +1,10 @@
-package org.raytracer.classes;
+package org.raytracer.classes.gui;
+
+import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.Sphere;
+import org.raytracer.classes.raycasting.Raycast;
+import org.raytracer.classes.scenes.Scene;
+import org.raytracer.classes.vectors.Vector3;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +16,7 @@ public class UICanvas{
     JFrame canvasFrame = new JFrame("best frame ever");
     
     private int Height, Width;
-    Color[][] pixelColor;
+    org.raytracer.classes.objects.Color[][] pixelColor;
     
     private BufferedImage bufferedImage;
     
@@ -24,7 +30,7 @@ public class UICanvas{
     
     public UICanvas(int widthAndHeight) { //todo get height and width from camera
         
-        pixelColor = new Color[widthAndHeight][widthAndHeight];
+        pixelColor = new org.raytracer.classes.objects.Color[widthAndHeight][widthAndHeight];
         
         this.Height = widthAndHeight;
         this.Width = widthAndHeight;

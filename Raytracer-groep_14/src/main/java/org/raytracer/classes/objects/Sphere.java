@@ -1,4 +1,8 @@
-package org.raytracer.classes;
+package org.raytracer.classes.objects;
+
+import org.raytracer.classes.raycasting.Intersection;
+import org.raytracer.classes.raycasting.Ray;
+import org.raytracer.classes.vectors.Vector3;
 
 public class Sphere extends SolidObject {
     private float radius;
@@ -24,11 +28,28 @@ public class Sphere extends SolidObject {
         if (rayGoesThroughSphere(shortestDistanceRayToCenter)) {
             float distanceToIntersection =
                     (float) (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
-            if (distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0) {
+            
+            distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
+            
+            boolean cameraIsOutsideOfSphere =
+                    distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0;
+            
+            if (cameraIsOutsideOfSphere) {
                 return new Intersection(ray.getPointOnRay(distanceToIntersection), distanceToIntersection);
             }
         }
         return null;
+    }
+    
+    /**
+     * shortens the distance by a fraction to make sure the point is just outside the object. This solves shadow acne
+     * bug.
+     *
+     * @param distanceToIntersection the distance from origin to the
+     * @return
+     */
+    private static float getRidOfShadowAcne(float distanceToIntersection) {
+        return distanceToIntersection -= 0.0001;
     }
     
     private boolean rayGoesThroughSphere(float shortestDistanceRayToCenter) {

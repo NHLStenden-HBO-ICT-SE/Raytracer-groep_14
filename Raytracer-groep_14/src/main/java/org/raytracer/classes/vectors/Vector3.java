@@ -1,4 +1,4 @@
-package org.raytracer.classes;
+package org.raytracer.classes.vectors;
 
 //<<<<<<< HEAD
 //=======

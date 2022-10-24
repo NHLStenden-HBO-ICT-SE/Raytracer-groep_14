@@ -1,8 +1,8 @@
 package org.raytracer;
 
-import org.raytracer.classes.Color;
-import org.raytracer.classes.UICanvas;
-import org.raytracer.classes.Vector3;
+import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.gui.UICanvas;
+import org.raytracer.classes.vectors.Vector3;
 
 public class Main {
     public static void main(String[] args) {
