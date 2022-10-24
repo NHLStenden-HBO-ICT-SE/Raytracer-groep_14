@@ -61,6 +61,8 @@ public class Camera extends SceneObject {
     public int getScreenWidth() {
         return screenWidth;
     }
+
+    public int getWidthAndHeight(){return screenHeight;}
     
     /**
      * determine width of screen
