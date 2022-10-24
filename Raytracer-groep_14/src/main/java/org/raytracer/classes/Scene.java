@@ -72,5 +72,9 @@ public class Scene {
     public Camera GetCamera(){
         return camera;
     }
+
+    public int getWidthAndHeight(){
+        return camera.getWidthAndHeight();
+    }
     
 }
