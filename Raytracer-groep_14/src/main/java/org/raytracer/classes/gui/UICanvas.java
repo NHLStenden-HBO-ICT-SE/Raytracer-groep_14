@@ -73,6 +73,9 @@ public class UICanvas{
     public void addSphereToScene(Vector3 position, Color color) {
         activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
     }
+    public void addSphereToScene(Vector3 position, Color color, float radius) {
+        activeScene.addObjectToScene(new Sphere(position, radius, color, 0, 1));
+    }
     public void addPlaneObjectToScene(Vector3 position, Color color)
     {
         activeScene.addObjectToScene(new Plane(position,color, 0, 1));
@@ -80,8 +83,12 @@ public class UICanvas{
 
 
     public void startRaytracer(){
-        moveObject(); //move the first object in a scene
-        moveObject(activeScene.GetSceneObject(1));
+        //moveObject(); //move the first object in a scene
+        moveObject(activeScene.GetSceneObject(1), -0.075f);
+        moveObject(activeScene.GetSceneObject(2), -0.075f);
+        moveObject(activeScene.GetSceneObject(3), -0.075f);
+        moveObject(activeScene.GetSceneObject(4), -0.075f);
+        moveObject(activeScene.GetSceneObject(5), -0.075f);
         Raycast raycaster = new Raycast();
         //updateFrame(raycaster.castThreadedRays(10, activeScene));
         updateFrame(raycaster.castThreadedRaysMultipleObjects(10,activeScene));
