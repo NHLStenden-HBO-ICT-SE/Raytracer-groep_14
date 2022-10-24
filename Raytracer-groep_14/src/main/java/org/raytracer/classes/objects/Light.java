@@ -1,4 +1,6 @@
-package org.raytracer.classes;
+package org.raytracer.classes.objects;
+
+import org.raytracer.classes.vectors.Vector3;
 
 public class Light extends SceneObject {
     private Color color;
@@ -63,9 +65,8 @@ public class Light extends SceneObject {
     public float AngleOfView(Vector3 light, Vector3 normalVector) {
         
         normalVector = normalVector.normalize();
-        float total = Vector3.dot(light, normalVector);
-        
-        return total;
+    
+        return light.dot(normalVector);
     }
     
     public void setIntensity(float intensity) {

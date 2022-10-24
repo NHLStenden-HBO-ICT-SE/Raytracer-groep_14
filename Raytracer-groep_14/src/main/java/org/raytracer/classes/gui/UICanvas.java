@@ -1,25 +1,26 @@
-package org.raytracer.classes;
+package org.raytracer.classes.gui;
+
+import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.Sphere;
+import org.raytracer.classes.raycasting.Raycast;
+import org.raytracer.classes.scenes.Scene;
+import org.raytracer.classes.vectors.Vector3;
 
 import javax.swing.*;
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class UICanvas{
-    
-    
     JFrame canvasFrame = new JFrame("best frame ever");
     
     private int Height, Width;
-    Color[][] pixelColor;
+    org.raytracer.classes.objects.Color[][] pixelColor;
     
     private BufferedImage bufferedImage;
     
     public Scene activeScene = new Scene();
     
-    //todo create a camera object
+
     //todo set the pixels from the screen
     //todo try to save the pixels inside some class containing a multidemensional array
     //todo try to create a few empty raycasts
@@ -27,7 +28,7 @@ public class UICanvas{
     
     public UICanvas(int widthAndHeight) { //todo get height and width from camera
         
-        pixelColor = new Color[widthAndHeight][widthAndHeight];
+        pixelColor = new org.raytracer.classes.objects.Color[widthAndHeight][widthAndHeight];
         
         this.Height = widthAndHeight;
         this.Width = widthAndHeight;
@@ -67,27 +68,21 @@ public class UICanvas{
         canvasFrame.setVisible(true); // Exhibit the frame
     }
     
-    public void setupScenes(Vector3 position, Color color) {
-        
-        activeScene.setupScene(new Sphere(position, 2, color, 0, 1));
+    public void addSphereToScene(Vector3 position, Color color) {
+        activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
     }
 
     public void startRaytracer(){
         moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
         Raycast raycaster = new Raycast();
-        //raycaster.castNOW(10, activeScene,this);
-        updateFrame(raycaster.threadedCastRays(10, activeScene));
-    }
-
-    public void quit(){
-        ThreadManager.executerService.shutdown();
+        updateFrame(raycaster.castRays(10, activeScene));
     }
 
     public void moveObject(Vector3 vector3){
-        activeScene.GetSolidSceneObject().setPosition(new Vector3(activeScene.GetSolidSceneObject().getPosition().add(vector3)));
+        activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(vector3)));
     }
     public void moveObject() { //todo maak movement class voor opbjects
-        activeScene.GetSolidSceneObject().setPosition(new Vector3(activeScene.GetSolidSceneObject().getPosition().add(new Vector3(0, 0, 0.1f))));
+        activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(new Vector3(0, 0, 0.1f))));
         
     }
 }

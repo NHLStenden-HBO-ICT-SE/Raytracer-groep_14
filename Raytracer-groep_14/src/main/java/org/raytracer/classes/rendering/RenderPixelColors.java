@@ -1,5 +1,7 @@
-package org.raytracer.classes;
+package org.raytracer.classes.rendering;
 
+
+import org.raytracer.classes.objects.Color;
 
 import java.awt.image.BufferedImage;
 

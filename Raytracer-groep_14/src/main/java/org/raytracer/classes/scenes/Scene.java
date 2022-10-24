@@ -1,14 +1,15 @@
-package org.raytracer.classes;
+package org.raytracer.classes.scenes;
 
-import java.util.AbstractList;
+import org.raytracer.classes.objects.Camera;
+import org.raytracer.classes.objects.Light;
+import org.raytracer.classes.objects.SolidObject;
+import org.raytracer.classes.vectors.Vector3;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Scene {
     
-    //comment
     private ArrayList<SolidObject> objectList;
-    private Skybox image; // todo add skybox
     private Camera camera;
     private Light light;
     static Light MainLight;
@@ -20,12 +21,10 @@ public class Scene {
     public Scene() {
         this.objectList = new ArrayList<>();
         this.camera = new Camera(400);
-        // this.light= new Light(new Vector3(0,10,1),50);
         MainLight = new Light(new Vector3(0, 10, 1), 50);
     }
     
-    public void setupScene(SolidObject object) {
-        
+    public void addObjectToScene(SolidObject object) {
         this.objectList.add(object);
     }
     
@@ -44,8 +43,8 @@ public class Scene {
         
     }
     
-    public SolidObject GetSolidSceneObject() {
-        
+    //todo niet gebruiken
+    public SolidObject getFirstSolidObject() {
         return objectList.get(0);
     }
     
