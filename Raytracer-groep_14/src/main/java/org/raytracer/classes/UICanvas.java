@@ -76,7 +76,7 @@ public class UICanvas{
         moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
         Raycast raycaster = new Raycast();
         //raycaster.castNOW(10, activeScene,this);
-        updateFrame(raycaster.castRays(10, activeScene));
+        updateFrame(raycaster.threadedCastRays(10, activeScene));
     }
 
     public void moveObject(Vector3 vector3){

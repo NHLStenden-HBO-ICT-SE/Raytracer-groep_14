@@ -25,6 +25,13 @@ public class RenderPixelColors {
             writeFrame.setRGB(x, y, Color.White.getRGB());
         }
     }
+    public void writeFramePixel(int x, int y, int color){
+        try {
+            writeFrame.setRGB(x, y, color);
+        } catch (Exception e) {
+            writeFrame.setRGB(x, y, Color.White.getRGB());
+        }
+    }
     public BufferedImage finishFrame(){
         return writeFrame;
     }
