@@ -1,6 +1,8 @@
 package org.raytracer.classes;
 
-public class ThreadWorker extends Thread{
+import java.util.concurrent.Callable;
+
+public class ThreadWorker extends Thread {
 
     private boolean isWorking = false;
     public void run(){
