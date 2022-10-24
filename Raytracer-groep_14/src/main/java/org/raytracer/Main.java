@@ -13,7 +13,7 @@ public class Main {
         UICanvas uiCanvas = new UICanvas(400);
         //create a new scene withing the uiCanvas and add one blue object in it
         uiCanvas.addSphereToScene(new Vector3(0,0,100), Color.Blue);
-        uiCanvas.addSphereToScene(new Vector3(0,1,90), Color.Black);
+        uiCanvas.addSphereToScene(new Vector3(0,1,100), Color.Black);
         //make a frame
         uiCanvas.createNewFrame();
         for (int i = 0; i < 900; i++) {

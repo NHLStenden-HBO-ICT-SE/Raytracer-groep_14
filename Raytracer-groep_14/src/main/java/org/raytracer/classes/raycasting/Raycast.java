@@ -77,24 +77,23 @@ public class Raycast {
 
     public BufferedImage castThreadedRaysMultipleObjects(float rayReach,Scene scene){
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.getFirstSolidObject();
         List<SolidObject> objectList = scene.getObjectList();
         Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(() -> {
             for (int i = 0; i < scene.getWidthAndHeight(); i++) {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     //Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
-                    float lastPos = 100;
-                    SolidObject ClosestObject = null;
+                    float lastPos = 1000;
+                    SolidObject closestObject = null;
                     for (SolidObject item: objectList) {
                         Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
                         if(intersection != null){
                             if (intersection.getDistanceToCameraOrigin() < lastPos){
                                 lastPos = intersection.getDistanceToCameraOrigin();
-                                ClosestObject = item;
+                                closestObject = item;
                             }
                         }
-                        if (ClosestObject != null){
-                            renderPixelColors.writeFramePixel(i,j,object.getColor());   //replacement code, needs a colour to return else all goes to hell
+                        if (closestObject != null){
+                            renderPixelColors.writeFramePixel(i,j,closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
                         }
                         else {
                             renderPixelColors.writeFramePixel(i,j, Color.White);
