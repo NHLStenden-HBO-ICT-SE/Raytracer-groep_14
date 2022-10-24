@@ -5,11 +5,6 @@ package org.raytracer.classes;
 ////import sun.net.www.content.text.Generic;
 //>>>>>>> 19d756d81073be1f5baf99a227437090257b03a3
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
-
 public class Vector3 {
     
     private float x;
@@ -46,13 +41,11 @@ public class Vector3 {
     
     /**
      * Dot point between two vectores
-     *
-     * @param a
-     * @param b
-     * @return https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/dot-products-mvc
+     * @param b Vector that is used to calculate dot
+     * @return <a href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/dot-products-mvc">...</a>
      */
-    public static float dot(Vector3 a, Vector3 b) {
-        return a.x * b.x + a.y * b.y + a.z * b.z;
+    public float dot(Vector3 b) {
+        return x * b.x + y * b.y + z * b.z;
     }
     
     //Get and return the xyz
@@ -197,6 +190,8 @@ public class Vector3 {
         return (new Vector3(target.getX() - position.getX(), target.getY() - position.getY(), target.getZ() - position.getZ()));
     }
     
+    
+    
     public float dotProduct(float dot1[], float dot2[]) {
         float dotSum = 0;
         
@@ -207,7 +202,7 @@ public class Vector3 {
     }
     
     /**
-     * code based on https://stackoverflow.com/questions/48265646/rotation-of-a-vector-python
+     * code based on <a href="https://stackoverflow.com/questions/48265646/rotation-of-a-vector-python">...</a>
      *
      * @param v1
      * @param v2
@@ -238,11 +233,11 @@ public class Vector3 {
         
         //pitch roll yaw ref chart https://th.bing.com/th/id/R.7581eb166c78861e1717f4dcb58c600f?rik=p02JZWulLC%2f6NA&riu=http%3a%2f%2fi.stack.imgur.com%2f8IuOw.png&ehk=pGMPZxyK9kOd1EoPH5K3L%2fGfDjyVcXCzixV8IOZ7L%2fE%3d&risl=&pid=ImgRaw&r=0
         //rotation based on https://github.com/carl-vbn/pure-java-raytracer/blob/master/src/carlvbn/raytracing/math/Vector3.java
-        //use the x axis so the 1st vector
+        //use the x-axis so the 1st vector
         //- is clockwise while + is counterclockwise
         double yawDegrees = Math.toRadians(degrees);
-        //Rotate around the y axis
-        //Rotate the x axis first
+        //Rotate around the y-axis
+        //Rotate the x-axis first
         float _x = (float) (x * Math.cos(yawDegrees) + z * Math.sin(yawDegrees));
         //Rotate the z axis second
         float _z = (float) (-x * Math.sin(yawDegrees) + z * Math.cos(yawDegrees));
@@ -259,11 +254,11 @@ public class Vector3 {
      */
     public Vector3 RotateUpByDegrees(Vector3 vector, int degrees) {
         
-        //use the x axis so the 1st vector
+        //use the x-axis so the 1st vector
         //- is clockwise while + is counterclockwise
         double yawDegrees = Math.toRadians(degrees);
-        //Rotate around the y axis
-        //Rotate the x axis first
+        //Rotate around the y-axis
+        //Rotate the x-axis first
         float _x = (float) (vector.x * Math.cos(yawDegrees) + vector.z * Math.sin(yawDegrees));
         //Rotate the z axis second
         float _z = (float) (-vector.x * Math.sin(yawDegrees) + vector.z * Math.cos(yawDegrees));

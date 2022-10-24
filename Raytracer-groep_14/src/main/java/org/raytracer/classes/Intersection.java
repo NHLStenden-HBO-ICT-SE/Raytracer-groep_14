@@ -4,18 +4,17 @@ public class Intersection {
     private float distanceToCameraOrigin;
     private Vector3 startPosition;
     private int amountOfBounces;
-    private SolidObject solidObject;
+    
     
     /**
      *
      * @param startingPosition location of
      * @param distanceToCameraOrigin
-     * @param object
      */
-    public Intersection(Vector3 startingPosition, float distanceToCameraOrigin, SolidObject object) {
+    public Intersection(Vector3 startingPosition, float distanceToCameraOrigin) {
         this.startPosition = startingPosition;
         this.distanceToCameraOrigin = distanceToCameraOrigin;
-        this.solidObject = object;
+        
         amountOfBounces = 1;
     }
     
@@ -37,14 +36,6 @@ public class Intersection {
     
     public Vector3 getStartPosition() {
         return startPosition;
-    }
-    
-    public SolidObject getSolidObject() {
-        return solidObject;
-    }
-    
-    public void setSolidObject(SolidObject solidObject) {
-        this.solidObject = solidObject;
     }
     
     public void setPosition(float x, float y, float z) {
