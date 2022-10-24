@@ -19,7 +19,7 @@ public class Raycast {
      */
     public BufferedImage castRays(float rayReach, Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.GetSolidSceneObject(); // todo weghalen en de lijst aanroepen
+        SolidObject object = scene.getFirstSolidObject(); // todo weghalen en de lijst aanroepen
         
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
@@ -46,7 +46,7 @@ public class Raycast {
      */
     public void castLine(float rayReach, Scene scene, UICanvas canvas) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.GetSolidSceneObject();
+        SolidObject object = scene.getFirstSolidObject();
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);

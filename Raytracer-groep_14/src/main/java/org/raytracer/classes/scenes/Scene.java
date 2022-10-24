@@ -21,12 +21,10 @@ public class Scene {
     public Scene() {
         this.objectList = new ArrayList<>();
         this.camera = new Camera(400);
-        // this.light= new Light(new Vector3(0,10,1),50);
         MainLight = new Light(new Vector3(0, 10, 1), 50);
     }
     
-    public void setupScene(SolidObject object) {
-        
+    public void addObjectToScene(SolidObject object) {
         this.objectList.add(object);
     }
     
@@ -46,7 +44,7 @@ public class Scene {
     }
     
     //todo niet gebruiken
-    public SolidObject GetSolidSceneObject() {
+    public SolidObject getFirstSolidObject() {
         return objectList.get(0);
     }
     
