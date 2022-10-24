@@ -28,8 +28,6 @@ public class Sphere extends SolidObject {
                 return new Intersection(ray.getPointOnRay(distanceToIntersection), distanceToIntersection);
             }
         }
-        
-        
         return null;
     }
     
