@@ -41,6 +41,7 @@ public class Vector3 {
     
     /**
      * Dot point between two vectores
+     *
      * @param b Vector that is used to calculate dot
      * @return <a href="https://www.khanacademy.org/math/multivariable-calculus/thinking-about-multivariable-function/x786f2022:vectors-and-matrices/a/dot-products-mvc">...</a>
      */
@@ -99,10 +100,6 @@ public class Vector3 {
      */
     public Vector3 subtract(Vector3 vector) {
         return new Vector3(this.x - vector.x, this.y - vector.y, this.z - vector.z);
-    }
-    
-    public Vector3 subtract(Vector3 vector, Vector3 vector1) {
-        return new Vector3(vector1.x - vector.x, vector1.y - vector.y, vector1.z - vector.z);
     }
     
     /**
@@ -189,7 +186,6 @@ public class Vector3 {
     public Vector3 getDirection(Vector3 target, Vector3 position) {
         return (new Vector3(target.getX() - position.getX(), target.getY() - position.getY(), target.getZ() - position.getZ()));
     }
-    
     
     
     public float dotProduct(float dot1[], float dot2[]) {

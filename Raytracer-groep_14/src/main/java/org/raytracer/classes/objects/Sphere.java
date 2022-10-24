@@ -21,14 +21,14 @@ public class Sphere extends SolidObject {
     public Intersection calculateIntersection(Ray ray) {
         Vector3 rayOriginToSphereCenter = calculateRayOriginToSphereCenter(ray);
         float projectionSphereCenterToRay = rayOriginToSphereCenter.dot(ray.getNormalizedDirection());
+        Vector3 rayDirectionDistance = ray.getDirection().multiply(projectionSphereCenterToRay);
         Vector3 projectionOfRayToCenter =
-                rayOriginToSphereCenter.subtract(ray.getOrigin().multiply(projectionSphereCenterToRay));
+                rayOriginToSphereCenter.subtract(rayDirectionDistance);
         float shortestDistanceRayToCenter = projectionOfRayToCenter.dot(projectionOfRayToCenter);
         
         if (rayGoesThroughSphere(shortestDistanceRayToCenter)) {
-            float distanceToIntersection =
-                    (float) (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
-            
+            double f = (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
+            float distanceToIntersection = (float) f;
             distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
             
             boolean cameraIsOutsideOfSphere =
@@ -53,9 +53,9 @@ public class Sphere extends SolidObject {
     }
     
     private boolean rayGoesThroughSphere(float shortestDistanceRayToCenter) {
-        return shortestDistanceRayToCenter < radius * 2;
+        Boolean rayGoesThroughSphere = shortestDistanceRayToCenter < (radius * 2);
+        return rayGoesThroughSphere;
     }
-    
     
     private Vector3 calculateRayOriginToSphereCenter(Ray ray) {
         return position.subtract(ray.getOrigin());
