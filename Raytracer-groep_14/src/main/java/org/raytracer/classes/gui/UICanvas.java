@@ -1,6 +1,7 @@
 package org.raytracer.classes.gui;
 
 import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.Plane;
 import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
@@ -72,6 +73,11 @@ public class UICanvas{
     public void addSphereToScene(Vector3 position, Color color) {
         activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
     }
+    public void addPlaneObjectToScene(Vector3 position, Color color)
+    {
+        activeScene.addObjectToScene(new Plane(position,color, 0, 1));
+    }
+
 
     public void startRaytracer(){
         moveObject(); //move the first object in a scene
@@ -90,5 +96,8 @@ public class UICanvas{
     }
     public void moveObject(SolidObject object){
         object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, 0.1f))));
+    }
+    public void moveObject(SolidObject object, float speed){
+        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, speed))));
     }
 }
