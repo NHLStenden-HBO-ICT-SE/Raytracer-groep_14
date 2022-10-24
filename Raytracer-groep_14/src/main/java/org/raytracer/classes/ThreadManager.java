@@ -16,6 +16,9 @@ public class ThreadManager extends Thread{
     public ThreadManager(int threadCount, RenderPixelColors pixelRenderer){
         this.ThreadCount = threadCount;
         this.pixelRenderer = pixelRenderer;
+        for (int i = 0; i < threadCount; i++){
+            threadWorkerList.add(createNewThread());
+        }
     }
 
     public boolean reserveThread(){
@@ -46,6 +49,11 @@ public class ThreadManager extends Thread{
         }
         return false;
     }
+
+    /**
+     * return a workerThread that is idle and not doing anything
+     * @return
+     */
     private ThreadWorker grabAvailableThread(){
         for (ThreadWorker thread : threadWorkerList) {
             if (!thread.isWorking){
