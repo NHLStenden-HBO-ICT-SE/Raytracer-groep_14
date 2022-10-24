@@ -36,7 +36,7 @@ public class Raycast {
         while (!threadedImage.isDone()){
             System.out.println("processing stay patient");
         }
-        ThreadManager.executerService.shutdown();
+
         try {
             return threadedImage.get();
         } catch (InterruptedException e) {

@@ -79,6 +79,10 @@ public class UICanvas{
         updateFrame(raycaster.threadedCastRays(10, activeScene));
     }
 
+    public void quit(){
+        ThreadManager.executerService.shutdown();
+    }
+
     public void moveObject(Vector3 vector3){
         activeScene.GetSolidSceneObject().setPosition(new Vector3(activeScene.GetSolidSceneObject().getPosition().add(vector3)));
     }
