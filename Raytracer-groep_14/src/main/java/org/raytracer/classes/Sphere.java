@@ -3,39 +3,41 @@ package org.raytracer.classes;
 public class Sphere extends SolidObject {
     private float radius;
     
-    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission, Material material) {
-        super(position, color, reflection, emission, material);
+    public Sphere(Vector3 position, float radius, Color color, float reflection, float emission) {
+        super(position, color, reflection, emission);
         this.radius = radius;
     }
     
-
+    
     /**
-     * Calculate the intersection and return a intersection class
      * @param ray
      * @return
      */
     @Override
     public Intersection calculateIntersection(Ray ray) {
-
-        float t = Vector3.dot(position.subtract(ray.getOrigin()), ray.getDirection()); // position - origin and the dot product between t direction
-        Vector3 p = ray.getOrigin().add(ray.getDirection().multiply(t)); //gets the center of the object where ray is intersected with
-
-        float y = position.subtract(p).length();
-        if (y < radius)// only if the ray hits
-        {
-            float sphereSize = (float) Math.sqrt(radius * radius - y * y);
-            float t1 = t - sphereSize;
-            //System.out.println("The ray hit");
-            //System.out.println("the colour is" + ray.getColor().getBlue());
-            if (t1 > 0) {
-                Intersection intersect = new Intersection(ray.getOrigin(), p.distanceBetweenPoints(getPosition(), Scene.MainLight.GetPosition()));
-                intersect.setSolidObject(getObject());
-                return intersect;
+        Vector3 rayOriginToSphereCenter = calculateRayOriginToSphereCenter(ray);
+        float projectionSphereCenterToRay = rayOriginToSphereCenter.dot(ray.getNormalizedDirection());
+        Vector3 projectionOfRayToCenter =
+                rayOriginToSphereCenter.subtract(ray.getOrigin().multiply(projectionSphereCenterToRay));
+        float shortestDistanceRayToCenter = projectionOfRayToCenter.dot(projectionOfRayToCenter);
+        
+        if (rayGoesThroughSphere(shortestDistanceRayToCenter)) {
+            float distanceToIntersection =
+                    (float) (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
+            if (distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0) {
+                return new Intersection(ray.getPointOnRay(distanceToIntersection), distanceToIntersection);
             }
-            return null;
-        } else {
-            return null;
         }
+        return null;
+    }
+    
+    private boolean rayGoesThroughSphere(float shortestDistanceRayToCenter) {
+        return shortestDistanceRayToCenter < radius * 2;
+    }
+    
+    
+    private Vector3 calculateRayOriginToSphereCenter(Ray ray) {
+        return position.subtract(ray.getOrigin());
     }
     
     @Override

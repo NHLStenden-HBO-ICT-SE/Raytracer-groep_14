@@ -63,9 +63,8 @@ public class Light extends SceneObject {
     public float AngleOfView(Vector3 light, Vector3 normalVector) {
         
         normalVector = normalVector.normalize();
-        float total = Vector3.dot(light, normalVector);
-        
-        return total;
+    
+        return light.dot(normalVector);
     }
     
     public void setIntensity(float intensity) {
