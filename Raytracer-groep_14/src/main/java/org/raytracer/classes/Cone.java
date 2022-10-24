@@ -9,15 +9,10 @@ public class Cone extends SolidObject {
         this.radius = radius;
         this.height = height;
     }
-    
-    @Override
-    public Vector3 CalculaterIntersection(Ray ray) {
-        return null;
-    }
 
 
     @Override
-    public Intersection CalculaterIntersectionTemp(Ray ray) {return null;}
+    public Intersection calculateIntersection(Ray ray) {return null;}
     @Override
     public Vector3 GetNormalAt(Vector3 point) {
         return null;
