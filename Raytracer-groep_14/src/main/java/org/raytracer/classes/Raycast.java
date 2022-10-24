@@ -15,9 +15,13 @@ public class Raycast {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         SolidObject object = scene.GetSolidSceneObject();
 
+        //todo Use threadmanager to reserve a given amount of threads
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
+                //todo Check if there is a thread available
+                //todo if there is no thread available wait for one to be done
+                //todo if there is assign the task below to the the thread
                 Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
 
                 if(intersection != null){
@@ -27,8 +31,10 @@ public class Raycast {
                 {
                     renderPixelColors.writeFramePixel(i,j, Color.White);
                 }
+                //Go to the next itteration if the thread is working
             }
         }
+        //todo Create check if all threads are done with their task
         return renderPixelColors.finishFrame();
     }
 
