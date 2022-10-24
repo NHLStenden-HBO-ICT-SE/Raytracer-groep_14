@@ -36,26 +36,30 @@ public class Raycast {
         }
         return renderPixelColors.finishFrame();
     }
+
+    /**
+     * Start casting mulithreaded rays
+     * @param rayReach
+     * @param scene
+     * @return
+     */
     public BufferedImage castThreadedRays(float rayReach,Scene scene){
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         SolidObject object = scene.getFirstSolidObject();
-        Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(new Callable<BufferedImage>() {
-            @Override
-            public BufferedImage call() throws Exception {
-                for (int i = 0; i < scene.getWidthAndHeight(); i++) {
-                    for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                        Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
-                        if(intersection != null){
-                            renderPixelColors.writeFramePixel(i,j,object.getColor());
-                        }
-                        else
-                        {
-                            renderPixelColors.writeFramePixel(i,j, Color.White);
-                        }
+        Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(() -> {
+            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                    Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                    if(intersection != null){
+                        renderPixelColors.writeFramePixel(i,j,object.getColor());   //replacement code, needs a colour to return else all goes to hell
+                    }
+                    else
+                    {
+                        renderPixelColors.writeFramePixel(i,j, Color.White);
                     }
                 }
-                return renderPixelColors.finishFrame();
             }
+            return renderPixelColors.finishFrame();
         });
         while (!threadedImage.isDone()){
             System.out.println("processing stay patient");
