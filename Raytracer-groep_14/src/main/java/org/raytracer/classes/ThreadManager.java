@@ -1,5 +1,6 @@
 package org.raytracer.classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,6 +17,7 @@ public class ThreadManager extends Thread{
     public ThreadManager(int threadCount, RenderPixelColors pixelRenderer){
         this.ThreadCount = threadCount;
         this.pixelRenderer = pixelRenderer;
+        threadWorkerList = new ArrayList<>();
         for (int i = 0; i < threadCount; i++){
             threadWorkerList.add(createNewThread());
         }
@@ -78,7 +80,7 @@ public class ThreadManager extends Thread{
      * @return
      */
     public RenderPixelColors getThreadedImage(){
-        while (checkThreads()){
+        while (!checkThreads()){
         }
         return pixelRenderer;
     }
