@@ -14,7 +14,7 @@ public class Raycast {
     public BufferedImage castRays(float rayReach,Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         SolidObject object = scene.GetSolidSceneObject();
-        ThreadManager threadManager = new ThreadManager(5,renderPixelColors);
+        ThreadManager threadManager = new ThreadManager(3,renderPixelColors);
 
         //todo Use threadmanager to reserve a given amount of threads
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
@@ -27,8 +27,8 @@ public class Raycast {
                 while (!threadManager.runThread(i,j, object, tempRay)){
 
                 }
-                Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
-
+                /*
+                Intersection intersection = object.calculateIntersection(tempRay);
                 if(intersection != null){
                     renderPixelColors.writeFramePixel(i,j,intersection.getSolidObject().getColor());
                 }
@@ -36,11 +36,13 @@ public class Raycast {
                 {
                     renderPixelColors.writeFramePixel(i,j, Color.White);
                 }
+                 */
                 //Go to the next itteration if the thread is working
             }
         }
+        return threadManager.getThreadedImage().finishFrame();
         //todo Create check if all threads are done with their task
-        return renderPixelColors.finishFrame();
+        //return renderPixelColors.finishFrame();
     }
 
     /**
@@ -55,7 +57,7 @@ public class Raycast {
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
-                Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
+                Intersection intersection = object.calculateIntersection(tempRay);
                 if(intersection != null){
                     renderPixelColors.writeFramePixel(i,j,intersection.getSolidObject().getColor());
                 }

@@ -2,7 +2,7 @@ package org.raytracer.classes;
 
 public class ThreadWorker extends Thread{
 
-    public boolean isWorking = false;
+    private boolean isWorking = false;
     public void run(){
         System.out.println("The thread is active");
     }
@@ -14,7 +14,7 @@ public class ThreadWorker extends Thread{
     public Color runCast(SolidObject object, Ray tempRay){
 
         isWorking = true;
-        Intersection intersection = object.CalculaterIntersectionTemp(tempRay);
+        Intersection intersection = object.calculateIntersection(tempRay);
 
         Color threadColor = Color.White;
         if(intersection != null){

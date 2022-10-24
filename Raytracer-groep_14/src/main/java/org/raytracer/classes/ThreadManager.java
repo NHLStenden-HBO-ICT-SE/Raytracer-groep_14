@@ -43,7 +43,7 @@ public class ThreadManager extends Thread{
 
     private boolean checkThreads(){
         for (ThreadWorker thread : threadWorkerList) {
-            if (!thread.isWorking){
+            if (!thread.isRunning()){
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class ThreadManager extends Thread{
      */
     private ThreadWorker grabAvailableThread(){
         for (ThreadWorker thread : threadWorkerList) {
-            if (!thread.isWorking){
+            if (!thread.isRunning()){
                 return thread;
             }
         }
