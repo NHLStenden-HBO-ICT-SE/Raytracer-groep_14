@@ -113,6 +113,44 @@ public class Raycast {
             throw new RuntimeException(e);
         }
     }
+    public BufferedImage castThreadedRaysMultipleObjectsAntiAliasing(float rayReach,Scene scene){
+        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
+        List<SolidObject> objectList = scene.getObjectList();
+        Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(() -> {
+            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                    float lastPos = 300;
+                    SolidObject closestObject = null;
+                    for (SolidObject item: objectList) {
+                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                        if(intersection != null){
+                            if (intersection.getDistanceToCameraOrigin() < lastPos){
+                                lastPos = intersection.getDistanceToCameraOrigin();
+                                closestObject = item;
+                            }
+                        }
+                        if (closestObject != null){
+                            renderPixelColors.writeFramePixel(i,j,closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
+                        }
+                        else {
+                            renderPixelColors.writeFramePixel(i,j, new Color(0,0,Math.min(j,255f)));
+                        }
+                    }
+                }
+            }
+            return renderPixelColors.finishFrame();
+        });
+        while (!threadedImage.isDone()){
+            System.out.println("processing stay patient");
+        }
+        try {
+            return threadedImage.get();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        }
+    }
     /**
      * A fun method to cast an image line by line
      *
