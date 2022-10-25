@@ -9,4 +9,9 @@ import java.util.concurrent.*;
  */
 public class ThreadManager{
     static ExecutorService executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    static void restartExecuter(){
+        if (ThreadManager.executerService.isShutdown()){
+            executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        }
+    }
 }
