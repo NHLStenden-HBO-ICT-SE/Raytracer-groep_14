@@ -113,7 +113,6 @@ public class Raycast {
             throw new RuntimeException(e);
         }
     }
-    
     /**
      * A fun method to cast an image line by line
      *
