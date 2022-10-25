@@ -57,7 +57,7 @@ public class Raycast {
                     }
                     else
                     {
-                        renderPixelColors.writeFramePixel(i,j, Color.White);
+                        renderPixelColors.writeFramePixel(i,j, new Color(0,0,Math.min(255, j)));
                     }
                 }
             }
@@ -81,8 +81,7 @@ public class Raycast {
         Future<BufferedImage> threadedImage = ThreadManager.executerService.submit(() -> {
             for (int i = 0; i < scene.getWidthAndHeight(); i++) {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                    //Intersection intersection = object.calculateIntersection(new Ray(scene.GetCamera(), i, j));
-                    float lastPos = 1000;
+                    float lastPos = 300;
                     SolidObject closestObject = null;
                     for (SolidObject item: objectList) {
                         Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
@@ -96,7 +95,7 @@ public class Raycast {
                             renderPixelColors.writeFramePixel(i,j,closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
                         }
                         else {
-                            renderPixelColors.writeFramePixel(i,j, Color.White);
+                            renderPixelColors.writeFramePixel(i,j, new Color(0,0,Math.min(j,255f)));
                         }
                     }
                 }
