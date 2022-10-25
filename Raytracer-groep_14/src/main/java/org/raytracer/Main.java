@@ -10,7 +10,7 @@ public class Main {
         System.out.println("Hello world!");
 
         //create a new uiCanvas which will act as a viewport
-        UICanvas uiCanvas = new UICanvas(400);
+        UICanvas uiCanvas = new UICanvas(900);
         //create a new scene withing the uiCanvas and add one blue object in it
         uiCanvas.addSphereToScene(new Vector3(-1,0,250), Color.Blue, 0.5f);
         uiCanvas.addSphereToScene(new Vector3(0,1,330), Color.Black, 0.6f);

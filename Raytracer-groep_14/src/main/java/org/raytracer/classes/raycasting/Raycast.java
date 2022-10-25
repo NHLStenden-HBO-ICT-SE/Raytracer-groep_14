@@ -123,35 +123,55 @@ public class Raycast {
             raytraceToImg(scene, renderPixelColors, objectList, threadImages);
         }
             List<BufferedImage> imageResultList = new ArrayList<>();
+        imageResultList.add(null);
+        imageResultList.add(null);
+        imageResultList.add(null);
             boolean processing = true;
             while (processing){
-                for (int f = 0; f < Math.min(threadImages.size(), 3); f++){
-                    if (threadImages.get(f).isDone()){
-                        try {
-                            imageResultList.add(threadImages.get(f).get());
-                        } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
-                        } catch (ExecutionException e) {
-                            throw new RuntimeException(e);
-                        }
-                        if (f == 2){
-                            processing = false;
-
+                if (checkIfThreadIsDone(threadImages, imageResultList, 0) &&
+                        checkIfThreadIsDone(threadImages, imageResultList, 1)&&
+                        checkIfThreadIsDone(threadImages, imageResultList, 2)){
+                    for(int i = 0; i < 3; i++){
+                        if (imageResultList.get(i) == null){
+                            checkIfThreadIsDone(threadImages,imageResultList,i);
                         }
                     }
+                    processing = false;
                 }
             }
             for (int i = 0; i < scene.getWidthAndHeight(); i++){
                 for (int j = 0; j < scene.getWidthAndHeight(); j++){
                     int colorInt = 0;
                     for (BufferedImage image: imageResultList) {
-                        colorInt += image.getRGB(i,j);
+                        if (image == null){
+                            System.out.println("heya");
+                        }
+                        else {
+                            colorInt += image.getRGB(i,j);
+                        }
                     }
                     renderPixelColors.writeFramePixel(i, j, colorInt/3);
                 }
             }
             ThreadManager.executerService.shutdown();
         return renderPixelColors.finishFrame();
+    }
+
+    private boolean checkIfThreadIsDone(List<Future<BufferedImage>> threadImages, List<BufferedImage> imageResultList, int f) {
+        if (threadImages.get(f).isDone()){
+            try {
+                if (imageResultList.get(f) == null){
+                    imageResultList.remove(f);
+                    imageResultList.add(f, threadImages.get(f).get());
+                }
+                //imageResultList.add(threadImages.get(f).get());
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return threadImages.get(f).isDone();
     }
 
     private void raytraceToImg(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, List<Future<BufferedImage>> threadImages) {

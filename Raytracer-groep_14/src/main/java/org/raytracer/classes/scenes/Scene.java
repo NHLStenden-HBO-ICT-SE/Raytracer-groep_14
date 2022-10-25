@@ -20,7 +20,7 @@ public class Scene {
      */
     public Scene() {
         this.objectList = new ArrayList<>();
-        this.camera = new Camera(400);
+        this.camera = new Camera(900);
         MainLight = new Light(new Vector3(0, 10, 1), 50);
     }
     
