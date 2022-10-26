@@ -6,7 +6,7 @@ import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.vectors.Vector3;
-
+import org.raytracer.classes.objects.SolidObject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -79,6 +79,7 @@ public class UICanvas{
 
     public void startRaytracer(){
         moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
+        moveObject(activeScene.GetSceneObject(1),0.01f);
         Raycast raycaster = new Raycast();
         //updateFrame(raycaster.castRays(10, activeScene));
         updateFrame(raycaster.castThreadedRaysMultipleObjects(10,activeScene));
@@ -90,5 +91,8 @@ public class UICanvas{
     public void moveObject() { //todo maak movement class voor opbjects
         activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(new Vector3(0, 0, 0.1f))));
         
+    }
+    public void moveObject(SolidObject object, float speed){
+        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0.1f, 0))));
     }
 }
