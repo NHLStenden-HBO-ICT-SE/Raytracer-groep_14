@@ -9,7 +9,7 @@ import org.raytracer.classes.rendering.RenderPixelColors;
 import java.awt.image.BufferedImage;
 
 public class Raycast {
-    
+
     /**
      * Create a new image out of the data collected by the raytracer
      *
@@ -26,12 +26,13 @@ public class Raycast {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
                 Intersection sphereIntersection = sphere.calculateIntersection(tempRay);
-                Intersection planeIntersection =plane.calculateIntersection(tempRay);
+                Intersection planeIntersection = plane.calculateIntersection(tempRay);
 
                 if (sphereIntersection != null || planeIntersection != null) {
                     //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
-                    renderPixelColors.writeFramePixel(i, j, sphere.getColor());
-                    renderPixelColors.writeFramePixel(i,j,plane.getColor());
+                    Color a = sphere.getColor();
+                    renderPixelColors.writeFramePixel(i, j, Color.White);
+                    renderPixelColors.writeFramePixel(i, j, plane.getColor());
                 } else {
                     renderPixelColors.writeFramePixel(i, j, Color.Blue);
                 }
@@ -39,7 +40,7 @@ public class Raycast {
         }
         return renderPixelColors.finishFrame();
     }
-    
+
     /**
      * A fun method to cast an image line by line
      *
