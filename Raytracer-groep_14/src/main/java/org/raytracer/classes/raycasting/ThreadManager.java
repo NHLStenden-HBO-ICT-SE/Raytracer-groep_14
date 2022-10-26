@@ -8,10 +8,16 @@ import java.util.concurrent.*;
 //this class will be used to create and manage threads
  */
 public class ThreadManager{
-    static ExecutorService executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-    static void restartExecuter(){
+    public static ExecutorService executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    public static void restartExecuter(){
         if (ThreadManager.executerService.isShutdown()){
             executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         }
+    }
+    public static boolean getExecuterStatus(){
+        if (ThreadManager.executerService.isShutdown()){
+            return false;
+        }
+        return true;
     }
 }

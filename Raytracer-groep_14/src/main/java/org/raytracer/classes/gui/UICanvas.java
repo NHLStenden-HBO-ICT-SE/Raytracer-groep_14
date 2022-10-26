@@ -5,6 +5,7 @@ import org.raytracer.classes.objects.Plane;
 import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
+import org.raytracer.classes.raycasting.ThreadManager;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.vectors.Vector3;
 
@@ -17,7 +18,8 @@ public class UICanvas{
     
     private int Height, Width;
     org.raytracer.classes.objects.Color[][] pixelColor;
-    
+
+    private Container contentPanelContainer;
     private BufferedImage bufferedImage;
     
     public Scene activeScene = new Scene();
@@ -52,22 +54,41 @@ public class UICanvas{
         label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-        
-        Container c = canvasFrame.getContentPane();
-        c.add(label); //Adds objects to the container
+        contentPanelContainer = canvasFrame.getContentPane();
+        contentPanelContainer.add(label); //Adds objects to the container
         canvasFrame.setVisible(true); // Exhibit the frame
         return true;
     }
     
     public void updateFrame(BufferedImage bufferedImage) {
         JLabel label = new JLabel("frame"); //JLabel Creation
+        if (!ThreadManager.getExecuterStatus()){
+
+            ThreadManager.restartExecuter();
+        }
+        ThreadManager.executerService.execute(new Runnable() {
+            @Override
+            public void run() {
+                label.setIcon(new ImageIcon(bufferedImage));
+                Dimension size = label.getPreferredSize(); //Gets the size of the image
+                label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+                contentPanelContainer.remove(0);
+                contentPanelContainer.add(label);
+                canvasFrame.repaint();
+            }
+        });
+        /*
         label.setIcon(new ImageIcon(bufferedImage));
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-        Container c = canvasFrame.getContentPane();
-        c.remove(0);
-        c.add(label); //Adds objects to the container
-        canvasFrame.setVisible(true); // Exhibit the frame
+        contentPanelContainer.remove(0);
+        contentPanelContainer.add(label);
+        canvasFrame.repaint();
+
+         */
+        //c.remove(0);
+        //c.add(label); //Adds objects to the container
+        //canvasFrame.setVisible(true); // Exhibit the frame
     }
     
     public void addSphereToScene(Vector3 position, Color color) {

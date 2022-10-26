@@ -12,21 +12,6 @@ public class RenderPixelColors {
 
     private BufferedImage writeFrame;
 
-    private void startThread(int x, int y, Color color){
-
-        SwingWorker worker = new SwingWorker() {
-
-            @Override
-            protected Object doInBackground() throws Exception {
-                try {
-                    writeFrame.setRGB(x, y, color.getRGB());
-                } catch (Exception e) {
-                    writeFrame.setRGB(x, y, Color.White.getRGB());
-                }
-                return null;
-            }
-        };
-    }
 
     public RenderPixelColors(int widthAndHeight){
 

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.*;
+import java.util.stream.IntStream;
 
 public class Raycast {
     
@@ -84,21 +85,7 @@ public class Raycast {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     float lastPos = 300;
                     SolidObject closestObject = null;
-                    for (SolidObject item: objectList) {
-                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
-                        if(intersection != null){
-                            if (intersection.getDistanceToCameraOrigin() < lastPos){
-                                lastPos = intersection.getDistanceToCameraOrigin();
-                                closestObject = item;
-                            }
-                        }
-                        if (closestObject != null){
-                            renderPixelColors.writeFramePixel(i,j,closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
-                        }
-                        else {
-                            renderPixelColors.writeFramePixel(i,j, new Color(0,0,Math.min(j,255f)));
-                        }
-                    }
+                    getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos, closestObject);
                 }
             }
             return renderPixelColors.finishFrame();
@@ -114,15 +101,45 @@ public class Raycast {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * get the closest intersection point
+     * @param scene
+     * @param renderPixelColors
+     * @param objectList
+     * @param i
+     * @param j
+     * @param lastPos
+     * @param closestObject
+     */
+    private void getClosestObject(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos, SolidObject closestObject) {
+        for (SolidObject item: objectList) {
+            Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+            if(intersection != null){
+                if (intersection.getDistanceToCameraOrigin() < lastPos){
+                    lastPos = intersection.getDistanceToCameraOrigin();
+                    closestObject = item;
+                }
+            }
+            if (closestObject != null){
+                renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
+            }
+            else {
+                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j,255f)));
+            }
+        }
+    }
+
     //todo create a way to give a sample size to the raytracer
     public BufferedImage castThreadedRaysMultipleObjectsAntiAliasing(float rayReach,Scene scene) {
-        //ThreadManager.restartExecuter();
+        if (!ThreadManager.getExecuterStatus()){
+            ThreadManager.restartExecuter();
+        }
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         List<SolidObject> objectList = scene.getObjectList();
         List<Future<BufferedImage>> threadImages = new ArrayList<Future<BufferedImage>>();
         for (int l = 0; l < 3; l++) {
             raytraceToImg(scene, renderPixelColors, objectList, threadImages);
-            //raytraceToImg(scene, renderPixelColors, objectList, threadImages, (float) l/100f);
         }
             List<BufferedImage> imageResultList = new ArrayList<>();
         imageResultList.add(null);
@@ -130,9 +147,7 @@ public class Raycast {
         imageResultList.add(null);
             boolean processing = true;
             while (processing){
-                if (checkIfThreadIsDone(threadImages, imageResultList, 0) &&
-                        checkIfThreadIsDone(threadImages, imageResultList, 1)&&
-                        checkIfThreadIsDone(threadImages, imageResultList, 2)){
+                if (IntStream.of(0, 1, 2).allMatch(j -> checkIfThreadIsDone(threadImages, imageResultList, j))){
                     for(int i = 0; i < 3; i++){
                         if (imageResultList.get(i) == null){
                             checkIfThreadIsDone(threadImages,imageResultList,i);
@@ -141,22 +156,26 @@ public class Raycast {
                     processing = false;
                 }
             }
-            for (int i = 0; i < scene.getWidthAndHeight(); i++){
-                for (int j = 0; j < scene.getWidthAndHeight(); j++){
-                    int colorInt = 0;
-                    for (BufferedImage image: imageResultList) {
-                        if (image == null){
-                            System.out.println("heya");
-                        }
-                        else {
-                            colorInt += image.getRGB(i,j);
-                        }
-                    }
-                    renderPixelColors.writeFramePixel(i, j, colorInt/3);
-                }
-            }
-            //ThreadManager.executerService.shutdown();
+        frameComparer(scene, renderPixelColors, imageResultList);
+        ThreadManager.executerService.shutdown();
         return renderPixelColors.finishFrame();
+    }
+
+    private void frameComparer(Scene scene, RenderPixelColors renderPixelColors, List<BufferedImage> imageResultList) {
+        for (int i = 0; i < scene.getWidthAndHeight(); i++){
+            for (int j = 0; j < scene.getWidthAndHeight(); j++){
+                int colorInt = 0;
+                for (BufferedImage image: imageResultList) {
+                    if (image == null){
+                        System.out.println("heya");
+                    }
+                    else {
+                        colorInt += image.getRGB(i,j);
+                    }
+                }
+                renderPixelColors.writeFramePixel(i, j, colorInt/3);
+            }
+        }
     }
 
     private boolean checkIfThreadIsDone(List<Future<BufferedImage>> threadImages, List<BufferedImage> imageResultList, int f) {
@@ -182,27 +201,7 @@ public class Raycast {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     float lastPos = 300;
                     SolidObject closestObject = null;
-                    for (SolidObject item : objectList) {
-                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
-                        if (intersection != null) {
-                            if (intersection.getDistanceToCameraOrigin() < lastPos) {
-                                lastPos = intersection.getDistanceToCameraOrigin();
-                                closestObject = item;
-                            }
-                        }
-                        if (closestObject != null) {
-                            //renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
-
-                            //renderThread(renderPixelColors, i, j);
-                            renderPixelColors.writeFramePixel(i, j, closestObject.getColor());
-                            //renderPixelColors.writeFrameThreadPixel(i,j, closestObject.getColor());
-                        } else {
-                            //renderPixelColors.writeFramePixel(i, j, new Color(0, 0, Math.min(j, 255f)));
-
-                            //renderThread(renderPixelColors, i, j);
-                            renderPixelColors.writeFramePixel(i, j,new Color(0, 0, Math.min(j, 255f)));
-                        }
-                    }
+                    getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos, closestObject);
                 }
             }
             return renderPixelColors.finishFrame();
@@ -217,20 +216,7 @@ public class Raycast {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     float lastPos = 300;
                     SolidObject closestObject = null;
-                    for (SolidObject item : objectList) {
-                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i+=aASupplement , j +=aASupplement));
-                        if (intersection != null) {
-                            if (intersection.getDistanceToCameraOrigin() < lastPos) {
-                                lastPos = intersection.getDistanceToCameraOrigin();
-                                closestObject = item;
-                            }
-                        }
-                        if (closestObject != null) {
-                            renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
-                        } else {
-                            renderPixelColors.writeFramePixel(i, j, new Color(0, 0, Math.min(j, 255f)));
-                        }
-                    }
+                    getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos, closestObject);
                 }
             }
             return renderPixelColors.finishFrame();
