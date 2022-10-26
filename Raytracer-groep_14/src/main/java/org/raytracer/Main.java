@@ -12,9 +12,9 @@ public class Main {
         //create a new uiCanvas which will act as a viewport
         UICanvas uiCanvas = new UICanvas(400);
         //create a new scene withing the uiCanvas and add one blue object in it
-        uiCanvas.addSphereToScene(new Vector3(0,1,100), Color.White);
+        uiCanvas.addSphereToScene(new Vector3(0,-3,100), new Color(1,0,0));
         //create a plane object
-        uiCanvas.addPlaneToScene(new Vector3(0,-3,1),Color.Black);
+        uiCanvas.addPlaneToScene(new Vector3(0,-3,1),new Color(0,1,0));
         //make a frame
         uiCanvas.createNewFrame();
         for (int i = 0; i < 900; i++) {
