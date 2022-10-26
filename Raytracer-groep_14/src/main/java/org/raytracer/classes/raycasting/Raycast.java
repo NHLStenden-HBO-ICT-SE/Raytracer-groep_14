@@ -25,10 +25,10 @@ public class Raycast {
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
-                Intersection intersection = sphere.calculateIntersection(tempRay);
+                Intersection sphereIntersection = sphere.calculateIntersection(tempRay);
                 Intersection planeIntersection =plane.calculateIntersection(tempRay);
 
-                if (intersection != null || planeIntersection != null) {
+                if (sphereIntersection != null || planeIntersection != null) {
                     //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
                     renderPixelColors.writeFramePixel(i, j, sphere.getColor());
                     renderPixelColors.writeFramePixel(i,j,plane.getColor());

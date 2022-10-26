@@ -14,7 +14,7 @@ public class Main {
         //create a new scene withing the uiCanvas and add one blue object in it
         uiCanvas.addSphereToScene(new Vector3(0,1,100), Color.White);
         //create a plane object
-        uiCanvas.addPlaneToScene(new Vector3(0,0,150),Color.Black);
+        uiCanvas.addPlaneToScene(new Vector3(0,-3,1),Color.Black);
         //make a frame
         uiCanvas.createNewFrame();
         for (int i = 0; i < 900; i++) {
