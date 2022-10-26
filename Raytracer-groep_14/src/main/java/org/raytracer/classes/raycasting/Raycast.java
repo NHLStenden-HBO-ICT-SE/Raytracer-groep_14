@@ -202,6 +202,7 @@ public class Raycast {
                     float lastPos = 300;
                     SolidObject closestObject = null;
                     getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos, closestObject);
+                    //todo grab the position of the closest object intersection and shoot a shadowray
                 }
             }
             return renderPixelColors.finishFrame();
