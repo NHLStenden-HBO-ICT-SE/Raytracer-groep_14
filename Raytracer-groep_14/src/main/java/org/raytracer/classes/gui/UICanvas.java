@@ -1,6 +1,7 @@
 package org.raytracer.classes.gui;
 
 import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.Plane;
 import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
 import org.raytracer.classes.scenes.Scene;
@@ -70,6 +71,10 @@ public class UICanvas{
     
     public void addSphereToScene(Vector3 position, Color color) {
         activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
+    }
+
+    public void addPlaneToScene(Vector3 position, Color color) {
+        activeScene.addObjectToScene(new Plane(position, color, 0, 1));
     }
 
     public void startRaytracer(){

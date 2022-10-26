@@ -19,18 +19,21 @@ public class Raycast {
      */
     public BufferedImage castRays(float rayReach, Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.getFirstSolidObject(); // todo weghalen en de lijst aanroepen
-        
+
+        SolidObject sphere = scene.getFirstSolidObject(); // todo weghalen en de lijst aanroepen
+        SolidObject plane = scene.GetSceneObject(1);
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
-                Intersection intersection = object.calculateIntersection(tempRay);
-                
-                if (intersection != null) {
+                Intersection intersection = sphere.calculateIntersection(tempRay);
+                Intersection planeIntersection =plane.calculateIntersection(tempRay);
+
+                if (intersection != null || planeIntersection != null) {
                     //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
-                    renderPixelColors.writeFramePixel(i, j, object.getColor());
+                    renderPixelColors.writeFramePixel(i, j, sphere.getColor());
+                    renderPixelColors.writeFramePixel(i,j,plane.getColor());
                 } else {
-                    renderPixelColors.writeFramePixel(i, j, Color.White);
+                    renderPixelColors.writeFramePixel(i, j, Color.Blue);
                 }
             }
         }
