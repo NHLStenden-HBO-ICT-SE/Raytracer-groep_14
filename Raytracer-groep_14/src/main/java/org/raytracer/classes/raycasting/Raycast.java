@@ -114,13 +114,15 @@ public class Raycast {
             throw new RuntimeException(e);
         }
     }
+    //todo create a way to give a sample size to the raytracer
     public BufferedImage castThreadedRaysMultipleObjectsAntiAliasing(float rayReach,Scene scene) {
-        ThreadManager.restartExecuter();
+        //ThreadManager.restartExecuter();
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         List<SolidObject> objectList = scene.getObjectList();
         List<Future<BufferedImage>> threadImages = new ArrayList<Future<BufferedImage>>();
         for (int l = 0; l < 3; l++) {
             raytraceToImg(scene, renderPixelColors, objectList, threadImages);
+            //raytraceToImg(scene, renderPixelColors, objectList, threadImages, (float) l/100f);
         }
             List<BufferedImage> imageResultList = new ArrayList<>();
         imageResultList.add(null);
@@ -153,7 +155,7 @@ public class Raycast {
                     renderPixelColors.writeFramePixel(i, j, colorInt/3);
                 }
             }
-            ThreadManager.executerService.shutdown();
+            //ThreadManager.executerService.shutdown();
         return renderPixelColors.finishFrame();
     }
 
@@ -182,6 +184,41 @@ public class Raycast {
                     SolidObject closestObject = null;
                     for (SolidObject item : objectList) {
                         Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+                        if (intersection != null) {
+                            if (intersection.getDistanceToCameraOrigin() < lastPos) {
+                                lastPos = intersection.getDistanceToCameraOrigin();
+                                closestObject = item;
+                            }
+                        }
+                        if (closestObject != null) {
+                            //renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
+
+                            //renderThread(renderPixelColors, i, j);
+                            renderPixelColors.writeFramePixel(i, j, closestObject.getColor());
+                            //renderPixelColors.writeFrameThreadPixel(i,j, closestObject.getColor());
+                        } else {
+                            //renderPixelColors.writeFramePixel(i, j, new Color(0, 0, Math.min(j, 255f)));
+
+                            //renderThread(renderPixelColors, i, j);
+                            renderPixelColors.writeFramePixel(i, j,new Color(0, 0, Math.min(j, 255f)));
+                        }
+                    }
+                }
+            }
+            return renderPixelColors.finishFrame();
+        }));
+    }
+
+
+
+    private void raytraceToImg(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, List<Future<BufferedImage>> threadImages, float aASupplement) {
+        threadImages.add(ThreadManager.executerService.submit(() -> {
+            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                    float lastPos = 300;
+                    SolidObject closestObject = null;
+                    for (SolidObject item : objectList) {
+                        Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i+=aASupplement , j +=aASupplement));
                         if (intersection != null) {
                             if (intersection.getDistanceToCameraOrigin() < lastPos) {
                                 lastPos = intersection.getDistanceToCameraOrigin();
