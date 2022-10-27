@@ -115,6 +115,7 @@ public class Raycast {
         }
     }
 
+
     //todo create a way to give a sample size to the raytracer
     public BufferedImage castThreadedRaysMultipleObjectsAntiAliasing(float rayReach,Scene scene) {
         ThreadManager.runExecuter();

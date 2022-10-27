@@ -18,7 +18,7 @@ public class Intersection {
     public Intersection(Vector3 startingPosition,  Color objectColor) {
         this.startPosition = startingPosition;
         this.color = objectColor;
-        amountOfBounces = 1;
+        amountOfBounces = 5;
     }
     public void incrementAmountOfBounces() {
         amountOfBounces++;
