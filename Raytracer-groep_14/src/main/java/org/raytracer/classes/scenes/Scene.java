@@ -10,7 +10,7 @@ public class Scene {
     private ArrayList<SolidObject> objectList;
     private Camera camera;
     private Light light;
-    static Light MainLight;
+    public Light MainLight;
     
     
     /**

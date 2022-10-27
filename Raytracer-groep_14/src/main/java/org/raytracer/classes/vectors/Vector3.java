@@ -146,7 +146,9 @@ public class Vector3 {
 		return distance;
 	}
 	 */
-    
+    public float distanceBetweenPoints(Vector3 b) {
+        return (float) Math.sqrt(Math.pow((x - b.x), 2) + Math.pow((y - b.y), 2) + Math.pow((z - b.z), 2));
+    }
     public float distanceBetweenPoints(Vector3 a, Vector3 b) {
         return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) + Math.pow(a.z - b.z, 2));
     }

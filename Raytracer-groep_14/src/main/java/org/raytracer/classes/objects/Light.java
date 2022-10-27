@@ -3,8 +3,8 @@ package org.raytracer.classes.objects;
 import org.raytracer.classes.vectors.Vector3;
 
 public class Light extends SceneObject {
-    private Color color;
-    
+
+    private Color color = new Color();
     private float intensity;
     
     
@@ -16,8 +16,11 @@ public class Light extends SceneObject {
         this.position = position;
         this.color = new Color(1, 0, 0.1f);
     }
-    
-    
+
+
+    public Color getColor(){
+        return this.color;
+    }
     /**
      * kleur van het licht moet worden meegegeven
      */

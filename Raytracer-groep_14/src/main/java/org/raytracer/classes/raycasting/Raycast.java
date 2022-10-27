@@ -27,21 +27,54 @@ public class Raycast {
         SolidObject closestObject = null;
         for (SolidObject item: objectList) {
             Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+            Intersection closestIntersection = null;
             if(intersection != null){
                 if (intersection.getDistanceToCameraOrigin() < lastPos){
                     lastPos = intersection.getDistanceToCameraOrigin();
+                    closestIntersection = intersection;
                     closestObject = item;
                 }
-            }
-            if (closestObject != null){
-                renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
-                //todo Castshadow
             }
             else {
                 renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j,255f)));
             }
+            if (closestIntersection != null){
+                renderPixelColors.writeFramePixel(i, j, closestObject.getColor());   //replacement code, needs a colour to return else all goes to hell
+                closestIntersection.setLightPosition(scene.MainLight.GetPosition());
+
+                closestIntersection.calculateColor(scene.MainLight.getColor(), intersection.getDistanceToLightSource());
+
+
+                Color renderableColor = intersection.getColor();
+                renderableColor.nerfColor();
+                //todo Castshadow
+            }
         }
         return closestObject;
+    }
+    private Intersection getClosestIntersection(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos) {
+        Intersection closestIntersection = null;
+        for (SolidObject item: objectList) {
+            Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
+            if(intersection != null){
+                if (intersection.getDistanceToCameraOrigin() < lastPos){
+                    lastPos = intersection.getDistanceToCameraOrigin();
+                    closestIntersection = intersection;
+                }
+            }
+            else {
+                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j,255f)));
+            }
+            if (closestIntersection != null){
+                closestIntersection.setLightPosition(scene.MainLight.GetPosition());
+                closestIntersection.calculateColor(scene.MainLight.getColor(), closestIntersection.getDistanceToLightSource());
+                Color renderableColor = closestIntersection.getColor();
+                renderableColor.nerfColor();
+                renderPixelColors.writeFramePixel(i, j, renderableColor);
+                //todo Castshadow
+            }
+        }
+        return closestIntersection;
     }
 
     //todo create a way to give a sample size to the raytracer
@@ -150,7 +183,10 @@ public class Raycast {
             for (int i = 0; i < scene.getWidthAndHeight(); i++) {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     float lastPos = 300;
-                    SolidObject closestObject = getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);;
+
+                    //SolidObject closestObject = getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);;
+
+                    getClosestIntersection(scene, renderPixelColors, objectList, i, j, lastPos);
                     //getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
                     //todo grab the position of the closest object intersection and shoot a shadowray
                 }
