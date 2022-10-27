@@ -14,6 +14,11 @@ public class ThreadManager{
             executerService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         }
     }
+    public static void runExecuter(){
+        if (!getExecuterStatus()){
+            restartExecuter();
+        }
+    }
     public static boolean getExecuterStatus(){
         if (ThreadManager.executerService.isShutdown()){
             return false;
