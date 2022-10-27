@@ -26,11 +26,21 @@ public class Plane extends SolidObject {
         }
         return null;
     }
-
-
-
+    
+    //todo
     @Override
-    public Vector3 GetNormalAt(Vector3 point) {
+    public boolean getsHitByRay(Ray ray) {
+        return false;
+    }
+    
+    //todo
+    @Override
+    public float distanceToIntersection(Ray ray) {
+        return 0;
+    }
+    
+    @Override
+    public Vector3 GetNormalAtIntersection(Vector3 point) {
         return new Vector3(0, 1, 0);
     }
 }

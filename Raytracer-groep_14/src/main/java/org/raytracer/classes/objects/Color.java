@@ -22,25 +22,6 @@ public class Color {
      * @param blue  number between 0 and 1
      */
     public Color(float red, float green, float blue) {
-        
-        if (red > 1) {
-            this.red = 1;
-        } else if (red < 0) {
-            this.red = 0;
-        }
-        
-        if (green > 1) {
-            this.green = 1;
-        } else if (green < 0) {
-            this.green = 0;
-        }
-        
-        if (blue > 1) {
-            this.blue = 1;
-        } else if (blue < 0) {
-            this.blue = 0;
-        }
-        
         this.red = red;
         this.green = green;
         this.blue = blue;
@@ -95,12 +76,32 @@ public class Color {
         int greenPart = (int) (green * 255);
         int bluePart = (int) (blue * 255);
         
-        // Shift bits to right place
-        redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
-        greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
-        bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
-        
-        return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+//        // Shift bits to right place
+//        redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
+//        greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
+//        bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
+//
+//        return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+    
+        int rgb = redPart;
+        rgb = (rgb << 8) + greenPart;
+        rgb = (rgb << 8) + bluePart;
+        return rgb;
+    }
+    
+    public void nerfColor() {
+        if (red > 1)
+            red = 1;
+        if (blue > 1)
+            blue = 1;
+        if (green > 1)
+            green = 1;
+        if (red < 0)
+            red = 0;
+        if (blue < 0)
+            blue = 0;
+        if (green < 0)
+            green = 0;
     }
     
     public static Color fromInt(int argb) {
@@ -145,6 +146,34 @@ public class Color {
 
         double lightIntensity = 1 / distance;
         return new Color(this.red * (float) lightIntensity, this.red * (float) lightIntensity,this.green * (float) lightIntensity);
+    }
+    
+    // calculate the reflection
+    //reflectie = kleurlicht * kleurobject
+    public Color lightReflection(Color lightColor, float lightDistance) {
+        lightColor.lightIntensityColorOverDistance(lightDistance);
+        
+        float red = this.red * lightColor.getRed();
+        float blue = this.blue * lightColor.getBlue();
+        float green = this.green * lightColor.getGreen();
+        
+        return new Color(red, green, blue);
+    }
+    
+    /**
+     * Berekenen lichtintensiteit
+     */
+    public Color lightIntensityColorOverDistance(float objectDistance) {
+        
+        double distance = Math.pow(objectDistance, 2);
+        
+        double lightIntensity = 1 / distance;
+    
+        float red = this.red * (float) lightIntensity;
+        float green = this.green * (float) lightIntensity;
+        float blue = this.blue * (float) lightIntensity;
+        
+        return new Color(red, green, blue);
     }
     
 }

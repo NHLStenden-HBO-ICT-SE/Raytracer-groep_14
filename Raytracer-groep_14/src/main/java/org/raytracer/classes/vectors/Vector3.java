@@ -26,19 +26,7 @@ public class Vector3 {
         this.y = y;
         this.z = z;
     }
-    
-    /**
-     * Add two vector 3's together
-     *
-     * @param vec1 the first vector 3
-     * @param vec2 the second vector 3
-     * @return
-     */
-    public static Vector3 add(Vector3 vec1, Vector3 vec2) {
-        
-        return new Vector3((vec1.x + vec2.x), (vec1.y + vec2.y), (vec1.z + vec2.z));
-    }
-    
+
     /**
      * Dot point between two vectores
      *
