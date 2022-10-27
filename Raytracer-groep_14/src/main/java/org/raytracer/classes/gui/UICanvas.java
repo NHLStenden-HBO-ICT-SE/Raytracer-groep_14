@@ -77,29 +77,9 @@ public class UICanvas{
                 canvasFrame.repaint();
             }
         });
-        /*
-        label.setIcon(new ImageIcon(bufferedImage));
-        Dimension size = label.getPreferredSize(); //Gets the size of the image
-        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-        contentPanelContainer.remove(0);
-        contentPanelContainer.add(label);
-        canvasFrame.repaint();
-
-         */
-        //c.remove(0);
-        //c.add(label); //Adds objects to the container
-        //canvasFrame.setVisible(true); // Exhibit the frame
     }
-    
-    public void addSphereToScene(Vector3 position, Color color) {
-        activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
-    }
-    public void addSphereToScene(Vector3 position, Color color, float radius) {
-        activeScene.addObjectToScene(new Sphere(position, radius, color, 0, 1));
-    }
-    public void addPlaneObjectToScene(Vector3 position, Color color)
-    {
-        activeScene.addObjectToScene(new Plane(position,color, 0, 1));
+    public void addObjectToScene(SolidObject solidObject){
+        activeScene.addObjectToScene(solidObject);
     }
 
 

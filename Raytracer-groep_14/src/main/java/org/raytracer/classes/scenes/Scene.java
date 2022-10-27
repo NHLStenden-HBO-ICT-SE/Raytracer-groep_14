@@ -1,8 +1,6 @@
 package org.raytracer.classes.scenes;
 
-import org.raytracer.classes.objects.Camera;
-import org.raytracer.classes.objects.Light;
-import org.raytracer.classes.objects.SolidObject;
+import org.raytracer.classes.objects.*;
 import org.raytracer.classes.vectors.Vector3;
 
 import java.util.ArrayList;
