@@ -107,6 +107,10 @@ public class UICanvas{
     public void addObjectToScene(SolidObject solidObject){
         activeScene.addObjectToScene(solidObject);
     }
+    
+    public void addSphereToScene(Vector3 position, Color color, float radius) {
+        activeScene.addObjectToScene(new Sphere(position, radius, color, 0, 1));
+    }
 
 
     public void startRaytracer(){
