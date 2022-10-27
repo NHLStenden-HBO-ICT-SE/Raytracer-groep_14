@@ -117,6 +117,7 @@ public class UICanvas{
         //moveObject(activeScene.GetSceneObject(3), 0.175f);
         //moveObject(activeScene.GetSceneObject(4), 0.03f);
         //moveObject(activeScene.GetSceneObject(5), -0.0575f);
+        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,-0.1f,0.1f)));
         Raycast raycaster = new Raycast();
         updateFrame(raycaster.castNormalForNow(10,activeScene));
     }
@@ -129,7 +130,7 @@ public class UICanvas{
         
     }
     public void moveObject(SolidObject object){
-        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, 0.1f))));
+        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, 0.5f))));
     }
     public void moveObject(SolidObject object, float speed){
         object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, speed))));

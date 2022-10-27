@@ -25,8 +25,11 @@ public class Light extends SceneObject {
         this.position = position;
         this.color = new Color(red, green, blue).multiply(this.intensity);
     }
-    
-    
+
+    @Override
+    public void SetPosition(Vector3 position) {
+        super.SetPosition(position);
+    }
 
 
     public Color getColor(){
