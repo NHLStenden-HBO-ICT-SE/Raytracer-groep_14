@@ -49,28 +49,4 @@ public class Raycast {
         }
         return renderPixelColors.finishFrame();
     }
-    
-    /**
-     * A fun method to cast an image line by line
-     *
-     * @param rayReach
-     * @param scene
-     * @param canvas
-     */
-    public void castLine(float rayReach, Scene scene, UICanvas canvas) {
-        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.getFirstSolidObject();
-        for (int i = 0; i < scene.getWidthAndHeight(); i++) {
-            for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                Ray tempRay = new Ray(scene.GetCamera(), i, j);
-                Intersection intersection = object.calculateIntersection(tempRay);
-                if (intersection != null) {
-                    renderPixelColors.writeFramePixel(i, j, object.getColor());
-                } else {
-                    renderPixelColors.writeFramePixel(i, j, Color.White);
-                }
-                canvas.updateFrame(renderPixelColors.finishFrame());
-            }
-        }
-    }
 }

@@ -63,12 +63,17 @@ public class Color {
         int greenPart = (int) (green * 255);
         int bluePart = (int) (blue * 255);
         
-        // Shift bits to right place
-        redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
-        greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
-        bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
-        
-        return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+//        // Shift bits to right place
+//        redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
+//        greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
+//        bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
+//
+//        return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
+    
+        int rgb = redPart;
+        rgb = (rgb << 8) + greenPart;
+        rgb = (rgb << 8) + bluePart;
+        return rgb;
     }
     
     public void nerfColor() {
@@ -110,12 +115,14 @@ public class Color {
     
     // calculate the reflection
     //reflectie = kleurlicht * kleurobject
-    public void lightReflection(Color lightColor, float lightDistance) {
+    public Color lightReflection(Color lightColor, float lightDistance) {
         lightColor.lightIntensityColorOverDistance(lightDistance);
         
-        red = red * lightColor.getRed();
-        blue = blue * lightColor.getBlue();
-        green = green * lightColor.getGreen();
+        float red = this.red * lightColor.getRed();
+        float blue = this.blue * lightColor.getBlue();
+        float green = this.green * lightColor.getGreen();
+        
+        return new Color(red, green, blue);
     }
     
     /**

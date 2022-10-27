@@ -5,7 +5,7 @@ import org.raytracer.classes.objects.Color;
 
 import java.awt.image.BufferedImage;
 
-//Todo Add raycast method
+//Todo Add ray cast method
 public class RenderPixelColors {
 
 
@@ -21,11 +21,12 @@ public class RenderPixelColors {
         writeFrame = new BufferedImage(widthAndHeight,widthAndHeight, BufferedImage.TYPE_INT_RGB);
     }
     public void writeFramePixel(int x, int y, Color color){
-        try {
-            writeFrame.setRGB(x, y, color.getRGB());
-        } catch (Exception e) {
-            writeFrame.setRGB(x, y, Color.Black.getRGB());
-        }
+        writeFrame.setRGB(x, y, color.getRGB());
+//        try {
+//
+//        } catch (Exception e) {
+//            writeFrame.setRGB(x, y, Color.Black.getRGB());
+//        }
     }
     public BufferedImage finishFrame(){
         return writeFrame;
