@@ -7,6 +7,7 @@ import org.raytracer.classes.vectors.Vector3;
 import java.util.ArrayList;
 
 public class Intersection {
+    private float distanceToCameraOrigin;
     private Vector3 startPosition;
     private Vector3 lightPosition = null;
     private int amountOfBounces;
@@ -18,18 +19,13 @@ public class Intersection {
         this.color = objectColor;
         amountOfBounces = 1;
     }
-    public void calculateColor(Color lightColor, float distanceToLightSource) {
-        Color objectColor = color;
-
-        objectColor.lightReflection(lightColor, distanceToLightSource);
-
-        color.setColor(objectColor);
-    }
-
     public void incrementAmountOfBounces() {
         amountOfBounces++;
     }
-    
+
+    public float getDistanceToCameraOrigin() {
+        return distanceToCameraOrigin;
+    }
     public void setLightPosition(Vector3 lightPosition) {
         this.lightPosition = lightPosition;
         distanceToLightSource = lightPosition.distanceBetweenPoints(startPosition);

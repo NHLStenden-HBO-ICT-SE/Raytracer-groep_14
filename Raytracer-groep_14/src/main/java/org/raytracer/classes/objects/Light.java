@@ -17,10 +17,6 @@ public class Light extends SceneObject {
         this.color = color.multiply(intensity);
     }
 
-
-    public Color getColor(){
-        return this.color;
-    }
     /**
      * kleur van het licht moet worden meegegeven
      */

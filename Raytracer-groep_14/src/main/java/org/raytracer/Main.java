@@ -25,7 +25,7 @@ public class Main {
 
         //make a frame
         uiCanvas.createNewFrame();
-        for (int i = 0; i < 900; i++) {
+        for (int i = 0; i < 300; i++) {
             uiCanvas.startRaytracer();
         }
         

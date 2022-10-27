@@ -26,20 +26,7 @@ public class Color {
         this.green = green;
         this.blue = blue;
     }
-    public void nerfColor() {
-        if (red > 1)
-            red = 1;
-        if (blue > 1)
-            blue = 1;
-        if (green > 1)
-            green = 1;
-        if (red < 0)
-            red = 0;
-        if (blue < 0)
-            blue = 0;
-        if (green < 0)
-            green = 0;
-    }
+
     
     public float getRed() {
         return red;
@@ -126,27 +113,10 @@ public class Color {
         return new Color(this.red * value, this.green * value, this.blue * value);
     }
 
-    // calculate the reflection
-    //reflectie = kleurlicht * kleurobject
-    public Color lightReflection(Color lightColor, float lightDistance) {
-        lightColor.lightIntensityColorOverDistance(lightDistance);
 
-        float red = this.red * lightColor.getRed();
-        float blue = this.blue * lightColor.getBlue();
-        float green = this.green * lightColor.getGreen();
-
-        return new Color(red, green, blue);
-    }
     /**
      * Berekenen lichtintensiteit
      */
-    public Color lightIntensityColorOverDistance(float objectDistance) {
-
-        double distance = Math.pow(objectDistance, 2);
-
-        double lightIntensity = 1 / distance;
-        return new Color(this.red * (float) lightIntensity, this.red * (float) lightIntensity,this.green * (float) lightIntensity);
-    }
     
     // calculate the reflection
     //reflectie = kleurlicht * kleurobject
