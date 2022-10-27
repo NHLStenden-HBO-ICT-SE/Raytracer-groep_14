@@ -21,7 +21,7 @@ public class Main {
         uiCanvas.addObjectToScene(new Sphere(new Vector3(-2,-2,120), 0.2f, new Color(1,0,0), 0.5f, 1f));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(1,-3,350), 0.75f, new Color(1f,1f,0), 2, 10));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0,1,100), 0.6f, new Color(0,1,0.2f), 0,0));
-        uiCanvas.addObjectToScene(new Plane(new Vector3(0,1,0), new Color(0,1,0), 1,1));
+        uiCanvas.addObjectToScene(new Plane(new Vector3(0,-3,1), new Color(0,1,0), 1,1));
 
         //make a frame
         uiCanvas.createNewFrame();
