@@ -117,7 +117,6 @@ public class UICanvas{
         moveObject(activeScene.GetSceneObject(4), 0.03f);
         moveObject(activeScene.GetSceneObject(5), -0.0575f);
         Raycast raycaster = new Raycast();
-        //updateFrame(raycaster.castThreadedRays(10, activeScene));
         updateFrame(raycaster.castThreadedRaysMultipleObjectsAntiAliasing(10,activeScene));
     }
 
