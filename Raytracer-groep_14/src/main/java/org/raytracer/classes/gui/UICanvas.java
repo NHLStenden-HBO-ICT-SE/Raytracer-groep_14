@@ -71,6 +71,10 @@ public class UICanvas{
     public void addSphereToScene(Vector3 position, Color color) {
         activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
     }
+    
+    public void addSphereToScene(Vector3 position, Color color, float radius) {
+        activeScene.addObjectToScene(new Sphere(position, radius, color, 0, 1));
+    }
 
     public void startRaytracer(){
         //moveObject(); //todo haal dit er uit, heeft niks met deze method te maken

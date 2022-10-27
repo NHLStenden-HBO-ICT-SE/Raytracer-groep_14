@@ -37,14 +37,20 @@ public class Raycast {
                         intersection.calculateColor(scene.MainLight.getColor(), intersection.getDistanceToLightSource());
     
                         // Intersection Normal
-                        Vector3 normalizedIntersectionPosition = intersection.getStartPosition().normalize();
-                        Vector3 normalizedObjectCenter = object.getPosition().normalize();
+                        Vector3 normalizedIntersectionPosition = intersection.getStartPosition();
+                        Vector3 normalizedObjectCenter = object.getPosition();
+                        
+                        
                         
                         Vector3 intersectionNormal = normalizedIntersectionPosition.subtract(normalizedObjectCenter).normalize();
-    
+                        Vector3 intersectionNormal1 =
+                                normalizedObjectCenter.subtract(normalizedIntersectionPosition).normalize();
+                        
                         // Angle of intersection to light source
-                        Vector3 normalizedLightPosition = scene.MainLight.GetPosition().normalize();
+                        Vector3 normalizedLightPosition = scene.MainLight.GetPosition();
                         Vector3 directionToLightSource = normalizedLightPosition.subtract(normalizedIntersectionPosition).normalize();
+                        Vector3 directionToLightSource1 =
+                                normalizedIntersectionPosition.subtract(normalizedLightPosition).normalize();
                         
                         // Angle of impact value = Dot product of Intersection and Normal
                         float angleOfImpact = intersectionNormal.dot(directionToLightSource);
