@@ -71,10 +71,13 @@ public class Color {
         //return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
 
 
+
         int rgb = redPart;
         rgb = (rgb << 8) + greenPart;
         rgb = (rgb << 8) + bluePart;
         return rgb;
+
+
 
 
     }

@@ -230,11 +230,7 @@ public class Raycast {
             for (int i = 0; i < scene.getWidthAndHeight(); i++) {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                     float lastPos = 1000;
-
-                    //SolidObject closestObject = getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);;
-
                     getClosestIntersection(scene, renderPixelColors, objectList, i, j, lastPos);
-                    //getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
                     //todo grab the position of the closest object intersection and shoot a shadowray
                 }
             }
