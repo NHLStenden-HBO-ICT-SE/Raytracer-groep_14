@@ -1,5 +1,6 @@
 package org.raytracer.classes.raycasting;
 
+import org.raytracer.classes.objects.Camera;
 import org.raytracer.classes.objects.Color;
 import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.vectors.Vector3;
@@ -23,7 +24,10 @@ public class Intersection {
         amountOfBounces++;
     }
 
-    public float getDistanceToCameraOrigin() {
+    public float getDistanceToCameraOrigin(Camera cam) {
+        if (distanceToCameraOrigin == 0){
+            startPosition.distanceBetweenPoints(cam.GetPosition());
+        }
         return distanceToCameraOrigin;
     }
     public void setLightPosition(Vector3 lightPosition) {
