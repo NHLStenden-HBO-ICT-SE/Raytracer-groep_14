@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 
 public class UICanvas{
     JFrame canvasFrame = new JFrame("best frame ever");
-    
+    JLabel label = new JLabel();
     private int Height, Width;
     org.raytracer.classes.objects.Color[][] pixelColor;
 
@@ -48,33 +48,59 @@ public class UICanvas{
     }
     
     public boolean createNewFrame() {
-        
-        JLabel label = new JLabel(); //JLabel Creation
+        JButton quitButton = new JButton("Quit");
+        label = new JLabel(); //JLabel Creation
         //todo use a bufferedimage to display, instead of a saved image
         label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
         contentPanelContainer = canvasFrame.getContentPane();
         contentPanelContainer.add(label); //Adds objects to the container
+        //contentPanelContainer.add(quitButton);
+        quitButton.setBounds(100, 100, 115, 55);
+        canvasFrame.add(quitButton);
         canvasFrame.setVisible(true); // Exhibit the frame
+        JLayeredPane ui = new JLayeredPane();
+        ui.setSize(size.width,size.height);
+        ui.add(quitButton);
+        ui.setBounds(50, 30, size.width, size.height);
+        ui.setVisible(true);
         return true;
     }
     
     public void updateFrame(BufferedImage bufferedImage) {
-        JLabel label = new JLabel("frame"); //JLabel Creation
+        //JLabel label = new JLabel("frame"); //JLabel Creation
         if (!ThreadManager.getExecuterStatus()){
 
             ThreadManager.restartExecuter();
         }
+
+        label.setIcon(new ImageIcon(bufferedImage));
+        Dimension size = label.getPreferredSize(); //Gets the size of the image
+        label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
+        contentPanelContainer.remove(0);
+        contentPanelContainer.add(label);
+        swingFramer();
+        /*
         ThreadManager.executerService.execute(new Runnable() {
             @Override
             public void run() {
                 label.setIcon(new ImageIcon(bufferedImage));
                 Dimension size = label.getPreferredSize(); //Gets the size of the image
                 label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-                contentPanelContainer.remove(0);
+                contentPanelContainer.remove(1);
                 contentPanelContainer.add(label);
                 canvasFrame.repaint();
+            }
+        });
+
+         */
+    }
+    public void swingFramer(){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                canvasFrame.setVisible(true);
             }
         });
     }
@@ -87,9 +113,9 @@ public class UICanvas{
         //moveObject(); //move the first object in a scene
         //moveObject(activeScene.GetSceneObject(1), 0);
         moveObject(activeScene.GetSceneObject(2), 0.575f);
-        moveObject(activeScene.GetSceneObject(3), 0.75f);
-        moveObject(activeScene.GetSceneObject(4), 0.3f);
-        moveObject(activeScene.GetSceneObject(5), -0.575f);
+        moveObject(activeScene.GetSceneObject(3), 0.175f);
+        moveObject(activeScene.GetSceneObject(4), 0.03f);
+        moveObject(activeScene.GetSceneObject(5), -0.0575f);
         Raycast raycaster = new Raycast();
         //updateFrame(raycaster.castThreadedRays(10, activeScene));
         updateFrame(raycaster.castThreadedRaysMultipleObjectsAntiAliasing(10,activeScene));

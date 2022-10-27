@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Hello world!");
 
         //create a new uiCanvas which will act as a viewport
-        UICanvas uiCanvas = new UICanvas(900);
+        UICanvas uiCanvas = new UICanvas(400);
         //create a new scene withing the uiCanvas and add one blue object in it
         uiCanvas.addObjectToScene(new Sphere(new Vector3(-1,0,250), 1, Color.Blue, 0.5f, 1));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0,1,330), 0.5f, Color.Black, 0.6f, 1));
@@ -27,7 +27,6 @@ public class Main {
         uiCanvas.createNewFrame();
         for (int i = 0; i < 900; i++) {
             uiCanvas.startRaytracer();
-            System.out.println("loop" + i);
         }
         
     }
