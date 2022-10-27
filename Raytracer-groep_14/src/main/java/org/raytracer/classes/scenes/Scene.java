@@ -19,7 +19,7 @@ public class Scene {
     public Scene() {
         this.objectList = new ArrayList<>();
         this.camera = new Camera(400);
-        MainLight = new Light(new Vector3(0, 100, 0), 5000);
+        MainLight = new Light(new Vector3(0, 100, 0), 0.1f);
     }
     
     public void addObjectToScene(SolidObject object) {

@@ -79,7 +79,7 @@ public class Raycast {
         }
         return closestObject;
     }
-    private Intersection getClosestIntersection(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos) {
+    private void getClosestIntersection(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos) {
         Intersection closestIntersection = null;
         for (SolidObject item: objectList) {
             Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
@@ -95,13 +95,24 @@ public class Raycast {
             if (closestIntersection != null){
                 closestIntersection.setLightPosition(scene.MainLight.GetPosition());
                 closestIntersection.calculateColor(scene.MainLight.getColor(), closestIntersection.getDistanceToLightSource());
-                Color renderableColor = closestIntersection.getColor();
+                Vector3 normalizedIntersectionPosition = closestIntersection.getStartPosition();
+                Vector3 normalizedObjectCenter = item.getPosition();
+                Vector3 intersectionNormal = normalizedIntersectionPosition.subtract(normalizedObjectCenter).normalize();
+
+
+                // Angle of intersection to light source
+                Vector3 normalizedLightPosition = scene.MainLight.GetPosition();
+                Vector3 directionToLightSource = normalizedLightPosition.subtract(normalizedIntersectionPosition).normalize();
+
+
+                float angleOfImpact = intersectionNormal.dot(directionToLightSource);
+
+                Color renderableColor = closestIntersection.getColor().multiply(angleOfImpact);
                 renderableColor.nerfColor();
                 renderPixelColors.writeFramePixel(i, j, renderableColor);
                 //todo Castshadow
             }
         }
-        return closestIntersection;
     }
 
     //todo create a way to give a sample size to the raytracer
@@ -110,14 +121,14 @@ public class Raycast {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         List<SolidObject> objectList = scene.getObjectList();
         List<Future<BufferedImage>> threadImages = new ArrayList<Future<BufferedImage>>();
-        for (int l = 0; l < 3; l++) {
+        for (int l = 0; l < 1; l++) {
             raytraceToImg(scene, renderPixelColors, objectList, threadImages);
         }
-            List<BufferedImage> imageResultList = createNullList(3);
+            List<BufferedImage> imageResultList = createNullList(0);
             boolean processing = true;
             while (processing){
-                if (IntStream.of(0, 1, 2).allMatch(j -> checkIfThreadIsDone(threadImages, imageResultList, j))){
-                    for(int i = 0; i < 3; i++){
+                if (IntStream.of(0).allMatch(j -> checkIfThreadIsDone(threadImages, imageResultList, j))){
+                    for(int i = 0; i < 1; i++){
                         if (imageResultList.get(i) == null){
                             checkIfThreadIsDone(threadImages,imageResultList,i);
                         }
@@ -130,6 +141,14 @@ public class Raycast {
         return renderPixelColors.finishFrame();
     }
 
+    public BufferedImage castNormalForNow(float rayReach,Scene scene) {
+        ThreadManager.runExecuter();
+        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
+        List<SolidObject> objectList = scene.getObjectList();
+        raytraceToImg2(scene, renderPixelColors, objectList);
+
+        return renderPixelColors.finishFrame();
+    }
     /**
      * create a empty list and fill it with null objects
      * @param emptyObjectsToAdd
@@ -209,18 +228,33 @@ public class Raycast {
         threadImages.add(ThreadManager.executerService.submit(() -> {
             for (int i = 0; i < scene.getWidthAndHeight(); i++) {
                 for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                    float lastPos = 300;
+                    float lastPos = 1000;
 
                     //SolidObject closestObject = getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);;
 
-                    //getClosestIntersection(scene, renderPixelColors, objectList, i, j, lastPos);
-                    getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
+                    getClosestIntersection(scene, renderPixelColors, objectList, i, j, lastPos);
+                    //getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
                     //todo grab the position of the closest object intersection and shoot a shadowray
                 }
             }
             return renderPixelColors.finishFrame();
         }));
     }
+    private BufferedImage raytraceToImg2(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList) {
+            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
+                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
+                    float lastPos = 1000;
+
+                    //SolidObject closestObject = getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);;
+
+                    getClosestIntersection(scene, renderPixelColors, objectList, i, j, lastPos);
+                    //getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
+                    //todo grab the position of the closest object intersection and shoot a shadowray
+                }
+            }
+            return renderPixelColors.finishFrame();
+        }
+    };
 
     /**
      *
@@ -230,74 +264,3 @@ public class Raycast {
      * @param threadImages
      * @param aASupplement
      */
-    private void raytraceToImg(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, List<Future<BufferedImage>> threadImages, float aASupplement) {
-        threadImages.add(ThreadManager.executerService.submit(() -> {
-            for (int i = 0; i < scene.getWidthAndHeight(); i++) {
-                for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                    float lastPos = 300;
-                    SolidObject closestObject = null;
-                    getClosestObject(scene, renderPixelColors, objectList, i, j, lastPos);
-                }
-            }
-            return renderPixelColors.finishFrame();
-        }));
-    }
-    public BufferedImage castRays(float rayReach, Scene scene) {
-        RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-
-        for (int i = 0; i < scene.getWidthAndHeight(); i++) {
-            for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-
-                Ray tempRay = new Ray(scene.GetCamera(), i, j);
-
-                // ray hits object
-                /*
-
-                for (SolidObject object : scene.getSolidObjectList()) {
-                    if (object.getsHitByRay(tempRay)) {
-
-                        Intersection intersection = object.calculateIntersection(tempRay);
-                        intersection.setLightPosition(scene.MainLight.GetPosition());
-
-                        // Color absorption
-                        intersection.calculateColor(scene.MainLight.getColor(), intersection.getDistanceToLightSource());
-
-                        // Intersection Normal
-                        Vector3 normalizedIntersectionPosition = intersection.getStartPosition();
-                        Vector3 normalizedObjectCenter = object.getPosition();
-
-
-
-                        Vector3 intersectionNormal = normalizedIntersectionPosition.subtract(normalizedObjectCenter).normalize();
-                        Vector3 intersectionNormal1 =
-                                normalizedObjectCenter.subtract(normalizedIntersectionPosition).normalize();
-
-                        // Angle of intersection to light source
-                        Vector3 normalizedLightPosition = scene.MainLight.GetPosition();
-                        Vector3 directionToLightSource = normalizedLightPosition.subtract(normalizedIntersectionPosition).normalize();
-                        Vector3 directionToLightSource1 =
-                                normalizedIntersectionPosition.subtract(normalizedLightPosition).normalize();
-
-                        // Angle of impact value = Dot product of Intersection and Normal
-                        float angleOfImpact = intersectionNormal.dot(directionToLightSource);
-
-                        // Absorbed color * angle of impact
-                        Color renderableColor = intersection.getColor().multiply(angleOfImpact);
-
-                        // Sets colors to a value of max 1 and min 0
-                        renderableColor.nerfColor();
-
-                        // colors have to be converted to be max 1,1,1
-                        renderPixelColors.writeFramePixel(i, j, renderableColor);
-                    } else { // Ray has not a hit with object
-                        renderPixelColors.writeFramePixel(i, j, Color.White);
-                    }
-                }
-                /
-
-                 */
-            }
-        }
-        return renderPixelColors.finishFrame();
-    }
-}

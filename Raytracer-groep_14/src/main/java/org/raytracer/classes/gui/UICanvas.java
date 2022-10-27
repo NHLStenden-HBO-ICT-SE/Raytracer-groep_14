@@ -58,22 +58,19 @@ public class UICanvas{
         contentPanelContainer.add(label); //Adds objects to the container
         //contentPanelContainer.add(quitButton);
         quitButton.setBounds(100, 100, 115, 55);
-        canvasFrame.add(quitButton);
         canvasFrame.setVisible(true); // Exhibit the frame
-        JLayeredPane ui = new JLayeredPane();
-        ui.setSize(size.width,size.height);
-        ui.add(quitButton);
-        ui.setBounds(50, 30, size.width, size.height);
-        ui.setVisible(true);
         return true;
     }
     
     public void updateFrame(BufferedImage bufferedImage) {
-        //JLabel label = new JLabel("frame"); //JLabel Creation
+        JLabel label = new JLabel("frame"); //JLabel Creation
+        /*
         if (!ThreadManager.getExecuterStatus()){
 
             ThreadManager.restartExecuter();
         }
+
+         */
 
         label.setIcon(new ImageIcon(bufferedImage));
         Dimension size = label.getPreferredSize(); //Gets the size of the image
@@ -115,13 +112,13 @@ public class UICanvas{
 
     public void startRaytracer(){
         //moveObject(); //move the first object in a scene
-        //moveObject(activeScene.GetSceneObject(1), 0);
-        moveObject(activeScene.GetSceneObject(2), 0.575f);
-        moveObject(activeScene.GetSceneObject(3), 0.175f);
-        moveObject(activeScene.GetSceneObject(4), 0.03f);
-        moveObject(activeScene.GetSceneObject(5), -0.0575f);
+        //moveObject(activeScene.GetSceneObject(1), 0.3f);
+        //moveObject(activeScene.GetSceneObject(2), 0.575f);
+        //moveObject(activeScene.GetSceneObject(3), 0.175f);
+        //moveObject(activeScene.GetSceneObject(4), 0.03f);
+        //moveObject(activeScene.GetSceneObject(5), -0.0575f);
         Raycast raycaster = new Raycast();
-        updateFrame(raycaster.castThreadedRaysMultipleObjectsAntiAliasing(10,activeScene));
+        updateFrame(raycaster.castNormalForNow(10,activeScene));
     }
 
     public void moveObject(Vector3 vector3){

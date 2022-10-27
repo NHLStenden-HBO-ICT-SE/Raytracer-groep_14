@@ -26,7 +26,7 @@ public class Intersection {
 
     public float getDistanceToCameraOrigin(Camera cam) {
         if (distanceToCameraOrigin == 0){
-            startPosition.distanceBetweenPoints(cam.GetPosition());
+            distanceToCameraOrigin = startPosition.distanceBetweenPoints(cam.GetPosition());
         }
         return distanceToCameraOrigin;
     }
