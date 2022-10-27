@@ -11,8 +11,7 @@ public class Scene {
     
     private ArrayList<SolidObject> objectList;
     private Camera camera;
-    private Light light;
-    static Light MainLight;
+    public Light MainLight;
     
     
     /**
@@ -46,6 +45,10 @@ public class Scene {
     //todo niet gebruiken
     public SolidObject getFirstSolidObject() {
         return objectList.get(0);
+    }
+    
+    public ArrayList<SolidObject> getSolidObjectList(){
+        return objectList;
     }
     
     public int GetObjectListLength() {

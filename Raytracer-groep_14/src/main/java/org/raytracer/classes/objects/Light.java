@@ -14,17 +14,17 @@ public class Light extends SceneObject {
     public Light(Vector3 position, float intensity) {
         this.intensity = intensity;
         this.position = position;
-        this.color = new Color(1, 0, 0.1f);
+        this.color = new Color().multiply(intensity);
     }
     
     
     /**
      * kleur van het licht moet worden meegegeven
      */
-    public Light(Vector3 position, float intencity, float red, float green, float blue) {
-        this.intensity = intencity;
+    public Light(Vector3 position, float intensity, float red, float green, float blue) {
+        this.intensity = intensity;
         this.position = position;
-        this.color = new Color(red, green, blue);
+        this.color = new Color(red, green, blue).multiply(this.intensity);
     }
     
     
@@ -41,24 +41,11 @@ public class Light extends SceneObject {
         
     }
     
-    // calculate the reflection
-    //reflectie = kleurlicht * kleurobject
-    public Color Lightreflection(Color objectColor) {
-        
-        float colorred = color.getRed();
-        float colorblue = color.getBlue();
-        float colorgreen = color.getGreen();
-        
-        float lightred = objectColor.getRed();
-        float lightblue = objectColor.getBlue();
-        float lightgreen = objectColor.getGreen();
-        
-        float reflectred = colorred * lightred;
-        float reflectblue = Math.min(colorblue * lightblue, 1);
-        float reflectgreen = colorgreen * lightgreen;
-        
-        return new Color(reflectred, reflectgreen, reflectblue);
+    public Color getColor(){
+        return color;
     }
+    
+
     
     //intensiteit licht invals hoek is cos a oftewel
     //dot product van de normaal en licht vector

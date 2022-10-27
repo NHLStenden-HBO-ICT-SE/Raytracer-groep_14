@@ -35,7 +35,7 @@ public class Sphere extends SolidObject {
                     distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0;
             
             if (cameraIsOutsideOfSphere) {
-                return new Intersection(ray.getPointOnRay(distanceToIntersection), distanceToIntersection);
+                return new Intersection(ray.getPointOnRay(distanceToIntersection), color);
             }
         }
         return null;

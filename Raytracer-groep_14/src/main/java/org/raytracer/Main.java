@@ -6,9 +6,7 @@ import org.raytracer.classes.vectors.Vector3;
 
 public class Main {
     public static void main(String[] args) {
-
-        System.out.println("Hello world!");
-
+        
         //create a new uiCanvas which will act as a viewport
         UICanvas uiCanvas = new UICanvas(400);
         //create a new scene withing the uiCanvas and add one blue object in it

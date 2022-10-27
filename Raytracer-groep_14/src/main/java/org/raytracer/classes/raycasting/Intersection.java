@@ -1,35 +1,35 @@
 package org.raytracer.classes.raycasting;
 
+import org.raytracer.classes.objects.Color;
 import org.raytracer.classes.vectors.Vector3;
 
 public class Intersection {
-    private float distanceToCameraOrigin;
     private Vector3 startPosition;
     private int amountOfBounces;
     
+    private Color color;
     
-    /**
-     *
-     * @param startingPosition location of
-     * @param distanceToCameraOrigin
-     */
-    public Intersection(Vector3 startingPosition, float distanceToCameraOrigin) {
+    public Intersection(Vector3 startingPosition, Color objectColor) {
         this.startPosition = startingPosition;
-        this.distanceToCameraOrigin = distanceToCameraOrigin;
+        this.color = objectColor;
         
         amountOfBounces = 1;
-    }
-    
-    private void avoidShadowAcne() {
-    
     }
     
     public void incrementAmountOfBounces() {
         amountOfBounces++;
     }
     
-    public float getDistanceToCameraOrigin() {
-        return distanceToCameraOrigin;
+    public Color getColor() {
+        return color;
+    }
+    
+    public void calculateColor(Color lightColor){
+        Color objectColor = color;
+        
+        objectColor.lightReflection(lightColor);
+        
+        color.setColor(objectColor);
     }
     
     public int getAmountOfBounces() {

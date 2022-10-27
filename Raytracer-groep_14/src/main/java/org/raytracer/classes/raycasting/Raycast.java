@@ -19,18 +19,23 @@ public class Raycast {
      */
     public BufferedImage castRays(float rayReach, Scene scene) {
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
-        SolidObject object = scene.getFirstSolidObject(); // todo weghalen en de lijst aanroepen
         
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
-                Ray tempRay = new Ray(scene.GetCamera(), i, j);
-                Intersection intersection = object.calculateIntersection(tempRay);
                 
-                if (intersection != null) {
-                    //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
-                    renderPixelColors.writeFramePixel(i, j, object.getColor());
-                } else {
-                    renderPixelColors.writeFramePixel(i, j, Color.White);
+                Ray tempRay = new Ray(scene.GetCamera(), i, j);
+                
+                // calculates intersection for each object in scene
+                for (SolidObject object : scene.getSolidObjectList()) {
+                    Intersection intersection = object.calculateIntersection(tempRay);
+                    
+                    if (intersection != null) {
+                        intersection.calculateColor(scene.MainLight.getColor());
+                        //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
+                        renderPixelColors.writeFramePixel(i, j, intersection.getColor());
+                    } else {
+                        renderPixelColors.writeFramePixel(i, j, Color.White);
+                    }
                 }
             }
         }
