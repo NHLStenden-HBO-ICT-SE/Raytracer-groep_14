@@ -29,7 +29,7 @@ public class Sphere extends SolidObject {
         if (rayGoesThroughSphere(shortestDistanceRayToCenter)) {
             double f = (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
             float distanceToIntersection = (float) f;
-            distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
+            //distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
             
             boolean cameraIsOutsideOfSphere =
                     distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0;

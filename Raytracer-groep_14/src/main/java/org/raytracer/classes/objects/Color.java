@@ -128,15 +128,17 @@ public class Color {
     /**
      * Berekenen lichtintensiteit
      */
-    public void lightIntensityColorOverDistance(float objectDistance) {
+    public Color lightIntensityColorOverDistance(float objectDistance) {
         
         double distance = Math.pow(objectDistance, 2);
         
         double lightIntensity = 1 / distance;
+    
+        float red = this.red * (float) lightIntensity;
+        float green = this.green * (float) lightIntensity;
+        float blue = this.blue * (float) lightIntensity;
         
-        red = red * (float) lightIntensity;
-        green = green * (float) lightIntensity;
-        blue = blue * (float) lightIntensity;
+        return new Color(red, green, blue);
     }
     
 }

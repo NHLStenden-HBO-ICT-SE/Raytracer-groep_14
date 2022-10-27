@@ -5,6 +5,7 @@ import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.gui.UICanvas;
 import org.raytracer.classes.rendering.RenderPixelColors;
+import org.raytracer.classes.vectors.Vector3;
 
 import java.awt.image.BufferedImage;
 
@@ -32,12 +33,27 @@ public class Raycast {
                         Intersection intersection = object.calculateIntersection(tempRay);
                         intersection.setLightPosition(scene.MainLight.GetPosition());
                         
+                        // Color absorption
                         intersection.calculateColor(scene.MainLight.getColor(), intersection.getDistanceToLightSource());
+    
+                        // Intersection Normal
+                        Vector3 normalizedIntersectionPosition = intersection.getStartPosition().normalize();
+                        Vector3 normalizedObjectCenter = object.getPosition().normalize();
                         
+                        Vector3 intersectionNormal = normalizedIntersectionPosition.subtract(normalizedObjectCenter).normalize();
+    
+                        // Angle of intersection to light source
+                        Vector3 normalizedLightPosition = scene.MainLight.GetPosition().normalize();
+                        Vector3 directionToLightSource = normalizedLightPosition.subtract(normalizedIntersectionPosition).normalize();
                         
-                        Color renderableColor = intersection.getColor();
+                        // Angle of impact value = Dot product of Intersection and Normal
+                        float angleOfImpact = intersectionNormal.dot(directionToLightSource);
+                        
+                        // Absorbed color * angle of impact
+                        Color renderableColor = intersection.getColor().multiply(angleOfImpact);
+                        
+                        // Sets colors to a value of max 1 and min 0
                         renderableColor.nerfColor();
-                        
                         
                         // colors have to be converted to be max 1,1,1
                         renderPixelColors.writeFramePixel(i, j, renderableColor);

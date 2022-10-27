@@ -73,15 +73,12 @@ public class UICanvas{
     }
 
     public void startRaytracer(){
-        moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
+        //moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
         Raycast raycaster = new Raycast();
         updateFrame(raycaster.castRays(10, activeScene));
     }
-
-    public void moveObject(Vector3 vector3){
-        activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(vector3)));
-    }
-    public void moveObject() { //todo maak movement class voor opbjects
+    
+    public void moveObject() { //todo maak movement class voor objects
         activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(new Vector3(0, 0, 0.1f))));
         
     }
