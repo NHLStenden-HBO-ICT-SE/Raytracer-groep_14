@@ -7,7 +7,7 @@ public class Ray {
     
     private Vector3 origin;
     private Vector3 direction = new Vector3();
-    private float t; // Distance scalar
+    private float distanceToLightSource; // Distance scalar
     
     /**
      * Creates ray with direction calculated from camera
@@ -19,15 +19,27 @@ public class Ray {
     public Ray(Camera camera, int x, int y) {
         
         this.origin = camera.GetPosition();
-        this.direction = calculateDirection(camera, x, y);
+        calculateDirectionFromCamera(camera, x, y);
         
         // todo Is deze nog nodig?
         
         if (direction.length() != 1) {
             direction = direction.normalize();
         }
-        
     }
+    
+    /**
+     * Used for shadow ray
+     * @param intersectPosition
+     * @param lightPosition
+     */
+    public Ray(Vector3 intersectPosition, Vector3 lightPosition) {
+        this.origin = intersectPosition;
+        calculateNormalizedDirectionToLight(lightPosition);
+        
+        float distanceToLightSource2 = lightPosition.distanceBetweenPoints(intersectPosition);
+    }
+    
     public Vector3 getDirection() {
         return direction;
     }
@@ -48,8 +60,12 @@ public class Ray {
      * @param y      Vertical pixel of screen
      * @return
      */
-    public Vector3 calculateDirection(Camera camera, int x, int y) {
-        return camera.getPointOnScreen(x, y).subtract(camera.GetPosition());
+    public void calculateDirectionFromCamera(Camera camera, int x, int y) {
+        direction =  camera.getPointOnScreen(x, y).subtract(camera.GetPosition());
+    }
+    
+    public void calculateNormalizedDirectionToLight(Vector3 lightDirection){
+        direction = lightDirection.subtract(origin).normalize();
     }
     
     public Vector3 getOrigin() {

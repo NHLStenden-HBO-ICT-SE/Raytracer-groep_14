@@ -25,15 +25,23 @@ public class Raycast {
                 
                 Ray tempRay = new Ray(scene.GetCamera(), i, j);
                 
-                // calculates intersection for each object in scene
+                // ray hits object
                 for (SolidObject object : scene.getSolidObjectList()) {
-                    Intersection intersection = object.calculateIntersection(tempRay);
-                    
-                    if (intersection != null) {
-                        intersection.calculateColor(scene.MainLight.getColor());
-                        //todo object dat in de lijst voorkomt gebruiken om kleur op te vragen.
-                        renderPixelColors.writeFramePixel(i, j, intersection.getColor());
-                    } else {
+                    if (object.getsHitByRay(tempRay)) {
+                        
+                        Intersection intersection = object.calculateIntersection(tempRay);
+                        intersection.setLightPosition(scene.MainLight.GetPosition());
+                        
+                        intersection.calculateColor(scene.MainLight.getColor(), intersection.getDistanceToLightSource());
+                        
+                        
+                        Color renderableColor = intersection.getColor();
+                        renderableColor.nerfColor();
+                        
+                        
+                        // colors have to be converted to be max 1,1,1
+                        renderPixelColors.writeFramePixel(i, j, renderableColor);
+                    } else { // Ray has not a hit with object
                         renderPixelColors.writeFramePixel(i, j, Color.White);
                     }
                 }

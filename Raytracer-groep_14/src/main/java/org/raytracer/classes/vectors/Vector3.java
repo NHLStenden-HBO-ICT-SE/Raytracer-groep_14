@@ -28,18 +28,6 @@ public class Vector3 {
     }
     
     /**
-     * Add two vector 3's together
-     *
-     * @param vec1 the first vector 3
-     * @param vec2 the second vector 3
-     * @return
-     */
-    public static Vector3 add(Vector3 vec1, Vector3 vec2) {
-        
-        return new Vector3((vec1.x + vec2.x), (vec1.y + vec2.y), (vec1.z + vec2.z));
-    }
-    
-    /**
      * Dot point between two vectores
      *
      * @param b Vector that is used to calculate dot
@@ -147,8 +135,8 @@ public class Vector3 {
 	}
 	 */
     
-    public float distanceBetweenPoints(Vector3 a, Vector3 b) {
-        return (float) Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2) + Math.pow(a.z - b.z, 2));
+    public float distanceBetweenPoints(Vector3 b) {
+        return (float) Math.sqrt(Math.pow((x - b.x), 2) + Math.pow((y - b.y), 2) + Math.pow((z - b.z), 2));
     }
     
     /**

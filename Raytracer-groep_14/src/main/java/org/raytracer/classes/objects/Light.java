@@ -3,7 +3,7 @@ package org.raytracer.classes.objects;
 import org.raytracer.classes.vectors.Vector3;
 
 public class Light extends SceneObject {
-    private Color color;
+    private Color color = new Color();
     
     private float intensity;
     
@@ -14,7 +14,7 @@ public class Light extends SceneObject {
     public Light(Vector3 position, float intensity) {
         this.intensity = intensity;
         this.position = position;
-        this.color = new Color().multiply(intensity);
+        this.color = color.multiply(intensity);
     }
     
     
@@ -28,18 +28,7 @@ public class Light extends SceneObject {
     }
     
     
-    /**
-     * Berekenen lichtintensiteit
-     */
-    public float CalcLightIntencity(float objectDistance) {
-        
-        double distance = Math.pow(objectDistance, 2);
-        
-        double lightIntensity = 1 / distance;
-        
-        return (float) lightIntensity;
-        
-    }
+ 
     
     public Color getColor(){
         return color;

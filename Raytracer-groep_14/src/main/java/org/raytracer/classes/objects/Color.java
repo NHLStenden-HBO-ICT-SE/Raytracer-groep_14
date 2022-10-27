@@ -71,6 +71,21 @@ public class Color {
         return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
     }
     
+    public void nerfColor() {
+        if (red > 1)
+            red = 1;
+        if (blue > 1)
+            blue = 1;
+        if (green > 1)
+            green = 1;
+        if (red < 0)
+            red = 0;
+        if (blue < 0)
+            blue = 0;
+        if (green < 0)
+            green = 0;
+    }
+    
     public static Color fromInt(int argb) {
         int b = (argb) & 0xFF;
         int g = (argb >> 8) & 0xFF;
@@ -95,11 +110,26 @@ public class Color {
     
     // calculate the reflection
     //reflectie = kleurlicht * kleurobject
-    public void lightReflection(Color lightColor) {
+    public void lightReflection(Color lightColor, float lightDistance) {
+        lightColor.lightIntensityColorOverDistance(lightDistance);
         
         red = red * lightColor.getRed();
         blue = blue * lightColor.getBlue();
         green = green * lightColor.getGreen();
+    }
+    
+    /**
+     * Berekenen lichtintensiteit
+     */
+    public void lightIntensityColorOverDistance(float objectDistance) {
+        
+        double distance = Math.pow(objectDistance, 2);
+        
+        double lightIntensity = 1 / distance;
+        
+        red = red * (float) lightIntensity;
+        green = green * (float) lightIntensity;
+        blue = blue * (float) lightIntensity;
     }
     
 }
