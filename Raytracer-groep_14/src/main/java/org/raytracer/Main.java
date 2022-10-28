@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Starting raytracer");
         
         //create a new uiCanvas which will act as a viewport
-        UICanvas uiCanvas = new UICanvas(900);
+        UICanvas uiCanvas = new UICanvas();
         
         // Adds objects to scene
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0, 0, 120), 0.5f, new Color(0.1f, 0, 1f), 0.5f, 1));

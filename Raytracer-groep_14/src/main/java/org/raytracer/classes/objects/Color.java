@@ -1,15 +1,9 @@
 package org.raytracer.classes.objects;
 
-
-import org.raytracer.Main;
-
 public class Color {
-    
-    private float red = 1;
-    
-    private float green = 1;
-    
-    private float blue = 1;
+    private float red;
+    private float green;
+    private float blue;
     
     /**
      * Standard color is white
@@ -19,6 +13,12 @@ public class Color {
     }
     
     /**
+     * Colors in this program are percentages.
+     * <br>
+     * 1 = 100% and 0 = 0% intensity.
+     * <br>
+     * at the moment just before exporting to an image all colors will be converted to a rgb int value.
+     *
      * @param red   number between 0 and 1
      * @param green number between 0 and 1
      * @param blue  number between 0 and 1
@@ -42,7 +42,6 @@ public class Color {
         return green;
     }
     
-    
     public void setColor(float red, float green, float blue) {
         this.red = red;
         this.green = green;
@@ -56,32 +55,27 @@ public class Color {
     }
     
     /**
-     * Gets rgb values and converts it to a hex number
+     * Gets rgb values and converts it to an int
      *
-     * @return hex code
+     * @return rgb value in int
      */
     public int getRGB() {
         int redPart = (int) (red * 255);
         int greenPart = (int) (green * 255);
         int bluePart = (int) (blue * 255);
         
-        // Shift bits to right place
-        //redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
-        //greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
-        //bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
-        
-        //return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
-        
-        
+        // sets all parts together in one combined number
         int rgb = redPart;
         rgb = (rgb << 8) + greenPart;
         rgb = (rgb << 8) + bluePart;
         return rgb;
-        
-        
     }
     
-    public int getRGBBitshifted() {
+    /**
+     * Converts color to hex-value
+     * @return integer of hex-value of a color
+     */
+    public int getRGBHexValue() {
         int redPart = (int) (red * 255);
         int greenPart = (int) (green * 255);
         int bluePart = (int) (blue * 255);
@@ -94,14 +88,11 @@ public class Color {
         return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
     }
     
+    /**
+     * Before exporting all values of the color can only be between 0 and 1, otherwise the exporter will not work.
+     * Use this method to nerf all colors between the correct values.
+     */
     public void nerfColor() {
-        /*
-        red = Math.max(0, Math.min(1, red));
-        blue = Math.max(0, Math.min(1, blue));
-        green = Math.max(0, Math.min(1, green));
-
-         */
-        
         if (red > 1)
             red = 1;
         if (blue > 1)

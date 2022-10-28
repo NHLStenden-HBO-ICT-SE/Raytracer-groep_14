@@ -7,7 +7,6 @@ import org.raytracer.classes.rendering.BufferedImageGenerator;
 import org.raytracer.classes.vectors.Vector3;
 
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 public class Raycast {
     
@@ -66,14 +65,15 @@ public class Raycast {
     
     //todo create a way to give a sample size to the raytracer
     public BufferedImage castNormalForNow(float rayReach, Scene scene) {
+        
         ThreadManager.runExecuter();
         BufferedImageGenerator bufferedImageGenerator = new BufferedImageGenerator(scene.getWidthAndHeight());
-        raytraceToImg2(scene, bufferedImageGenerator);
+        convertRaytracingToImage(scene, bufferedImageGenerator);
         
         return bufferedImageGenerator.finishFrame();
     }
     
-    private BufferedImage raytraceToImg2(Scene scene, BufferedImageGenerator bufferedImageGenerator) {
+    private BufferedImage convertRaytracingToImage(Scene scene, BufferedImageGenerator bufferedImageGenerator) {
         for (int i = 0; i < scene.getWidthAndHeight(); i++) {
             for (int j = 0; j < scene.getWidthAndHeight(); j++) {
                 float maximumDistance = 1000;
