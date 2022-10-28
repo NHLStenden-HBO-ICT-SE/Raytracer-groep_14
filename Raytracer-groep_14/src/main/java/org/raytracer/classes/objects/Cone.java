@@ -14,7 +14,6 @@ public class Cone extends SolidObject {
         this.height = height;
     }
     
-    
     @Override
     public Intersection calculateIntersection(Ray ray) {
         return null;

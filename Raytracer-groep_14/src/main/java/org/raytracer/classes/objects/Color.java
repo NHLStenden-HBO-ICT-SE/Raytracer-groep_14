@@ -107,7 +107,12 @@ public class Color {
             green = 0;
     }
     
-    public static Color fromInt(int argb) {
+    /**
+     * Convert hex to Color
+     * @param argb
+     * @return new Color
+     */
+    public static Color fromHex(int argb) {
         int b = (argb) & 0xFF;
         int g = (argb >> 8) & 0xFF;
         int r = (argb >> 16) & 0xFF;
@@ -119,11 +124,12 @@ public class Color {
         return new java.awt.Color(red, green, blue);
     }
     
+    // standard colors
     public static final Color White = new Color(1f, 1f, 1f);
     public static final Color Black = new Color(0, 0, 0);
     public static final Color Blue = new Color(0, 0, 1f);
-    
-    //public static final Color
+    public static final Color Red = new Color(1, 0, 0);
+    public static final Color Green = new Color(0, 1, 0);
     
     public Color multiply(float value) {
         return new Color(this.red * value, this.green * value, this.blue * value);
@@ -131,11 +137,12 @@ public class Color {
     
     
     /**
-     * Berekenen lichtintensiteit
+     * calculates light absorption of the object color and returns a new value where lightintencity from the
+     * lightsource is used to calculate reflectivity of the object.
+     * @param lightColor Color of the light source. This usually is white * lightIntensity
+     * @param lightDistance Distance from light source to color so light intensity can be accounted for.
+     * @return new Color
      */
-    
-    // calculate the reflection
-    //reflectie = kleurlicht * kleurobject
     public Color lightReflection(Color lightColor, float lightDistance) {
         lightColor.lightIntensityColorOverDistance(lightDistance);
         
@@ -146,9 +153,6 @@ public class Color {
         return new Color(red, green, blue);
     }
     
-    /**
-     * Berekenen lichtintensiteit
-     */
     public Color lightIntensityColorOverDistance(float objectDistance) {
         
         double distance = Math.pow(objectDistance, 2);

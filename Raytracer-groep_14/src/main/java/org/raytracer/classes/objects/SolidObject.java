@@ -4,7 +4,7 @@ import org.raytracer.classes.raycasting.Intersection;
 import org.raytracer.classes.raycasting.Ray;
 import org.raytracer.classes.vectors.Vector3;
 
-public abstract class SolidObject extends SceneObject implements Material {
+public abstract class SolidObject extends SceneObject {
     protected float reflection;
     protected float emission;
     protected Color color;

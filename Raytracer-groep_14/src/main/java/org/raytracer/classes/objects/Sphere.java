@@ -41,6 +41,11 @@ public class Sphere extends SolidObject {
         return null;
     }
     
+    /**
+     * checks if a ray hits an SolidObject
+     * @param ray
+     * @return boolean
+     */
     @Override
     public boolean getsHitByRay(Ray ray) {
         Vector3 rayOriginToSphereCenter = calculateRayOriginToSphereCenter(ray);
