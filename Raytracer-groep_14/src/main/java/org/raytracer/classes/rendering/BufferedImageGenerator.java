@@ -3,17 +3,16 @@ package org.raytracer.classes.rendering;
 
 import org.raytracer.classes.objects.Color;
 
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 //Todo Add ray cast method
-public class RenderPixelColors {
+public class BufferedImageGenerator {
     
     
     private BufferedImage writeFrame;
     
     
-    public RenderPixelColors(int widthAndHeight) {
+    public BufferedImageGenerator(int widthAndHeight) {
         
         constructNewImg(widthAndHeight);
     }
