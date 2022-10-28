@@ -45,15 +45,10 @@ public class Scene {
     public SolidObject getFirstSolidObject() {
         return objectList.get(0);
     }
-
+    
     public ArrayList<SolidObject> getObjectList() {
         return objectList;
     }
-
-    public int GetObjectListLength() {
-        return objectList.size();
-    }
-    
     
     /**
      * returns the object of given index
@@ -70,11 +65,11 @@ public class Scene {
         }
     }
     
-    public Camera GetCamera(){
+    public Camera GetCamera() {
         return camera;
     }
-
-    public int getWidthAndHeight(){
+    
+    public int getWidthAndHeight() {
         return camera.getWidthAndHeight();
     }
     

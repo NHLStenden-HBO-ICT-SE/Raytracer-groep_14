@@ -49,16 +49,16 @@ public class Sphere extends SolidObject {
         Vector3 projectionOfRayToCenter =
                 rayOriginToSphereCenter.subtract(rayDirectionDistance);
         float shortestDistanceRayToCenter = projectionOfRayToCenter.dot(projectionOfRayToCenter);
-
+        
         return rayGoesThroughSphere(shortestDistanceRayToCenter);
     }
-
+    
     //todo
     @Override
     public float distanceToIntersection(Ray ray) {
         return 0;
     }
-
+    
     /**
      * shortens the distance by a fraction to make sure the point is just outside the object. This solves shadow acne
      * bug.

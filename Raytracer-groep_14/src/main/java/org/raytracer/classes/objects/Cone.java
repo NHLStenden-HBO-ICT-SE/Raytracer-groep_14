@@ -13,10 +13,12 @@ public class Cone extends SolidObject {
         this.radius = radius;
         this.height = height;
     }
-
-
+    
+    
     @Override
-    public Intersection calculateIntersection(Ray ray) {return null;}
+    public Intersection calculateIntersection(Ray ray) {
+        return null;
+    }
     
     //todo
     @Override

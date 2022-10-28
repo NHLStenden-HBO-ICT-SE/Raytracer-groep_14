@@ -14,45 +14,46 @@ public class Intersection {
     private int amountOfBounces;
     private Color color;
     private float distanceToLightSource = 0;
-
-    public Intersection(Vector3 startingPosition,  Color objectColor) {
+    
+    public Intersection(Vector3 startingPosition, Color objectColor) {
         this.startPosition = startingPosition;
         this.color = objectColor;
         amountOfBounces = 5;
     }
+    
     public void incrementAmountOfBounces() {
         amountOfBounces++;
     }
-
+    
     public float getDistanceToCameraOrigin(Camera cam) {
-        if (distanceToCameraOrigin == 0){
+        if (distanceToCameraOrigin == 0) {
             distanceToCameraOrigin = startPosition.distanceBetweenPoints(cam.GetPosition());
         }
         return distanceToCameraOrigin;
     }
+    
     public void setLightPosition(Vector3 lightPosition) {
         this.lightPosition = lightPosition;
         distanceToLightSource = lightPosition.distanceBetweenPoints(startPosition);
     }
-
+    
     public Color getColor() {
         return color;
     }
-
-    public float getDistanceToLightSource(){
+    
+    public float getDistanceToLightSource() {
         return distanceToLightSource;
     }
-
+    
     public void calculateColor(Color lightColor, float distanceToLightSource) {
         Color objectColor = color;
-
+        
         objectColor.lightReflection(lightColor, distanceToLightSource);
-
+        
         color.setColor(objectColor);
     }
-
-
-
+    
+    
     public int getAmountOfBounces() {
         return amountOfBounces;
     }

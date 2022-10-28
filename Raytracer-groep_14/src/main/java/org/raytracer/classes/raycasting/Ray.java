@@ -28,6 +28,7 @@ public class Ray {
     
     /**
      * Used for shadow ray
+     *
      * @param intersectPosition
      * @param lightPosition
      */
@@ -42,7 +43,9 @@ public class Ray {
         return direction;
     }
     
-    public Vector3 getNormalizedDirection() {return direction.normalize();}
+    public Vector3 getNormalizedDirection() {
+        return direction.normalize();
+    }
     
     public void setDirection(Vector3 direction) {
         this.direction = direction;
@@ -59,10 +62,10 @@ public class Ray {
      * @return
      */
     public void calculateDirectionFromCamera(Camera camera, int x, int y) {
-        direction =  camera.getPointOnScreen(x, y).subtract(camera.GetPosition());
+        direction = camera.getPointOnScreen(x, y).subtract(camera.GetPosition());
     }
     
-    public void calculateNormalizedDirectionToLight(Vector3 lightDirection){
+    public void calculateNormalizedDirectionToLight(Vector3 lightDirection) {
         direction = lightDirection.subtract(origin).normalize();
     }
     

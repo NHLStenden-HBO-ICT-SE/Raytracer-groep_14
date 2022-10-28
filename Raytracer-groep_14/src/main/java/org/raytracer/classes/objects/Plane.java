@@ -5,13 +5,13 @@ import org.raytracer.classes.raycasting.Ray;
 import org.raytracer.classes.vectors.Vector3;
 
 public class Plane extends SolidObject {
-
-
+    
+    
     public Plane(Vector3 position, Color color, float reflection, float emission) {
         super(position, color, emission, reflection);
     }
-
-
+    
+    
     /***
      * calculate the intersection between ray and plane
      * @param ray

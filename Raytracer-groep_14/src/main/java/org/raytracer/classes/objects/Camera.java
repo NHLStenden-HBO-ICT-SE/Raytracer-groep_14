@@ -51,7 +51,7 @@ public class Camera extends SceneObject {
         this.fieldOfView = fieldOfView;
         this.center = position.add(direction.multiply(fieldOfView));
     }
-
+    
     public Vector3 getDirection() {
         return direction;
     }
@@ -63,8 +63,10 @@ public class Camera extends SceneObject {
     public int getScreenWidth() {
         return screenWidth;
     }
-
-    public int getWidthAndHeight(){return screenHeight;}
+    
+    public int getWidthAndHeight() {
+        return screenHeight;
+    }
     
     /**
      * determine width of screen

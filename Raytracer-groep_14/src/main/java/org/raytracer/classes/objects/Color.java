@@ -28,7 +28,7 @@ public class Color {
         this.green = green;
         this.blue = blue;
     }
-
+    
     
     public float getRed() {
         return red;
@@ -69,30 +69,28 @@ public class Color {
         //redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
         //greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
         //bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
-
+        
         //return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
-
-
-
+        
+        
         int rgb = redPart;
         rgb = (rgb << 8) + greenPart;
         rgb = (rgb << 8) + bluePart;
         return rgb;
-
-
-
-
+        
+        
     }
-    public int getRGBBitshifted(){
+    
+    public int getRGBBitshifted() {
         int redPart = (int) (red * 255);
         int greenPart = (int) (green * 255);
         int bluePart = (int) (blue * 255);
-
+        
         // Shift bits to right place
         redPart = (redPart << 16) & 0x00FF0000; //Shift red 16-bits and mask out other stuff
         greenPart = (greenPart << 8) & 0x0000FF00; //Shift Green 8-bits and mask out other stuff
         bluePart = bluePart & 0x000000FF; //Mask out anything not blue.
-
+        
         return 0xFF000000 | redPart | greenPart | bluePart; //0xFF000000 for 100% Alpha. Bitwise OR everything together.
     }
     
@@ -103,7 +101,7 @@ public class Color {
         green = Math.max(0, Math.min(1, green));
 
          */
-
+        
         if (red > 1)
             red = 1;
         if (blue > 1)
@@ -139,8 +137,8 @@ public class Color {
     public Color multiply(float value) {
         return new Color(this.red * value, this.green * value, this.blue * value);
     }
-
-
+    
+    
     /**
      * Berekenen lichtintensiteit
      */
@@ -165,7 +163,7 @@ public class Color {
         double distance = Math.pow(objectDistance, 2);
         
         double lightIntensity = 1 / distance;
-    
+        
         float red = this.red * (float) lightIntensity;
         float green = this.green * (float) lightIntensity;
         float blue = this.blue * (float) lightIntensity;
