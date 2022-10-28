@@ -22,7 +22,7 @@ public class Main {
 //        uiCanvas.addObjectToScene(new Sphere(new Vector3(1,-3,350), 1f, new Color(0f,0f,0), 1, 1));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0,1,90), 1f, new Color(0,1,0.2f), 0,0));
 
-        uiCanvas.addObjectToScene(new Plane(new Vector3(0,-1,0), Color.Blue, 0,0));
+//        uiCanvas.addObjectToScene(new Plane(new Vector3(0,-1,0), Color.Blue, 0,0));
 
         //make a frame
         uiCanvas.createNewFrame();
