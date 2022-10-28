@@ -50,4 +50,7 @@ public class Light extends SceneObject {
     public void setIntensity(float intensity) {
         this.intensity = intensity;
     }
+    public void addIntensity(float intensity) {
+        this.intensity += this.intensity + intensity;
+    }
 }

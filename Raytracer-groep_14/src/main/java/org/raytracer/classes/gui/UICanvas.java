@@ -61,38 +61,24 @@ public class UICanvas{
         canvasFrame.setVisible(true); // Exhibit the frame
         return true;
     }
-    
+
+    /**
+     * Update the current frame with the added buffered image
+     * @param bufferedImage
+     */
     public void updateFrame(BufferedImage bufferedImage) {
         JLabel label = new JLabel("frame"); //JLabel Creation
-        /*
-        if (!ThreadManager.getExecuterStatus()){
-
-            ThreadManager.restartExecuter();
-        }
-
-         */
-
         label.setIcon(new ImageIcon(bufferedImage));
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
         contentPanelContainer.remove(0);
         contentPanelContainer.add(label);
         swingFramer();
-        /*
-        ThreadManager.executerService.execute(new Runnable() {
-            @Override
-            public void run() {
-                label.setIcon(new ImageIcon(bufferedImage));
-                Dimension size = label.getPreferredSize(); //Gets the size of the image
-                label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-                contentPanelContainer.remove(1);
-                contentPanelContainer.add(label);
-                canvasFrame.repaint();
-            }
-        });
-
-         */
     }
+
+    /**
+     * Call this method to update the gui by using multithreading
+     */
     public void swingFramer(){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -101,15 +87,18 @@ public class UICanvas{
             }
         });
     }
+
+    /**
+     * Add any kind of solid object to the scene
+     * @param solidObject
+     */
     public void addObjectToScene(SolidObject solidObject){
         activeScene.addObjectToScene(solidObject);
     }
-    
-    public void addSphereToScene(Vector3 position, Color color, float radius) {
-        activeScene.addObjectToScene(new Sphere(position, radius, color, 0, 1));
-    }
 
-
+    /**
+     * begin raytracing
+     */
     public void startRaytracer(){
         //moveObject(); //move the first object in a scene
         //moveObject(activeScene.GetSceneObject(1), 0.3f);
@@ -117,7 +106,8 @@ public class UICanvas{
         //moveObject(activeScene.GetSceneObject(3), 0.175f);
         //moveObject(activeScene.GetSceneObject(4), 0.03f);
         //moveObject(activeScene.GetSceneObject(5), -0.0575f);
-        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,-1f,0)));
+        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,0f,15f)));
+        activeScene.GetCamera().setFieldOfView(200);
         Raycast raycaster = new Raycast();
         updateFrame(raycaster.castNormalForNow(10,activeScene));
     }

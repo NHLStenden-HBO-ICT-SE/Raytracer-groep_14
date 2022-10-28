@@ -36,7 +36,7 @@ public class Raycast {
                 }
             }
             else {
-                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j,255f)));
+                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j/2,255f)));
             }
             if (closestIntersection != null){
                 closestIntersection.setLightPosition(scene.MainLight.GetPosition());
@@ -81,13 +81,4 @@ public class Raycast {
             }
             return renderPixelColors.finishFrame();
         }
-    };
-
-    /**
-     *
-     * @param scene
-     * @param renderPixelColors
-     * @param objectList
-     * @param threadImages
-     * @param aASupplement
-     */
+    }
