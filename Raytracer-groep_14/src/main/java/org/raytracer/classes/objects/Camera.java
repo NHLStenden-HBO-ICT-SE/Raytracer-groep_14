@@ -43,10 +43,6 @@ public class Camera extends SceneObject {
         this.screenWidth = widthAndHeight;
     }
     
-    public float getFieldOfView() {
-        return fieldOfView;
-    }
-    
     public void setFieldOfView(float fieldOfView) {
         this.fieldOfView = fieldOfView;
         this.center = position.add(direction.multiply(fieldOfView));

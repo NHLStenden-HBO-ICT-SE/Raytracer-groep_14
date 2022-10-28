@@ -36,8 +36,8 @@ public class Ray {
     public Ray(Vector3 intersectPosition, Vector3 lightPosition) {
         this.origin = intersectPosition;
         calculateNormalizedDirectionToLight(lightPosition);
-        
-        float distanceToLightSource2 = lightPosition.distanceBetweenPoints(intersectPosition);
+    
+        distanceToLightSource = lightPosition.distanceBetweenPoints(origin);
     }
     
     public Vector3 getDirection() {
