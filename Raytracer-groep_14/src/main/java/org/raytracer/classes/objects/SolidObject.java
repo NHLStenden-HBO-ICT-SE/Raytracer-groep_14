@@ -6,11 +6,8 @@ import org.raytracer.classes.vectors.Vector3;
 
 public abstract class SolidObject extends SceneObject implements Material {
     protected float reflection;
-    
     protected float emission;
-    
     protected Color color;
-    //protected Vector3 position;
     
     
     public SolidObject(Vector3 position, Color color, float reflection, float emission) {
@@ -22,7 +19,11 @@ public abstract class SolidObject extends SceneObject implements Material {
     
     public abstract Intersection calculateIntersection(Ray ray);
     
-    public abstract Vector3 GetNormalAt(Vector3 point); //todo why abstract? Now it doesn't do anything
+    public abstract boolean getsHitByRay(Ray ray);
+    
+    public abstract float distanceToIntersection(Ray ray);
+    
+    public abstract Vector3 GetNormalAtIntersection(Vector3 point);
     
     public Vector3 getPosition() {
         return position;

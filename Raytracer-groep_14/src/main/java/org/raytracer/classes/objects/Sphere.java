@@ -29,18 +29,36 @@ public class Sphere extends SolidObject {
         if (rayGoesThroughSphere(shortestDistanceRayToCenter)) {
             double f = (projectionSphereCenterToRay - Math.sqrt(radius * radius - shortestDistanceRayToCenter));
             float distanceToIntersection = (float) f;
-            distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
+            //distanceToIntersection = getRidOfShadowAcne(distanceToIntersection);
             
             boolean cameraIsOutsideOfSphere =
                     distanceToIntersection < projectionSphereCenterToRay && projectionSphereCenterToRay > 0;
             
             if (cameraIsOutsideOfSphere) {
-                return new Intersection(ray.getPointOnRay(distanceToIntersection), distanceToIntersection);
+                return new Intersection(ray.getPointOnRay(distanceToIntersection), color);
             }
         }
         return null;
     }
     
+    @Override
+    public boolean getsHitByRay(Ray ray) {
+        Vector3 rayOriginToSphereCenter = calculateRayOriginToSphereCenter(ray);
+        float projectionSphereCenterToRay = rayOriginToSphereCenter.dot(ray.getNormalizedDirection());
+        Vector3 rayDirectionDistance = ray.getDirection().multiply(projectionSphereCenterToRay);
+        Vector3 projectionOfRayToCenter =
+                rayOriginToSphereCenter.subtract(rayDirectionDistance);
+        float shortestDistanceRayToCenter = projectionOfRayToCenter.dot(projectionOfRayToCenter);
+
+        return rayGoesThroughSphere(shortestDistanceRayToCenter);
+    }
+
+    //todo
+    @Override
+    public float distanceToIntersection(Ray ray) {
+        return 0;
+    }
+
     /**
      * shortens the distance by a fraction to make sure the point is just outside the object. This solves shadow acne
      * bug.
@@ -53,7 +71,7 @@ public class Sphere extends SolidObject {
     }
     
     private boolean rayGoesThroughSphere(float shortestDistanceRayToCenter) {
-        Boolean rayGoesThroughSphere = shortestDistanceRayToCenter < (radius * 2);
+        boolean rayGoesThroughSphere = shortestDistanceRayToCenter < (radius * 2);
         return rayGoesThroughSphere;
     }
     
@@ -62,7 +80,7 @@ public class Sphere extends SolidObject {
     }
     
     @Override
-    public Vector3 GetNormalAt(Vector3 point) {
+    public Vector3 GetNormalAtIntersection(Vector3 point) {
         return point.subtract(position).normalize();
     }
     

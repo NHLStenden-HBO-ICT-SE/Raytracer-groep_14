@@ -3,7 +3,7 @@ package org.raytracer.classes.objects;
 import org.raytracer.classes.vectors.Vector3;
 
 public class Light extends SceneObject {
-    private Color color;
+    private Color color = new Color();
     
     private float intensity;
     
@@ -14,51 +14,29 @@ public class Light extends SceneObject {
     public Light(Vector3 position, float intensity) {
         this.intensity = intensity;
         this.position = position;
-        this.color = new Color(1, 0, 0.1f);
+        this.color = color.multiply(intensity);
     }
-    
-    
+
     /**
      * kleur van het licht moet worden meegegeven
      */
-    public Light(Vector3 position, float intencity, float red, float green, float blue) {
-        this.intensity = intencity;
+    public Light(Vector3 position, float intensity, float red, float green, float blue) {
+        this.intensity = intensity;
         this.position = position;
-        this.color = new Color(red, green, blue);
+        this.color = new Color(red, green, blue).multiply(this.intensity);
+    }
+
+    @Override
+    public void SetPosition(Vector3 position) {
+        super.SetPosition(position);
+    }
+
+
+    public Color getColor(){
+        return color;
     }
     
-    
-    /**
-     * Berekenen lichtintensiteit
-     */
-    public float CalcLightIntencity(float objectDistance) {
-        
-        double distance = Math.pow(objectDistance, 2);
-        
-        double lightIntensity = 1 / distance;
-        
-        return (float) lightIntensity;
-        
-    }
-    
-    // calculate the reflection
-    //reflectie = kleurlicht * kleurobject
-    public Color Lightreflection(Color objectColor) {
-        
-        float colorred = color.getRed();
-        float colorblue = color.getBlue();
-        float colorgreen = color.getGreen();
-        
-        float lightred = objectColor.getRed();
-        float lightblue = objectColor.getBlue();
-        float lightgreen = objectColor.getGreen();
-        
-        float reflectred = colorred * lightred;
-        float reflectblue = Math.min(colorblue * lightblue, 1);
-        float reflectgreen = colorgreen * lightgreen;
-        
-        return new Color(reflectred, reflectgreen, reflectblue);
-    }
+
     
     //intensiteit licht invals hoek is cos a oftewel
     //dot product van de normaal en licht vector
@@ -71,5 +49,8 @@ public class Light extends SceneObject {
     
     public void setIntensity(float intensity) {
         this.intensity = intensity;
+    }
+    public void addIntensity(float intensity) {
+        this.intensity += this.intensity + intensity;
     }
 }

@@ -1,8 +1,6 @@
 package org.raytracer.classes.scenes;
 
-import org.raytracer.classes.objects.Camera;
-import org.raytracer.classes.objects.Light;
-import org.raytracer.classes.objects.SolidObject;
+import org.raytracer.classes.objects.*;
 import org.raytracer.classes.vectors.Vector3;
 
 import java.util.ArrayList;
@@ -12,7 +10,7 @@ public class Scene {
     private ArrayList<SolidObject> objectList;
     private Camera camera;
     private Light light;
-    static Light MainLight;
+    public Light MainLight;
     
     
     /**
@@ -20,8 +18,8 @@ public class Scene {
      */
     public Scene() {
         this.objectList = new ArrayList<>();
-        this.camera = new Camera(400);
-        MainLight = new Light(new Vector3(0, 10, 1), 50);
+        this.camera = new Camera(900);
+        MainLight = new Light(new Vector3(0, 0, 0), 1f);
     }
     
     public void addObjectToScene(SolidObject object) {
@@ -47,7 +45,11 @@ public class Scene {
     public SolidObject getFirstSolidObject() {
         return objectList.get(0);
     }
-    
+
+    public ArrayList<SolidObject> getObjectList() {
+        return objectList;
+    }
+
     public int GetObjectListLength() {
         return objectList.size();
     }
