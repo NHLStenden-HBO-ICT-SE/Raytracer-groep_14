@@ -1,6 +1,8 @@
 package org.raytracer.classes.objects;
 
 
+import org.raytracer.Main;
+
 public class Color {
     
     private float red = 1;
@@ -95,6 +97,13 @@ public class Color {
     }
     
     public void nerfColor() {
+        /*
+        red = Math.max(0, Math.min(1, red));
+        blue = Math.max(0, Math.min(1, blue));
+        green = Math.max(0, Math.min(1, green));
+
+         */
+
         if (red > 1)
             red = 1;
         if (blue > 1)

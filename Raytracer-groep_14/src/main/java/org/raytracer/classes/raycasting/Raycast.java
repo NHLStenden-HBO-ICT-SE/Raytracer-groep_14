@@ -27,22 +27,24 @@ public class Raycast {
      */
     private void getClosestIntersection(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos) {
         Intersection closestIntersection = null;
+        SolidObject closestItem = null;
         for (SolidObject item: objectList) {
             Intersection intersection = item.calculateIntersection(new Ray(scene.GetCamera(), i, j));
             if(intersection != null){
                 if (intersection.getDistanceToCameraOrigin(scene.GetCamera()) < lastPos){
                     lastPos = intersection.getDistanceToCameraOrigin(scene.GetCamera());
                     closestIntersection = intersection;
+                    closestItem = item;
                 }
             }
             else {
-                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j/2,255f)));
+                renderPixelColors.writeFramePixel(i, j, new Color(0,0,Math.min(j/3,255f)));
             }
             if (closestIntersection != null){
                 closestIntersection.setLightPosition(scene.MainLight.GetPosition());
                 closestIntersection.calculateColor(scene.MainLight.getColor(), closestIntersection.getDistanceToLightSource());
                 Vector3 normalizedIntersectionPosition = closestIntersection.getStartPosition();
-                Vector3 normalizedObjectCenter = item.getPosition();
+                Vector3 normalizedObjectCenter = closestItem.getPosition(); //mogelijk probleem
                 Vector3 intersectionNormal = normalizedIntersectionPosition.subtract(normalizedObjectCenter).normalize();
 
 
@@ -57,6 +59,7 @@ public class Raycast {
                 renderableColor.nerfColor();
                 renderPixelColors.writeFramePixel(i, j, renderableColor);
                 //todo Castshadow
+
             }
         }
     }

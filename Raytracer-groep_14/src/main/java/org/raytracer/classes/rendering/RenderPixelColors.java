@@ -22,8 +22,8 @@ public class RenderPixelColors {
         writeFrame = new BufferedImage(widthAndHeight,widthAndHeight, BufferedImage.TYPE_INT_RGB);
     }
     public void writeFramePixel(int x, int y, Color color){
-        //writeFrame.setRGB(x, y, color.getRGB());
-        writeFrame.setRGB(x,y, color.getRGBBitshifted());
+        writeFrame.setRGB(x, y, color.getRGB());
+        //writeFrame.setRGB(x,y, color.getRGBBitshifted());
     }
     public void writeFramePixel(int x, int y, int color){
         try {

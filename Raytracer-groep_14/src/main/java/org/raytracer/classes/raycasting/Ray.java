@@ -21,8 +21,6 @@ public class Ray {
         this.origin = camera.GetPosition();
         calculateDirectionFromCamera(camera, x, y);
         
-        // todo Is deze nog nodig?
-        
         if (direction.length() != 1) {
             direction = direction.normalize();
         }
