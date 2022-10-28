@@ -2,8 +2,12 @@ package org.raytracer.classes.gui;
 
 import org.raytracer.classes.objects.Color;
 import org.raytracer.classes.objects.Plane;
+
+import org.raytracer.classes.objects.SolidObject;
+
 import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
+import org.raytracer.classes.raycasting.ThreadManager;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.vectors.Vector3;
 import org.raytracer.classes.objects.SolidObject;
@@ -13,10 +17,11 @@ import java.awt.image.BufferedImage;
 
 public class UICanvas{
     JFrame canvasFrame = new JFrame("best frame ever");
-    
+    JLabel label = new JLabel();
     private int Height, Width;
     org.raytracer.classes.objects.Color[][] pixelColor;
-    
+
+    private Container contentPanelContainer;
     private BufferedImage bufferedImage;
     
     public Scene activeScene = new Scene();
@@ -45,44 +50,69 @@ public class UICanvas{
     }
     
     public boolean createNewFrame() {
-        
-        JLabel label = new JLabel(); //JLabel Creation
+        JButton quitButton = new JButton("Quit");
+        label = new JLabel(); //JLabel Creation
         //todo use a bufferedimage to display, instead of a saved image
         label.setIcon(new ImageIcon("rame.png")); //Sets the image to be displayed as an icon
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-        
-        Container c = canvasFrame.getContentPane();
-        c.add(label); //Adds objects to the container
+        contentPanelContainer = canvasFrame.getContentPane();
+        contentPanelContainer.add(label); //Adds objects to the container
+        //contentPanelContainer.add(quitButton);
+        quitButton.setBounds(100, 100, 115, 55);
         canvasFrame.setVisible(true); // Exhibit the frame
         return true;
     }
-    
+
+    /**
+     * Update the current frame with the added buffered image
+     * @param bufferedImage
+     */
     public void updateFrame(BufferedImage bufferedImage) {
         JLabel label = new JLabel("frame"); //JLabel Creation
         label.setIcon(new ImageIcon(bufferedImage));
         Dimension size = label.getPreferredSize(); //Gets the size of the image
         label.setBounds(50, 30, size.width, size.height); //Sets the location of the image
-        Container c = canvasFrame.getContentPane();
-        c.remove(0);
-        c.add(label); //Adds objects to the container
-        canvasFrame.setVisible(true); // Exhibit the frame
-    }
-    
-    public void addSphereToScene(Vector3 position, Color color) {
-        activeScene.addObjectToScene(new Sphere(position, 2, color, 0, 1));
+        contentPanelContainer.remove(0);
+        contentPanelContainer.add(label);
+        swingFramer();
     }
 
-    public void addPlaneToScene(Vector3 position, Color color) {
-        activeScene.addObjectToScene(new Plane(position, color, 0, 1));
+    /**
+     * Call this method to update the gui by using multithreading
+     */
+    public void swingFramer(){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                canvasFrame.setVisible(true);
+            }
+        });
     }
 
+    /**
+     * Add any kind of solid object to the scene
+     * @param solidObject
+     */
+    public void addObjectToScene(SolidObject solidObject){
+        activeScene.addObjectToScene(solidObject);
+    }
+
+    /**
+     * begin raytracing
+     */
     public void startRaytracer(){
-        moveObject(); //todo haal dit er uit, heeft niks met deze method te maken
-        moveObject(activeScene.GetSceneObject(1),0.01f);
+        //moveObject(); //move the first object in a scene
+        //moveObject(activeScene.GetSceneObject(1), 0.3f);
+        //moveObject(activeScene.GetSceneObject(2), 0.575f);
+        //moveObject(activeScene.GetSceneObject(3), 0.175f);
+        //moveObject(activeScene.GetSceneObject(4), 0.03f);
+        //moveObject(activeScene.GetSceneObject(5), -0.0575f);
+        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,1f,0)));
+        activeScene.GetCamera().setFieldOfView(200);
         Raycast raycaster = new Raycast();
-        //updateFrame(raycaster.castRays(10, activeScene));
-        updateFrame(raycaster.castThreadedRaysMultipleObjects(10,activeScene));
+        updateFrame(raycaster.castNormalForNow(10,activeScene));
+
     }
 
     public void moveObject(Vector3 vector3){
@@ -92,7 +122,12 @@ public class UICanvas{
         activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(new Vector3(0, 0, 0.1f))));
         
     }
+
+    public void moveObject(SolidObject object){
+        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, 0.5f))));
+    }
     public void moveObject(SolidObject object, float speed){
-        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0.1f, 0))));
+        object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, speed))));
+
     }
 }

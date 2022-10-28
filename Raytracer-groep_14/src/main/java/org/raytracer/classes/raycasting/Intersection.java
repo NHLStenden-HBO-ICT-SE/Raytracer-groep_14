@@ -1,37 +1,58 @@
 package org.raytracer.classes.raycasting;
 
+import org.raytracer.classes.objects.Camera;
+import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.vectors.Vector3;
+
+import java.util.ArrayList;
 
 public class Intersection {
     private float distanceToCameraOrigin;
     private Vector3 startPosition;
+    private Vector3 lightPosition = null;
     private int amountOfBounces;
-    
-    
-    /**
-     *
-     * @param startingPosition location of
-     * @param distanceToCameraOrigin
-     */
-    public Intersection(Vector3 startingPosition, float distanceToCameraOrigin) {
+    private Color color;
+    private float distanceToLightSource = 0;
+
+    public Intersection(Vector3 startingPosition,  Color objectColor) {
         this.startPosition = startingPosition;
-        this.distanceToCameraOrigin = distanceToCameraOrigin;
-        
-        amountOfBounces = 1;
+        this.color = objectColor;
+        amountOfBounces = 5;
     }
-    
-    private void avoidShadowAcne() {
-    
-    }
-    
     public void incrementAmountOfBounces() {
         amountOfBounces++;
     }
-    
-    public float getDistanceToCameraOrigin() {
+
+    public float getDistanceToCameraOrigin(Camera cam) {
+        if (distanceToCameraOrigin == 0){
+            distanceToCameraOrigin = startPosition.distanceBetweenPoints(cam.GetPosition());
+        }
         return distanceToCameraOrigin;
     }
-    
+    public void setLightPosition(Vector3 lightPosition) {
+        this.lightPosition = lightPosition;
+        distanceToLightSource = lightPosition.distanceBetweenPoints(startPosition);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public float getDistanceToLightSource(){
+        return distanceToLightSource;
+    }
+
+    public void calculateColor(Color lightColor, float distanceToLightSource) {
+        Color objectColor = color;
+
+        objectColor.lightReflection(lightColor, distanceToLightSource);
+
+        color.setColor(objectColor);
+    }
+
+
+
     public int getAmountOfBounces() {
         return amountOfBounces;
     }

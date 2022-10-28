@@ -51,7 +51,7 @@ public class Camera extends SceneObject {
         this.fieldOfView = fieldOfView;
         this.center = position.add(direction.multiply(fieldOfView));
     }
-    
+
     public Vector3 getDirection() {
         return direction;
     }

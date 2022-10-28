@@ -21,15 +21,26 @@ public class Plane extends SolidObject {
         float intersectionPoint = -(ray.getOrigin().getY() - position.getY()) / ray.getDirection().getY();
         if (intersectionPoint > 0 && Float.isFinite(intersectionPoint))//otherwise is the ray perpendicular to plane which does not intersect
         {
-            return new Intersection(ray.getOrigin().add(ray.getDirection().multiply(intersectionPoint)), intersectionPoint);
+
+            return new Intersection(ray.getOrigin().add(ray.getDirection().multiply(intersectionPoint)), this.getColor());
         }
         return null;
     }
-
-
-
+    
+    //todo
     @Override
-    public Vector3 GetNormalAt(Vector3 point) {
+    public boolean getsHitByRay(Ray ray) {
+        return false;
+    }
+    
+    //todo
+    @Override
+    public float distanceToIntersection(Ray ray) {
+        return 0;
+    }
+    
+    @Override
+    public Vector3 GetNormalAtIntersection(Vector3 point) {
         return new Vector3(0, 1, 0);
     }
 
