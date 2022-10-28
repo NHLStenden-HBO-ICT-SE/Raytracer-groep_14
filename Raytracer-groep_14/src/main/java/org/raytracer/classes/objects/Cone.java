@@ -4,6 +4,8 @@ import org.raytracer.classes.raycasting.Intersection;
 import org.raytracer.classes.raycasting.Ray;
 import org.raytracer.classes.vectors.Vector3;
 
+import java.util.List;
+
 public class Cone extends SolidObject {
     private float height;
     private float radius;
@@ -32,6 +34,11 @@ public class Cone extends SolidObject {
     
     @Override
     public Vector3 GetNormalAtIntersection(Vector3 point) {
+        return null;
+    }
+
+    @Override
+    public Intersection calculateIntersectionExp(Ray ray, List<SolidObject> solidObjects, Light mainLight){
         return null;
     }
 }

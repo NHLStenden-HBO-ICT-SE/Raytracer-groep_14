@@ -2,6 +2,7 @@ package org.raytracer.classes.raycasting;
 
 import org.raytracer.classes.objects.Camera;
 import org.raytracer.classes.objects.Color;
+import org.raytracer.classes.objects.Light;
 import org.raytracer.classes.objects.SolidObject;
 import org.raytracer.classes.vectors.Vector3;
 
@@ -35,11 +36,18 @@ public class Intersection {
         distanceToLightSource = lightPosition.distanceBetweenPoints(startPosition);
     }
 
+    public void setColor(Color color){
+        this.color = color;
+    }
     public Color getColor() {
         return color;
     }
 
     public float getDistanceToLightSource(){
+        return distanceToLightSource;
+    }
+    public float getDistanceToLightSource(Light light){
+        distanceToLightSource = light.GetPosition().distanceBetweenPoints(startPosition);
         return distanceToLightSource;
     }
 

@@ -4,6 +4,8 @@ import org.raytracer.classes.raycasting.Intersection;
 import org.raytracer.classes.raycasting.Ray;
 import org.raytracer.classes.vectors.Vector3;
 
+import java.util.List;
+
 public abstract class SolidObject extends SceneObject implements Material {
     protected float reflection;
     protected float emission;
@@ -24,7 +26,8 @@ public abstract class SolidObject extends SceneObject implements Material {
     public abstract float distanceToIntersection(Ray ray);
     
     public abstract Vector3 GetNormalAtIntersection(Vector3 point);
-    
+
+    public abstract  Intersection calculateIntersectionExp(Ray ray, List<SolidObject> solidObjects, Light mainLight);
     public Vector3 getPosition() {
         return position;
     }

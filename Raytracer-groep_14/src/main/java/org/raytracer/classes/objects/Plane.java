@@ -4,6 +4,8 @@ import org.raytracer.classes.raycasting.Intersection;
 import org.raytracer.classes.raycasting.Ray;
 import org.raytracer.classes.vectors.Vector3;
 
+import java.util.List;
+
 public class Plane extends SolidObject {
 
 
@@ -42,5 +44,10 @@ public class Plane extends SolidObject {
     @Override
     public Vector3 GetNormalAtIntersection(Vector3 point) {
         return new Vector3(0, 1, 0);
+    }
+
+    @Override
+    public Intersection calculateIntersectionExp(Ray ray, List<SolidObject> solidObjects, Light mainLight){
+        return null;
     }
 }
