@@ -101,12 +101,12 @@ public class UICanvas{
      */
     public void startRaytracer(){
         //moveObject(); //move the first object in a scene
-        moveObject(activeScene.GetSceneObject(1), 0.1f);
+//        moveObject(activeScene.GetSceneObject(1), 0.1f);
 //        moveObject(activeScene.GetSceneObject(2), 0.575f);
 //        moveObject(activeScene.GetSceneObject(3), 0.175f);
 //        moveObject(activeScene.GetSceneObject(4), 0.03f);
 //        moveObject(activeScene.GetSceneObject(5), -0.0575f);
-        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,0.1f,0.5f)));
+//        activeScene.MainLight.SetPosition(activeScene.MainLight.GetPosition().add(new Vector3(0,0.1f,0.5f)));
         activeScene.GetCamera().setFieldOfView(50);
         Raycast raycaster = new Raycast();
         updateFrame(raycaster.castNormalForNow(10,activeScene));

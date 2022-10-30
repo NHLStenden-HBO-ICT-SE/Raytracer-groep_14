@@ -15,10 +15,10 @@ public class Main {
         UICanvas uiCanvas = new UICanvas(900);
         //create a new scene withing the uiCanvas and add one blue object in it
         uiCanvas.addObjectToScene(new Sphere(new Vector3(2,0,120), 0.5f, new Color(0.1f,0,1f), 0.5f, 1));
-//        uiCanvas.addObjectToScene(new Sphere(new Vector3(0,0,140), 1f, new Color(1,0,0), 0.6f, 1));
+        uiCanvas.addObjectToScene(new Sphere(new Vector3(0,0,140), 1f, new Color(1,0,0), 0.6f, 1));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0,-2,150), 1f,  new Color(0.5f,0,0.1f), 0.5f, 0));
-//        uiCanvas.addObjectToScene(new Sphere(new Vector3(1,-1,130), 1, new Color(0.7f,0.1f,0.3f), 0.5f, 0.2f));
-//        uiCanvas.addObjectToScene(new Sphere(new Vector3(-2,1,100), 1f, new Color(0,0,1), 0.5f, 1f));
+        uiCanvas.addObjectToScene(new Sphere(new Vector3(1,-1,130), 1, new Color(0.7f,0.1f,0.3f), 0.5f, 0.2f));
+        uiCanvas.addObjectToScene(new Sphere(new Vector3(-2,1,100), 1f, new Color(0,0,1), 0.5f, 1f));
 //        uiCanvas.addObjectToScene(new Sphere(new Vector3(1,-3,350), 1f, new Color(0f,0f,0), 1, 1));
         uiCanvas.addObjectToScene(new Sphere(new Vector3(0,1,90), 1f, new Color(0,1,0.2f), 0,0));
 
@@ -26,7 +26,7 @@ public class Main {
 
         //make a frame
         uiCanvas.createNewFrame();
-        for (int i = 0; i < 20000; i++) {
+        for (int i = 0; i < 2000; i++) {
             uiCanvas.startRaytracer();
         }
         System.out.println("done");
