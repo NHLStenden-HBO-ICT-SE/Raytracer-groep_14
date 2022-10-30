@@ -9,6 +9,7 @@ import org.raytracer.classes.vectors.Vector3;
 public class Main {
     public static void main(String[] args) {
 
+        //main2
         System.out.println("Hello world!");
 
         //create a new uiCanvas which will act as a viewport
