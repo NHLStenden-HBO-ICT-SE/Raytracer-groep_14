@@ -7,6 +7,7 @@ import org.raytracer.classes.gui.UICanvas;
 import org.raytracer.classes.rendering.RenderPixelColors;
 import org.raytracer.classes.vectors.Vector3;
 
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Raycast {
      * @param j
      * @param lastPos
      */
+
     private void getClosestIntersection(Scene scene, RenderPixelColors renderPixelColors, List<SolidObject> objectList, int i, int j, float lastPos) {
         Intersection closestIntersection = null;
         SolidObject closestItem = null;
@@ -126,11 +128,10 @@ public class Raycast {
             }
         }
     }
-
-
     //todo create a way to give a sample size to the raytracer
     public BufferedImage castNormalForNow(float rayReach,Scene scene) {
         ThreadManager.runExecuter();
+
         RenderPixelColors renderPixelColors = new RenderPixelColors(scene.getWidthAndHeight());
         List<SolidObject> objectList = scene.getObjectList();
         raytraceToImg2(scene, renderPixelColors, objectList);

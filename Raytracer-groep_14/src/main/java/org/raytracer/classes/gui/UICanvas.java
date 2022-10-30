@@ -2,13 +2,15 @@ package org.raytracer.classes.gui;
 
 import org.raytracer.classes.objects.Color;
 import org.raytracer.classes.objects.Plane;
+
 import org.raytracer.classes.objects.SolidObject;
+
 import org.raytracer.classes.objects.Sphere;
 import org.raytracer.classes.raycasting.Raycast;
 import org.raytracer.classes.raycasting.ThreadManager;
 import org.raytracer.classes.scenes.Scene;
 import org.raytracer.classes.vectors.Vector3;
-
+import org.raytracer.classes.objects.SolidObject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -110,6 +112,7 @@ public class UICanvas{
         activeScene.GetCamera().setFieldOfView(50);
         Raycast raycaster = new Raycast();
         updateFrame(raycaster.castNormalForNow(10,activeScene));
+
     }
 
     public void moveObject(Vector3 vector3){
@@ -119,10 +122,12 @@ public class UICanvas{
         activeScene.getFirstSolidObject().setPosition(new Vector3(activeScene.getFirstSolidObject().getPosition().add(new Vector3(0, 0, 0.1f))));
         
     }
+
     public void moveObject(SolidObject object){
         object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, 0.5f))));
     }
     public void moveObject(SolidObject object, float speed){
         object.setPosition(new Vector3(object.getPosition().add(new Vector3(0, 0, speed))));
+
     }
 }

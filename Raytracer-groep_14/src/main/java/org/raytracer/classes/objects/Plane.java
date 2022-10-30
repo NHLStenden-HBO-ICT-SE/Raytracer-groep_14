@@ -24,6 +24,7 @@ public class Plane extends SolidObject {
         float intersectionPoint = -(ray.getOrigin().getY() - position.getY()) / ray.getDirection().getY();
         if (intersectionPoint > 0 && Float.isFinite(intersectionPoint))//otherwise is the ray perpendicular to plane which does not intersect
         {
+
             return new Intersection(ray.getOrigin().add(ray.getDirection().multiply(intersectionPoint)), this.getColor());
         }
         return null;

@@ -24,6 +24,7 @@ public class Main {
 
 //        uiCanvas.addObjectToScene(new Plane(new Vector3(0,-1,0), Color.Blue, 0,0));
 
+
         //make a frame
         uiCanvas.createNewFrame();
         for (int i = 0; i < 2000; i++) {
