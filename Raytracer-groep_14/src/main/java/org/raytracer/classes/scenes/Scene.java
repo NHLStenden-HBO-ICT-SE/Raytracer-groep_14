@@ -69,9 +69,7 @@ public class Scene {
             return null;
         }
     }
-    public ArrayList<SolidObject> getObjectList() {
-        return objectList;
-    }
+
     public Camera GetCamera(){
         return camera;
     }
